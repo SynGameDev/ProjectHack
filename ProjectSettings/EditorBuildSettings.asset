@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Desktops/MainDashboard.unity
+    guid: 5452273aad3f77745837deee92dc35ba
+  - enabled: 1
+    path: Assets/Scenes/Desktops/PlayerDesktop.unity
+    guid: c621f96dc4424c34f8fc2d348019d90f
+  - enabled: 1
+    path: Assets/Scenes/Desktops/UserDesktop.unity
+    guid: 7931f95b1ce3b764a810f19f0570a701
+  - enabled: 1
+    path: Assets/Scenes/Applications/ConnectToTerminal_App.unity
+    guid: d6a95c298fb653f41bc46de7e5a756bc
+  m_configObjects: {}
