@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 
     [Header("Currently Active Contract")]
     public ContractInfo ActiveContract;                   // Current contract that has been accepted;
+    [SerializeField] private TextMeshProUGUI _ActiveContractMessage;                    // Text Information
 
     [Header("Available Contracts")]
     [SerializeField] private GameObject _ContractButtonPrefab;
@@ -17,6 +18,7 @@ public class GameController : MonoBehaviour
 
     [Header("Viewing Contract")]
     [SerializeField] private ContractInfo _ViewingContract;
+    private GameObject _ViewingContractButton;
     
     
 
@@ -35,17 +37,29 @@ public class GameController : MonoBehaviour
         DisplayAvailableContracts();
     }
 
+    private void Update() {
+        ActiveContractDisplay();
+    }
+
     private void DisplayAvailableContracts() {
         foreach(var contract in _AvailableContracts) {
             var go = Instantiate(_ContractButtonPrefab);                        // Create the button
             go.name = "Contract: " + contract.ContractID.ToString();            // Name the button
-            
+
             go.GetComponentInChildren<TextMeshProUGUI>().text = "Contract: " + contract.ContractID.ToString();
             go.GetComponent<ContractButton>().SetContract(contract);
 
             go.transform.SetParent(_ContractContainer);
+            go.transform.localScale = Vector3.one;
 
+        }
+    }
 
+    private void ActiveContractDisplay() {
+        if(ActiveContract != null) {
+            _ActiveContractMessage.text = ActiveContract.ContractMessage;
+        } else {
+            _ActiveContractMessage.text = "";
         }
     }
 
@@ -54,11 +68,28 @@ public class GameController : MonoBehaviour
     }
 
 
+
+    public void DeclineContract() {
+        _AvailableContracts.Remove(_ViewingContract);
+        Destroy(_ViewingContractButton);
+        _ViewingContract = null;
+        
+        // TODO:Update Stats
+    }
+
+    public void AcceptContract() {
+        ActiveContract = _ViewingContract;
+        _ViewingContract = null;
+    }
+
     // Getters 
     public ContractInfo GetActiveContract() => ActiveContract;
     public ContractInfo GetViewingContract() => _ViewingContract;
 
     // Setters
+    public void SetViewingButton(GameObject contract) {
+        _ViewingContractButton = contract;
+    }
 
 
     // TEST
@@ -76,5 +107,7 @@ public class GameController : MonoBehaviour
 
         return info;
     }
+
+    
 
 }
