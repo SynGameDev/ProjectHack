@@ -9,6 +9,7 @@ public class ViewingContract : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ToHeader;
     [SerializeField] private TextMeshProUGUI _Subject;
     [SerializeField] private TextMeshProUGUI _MessageContent;
+    [SerializeField] private GameObject _ContractActionPanel;
 
     private void Update() {
         CheckIfViewing();
@@ -21,6 +22,7 @@ public class ViewingContract : MonoBehaviour
             _ToHeader.text = "";
             _Subject.text = "";
             _MessageContent.text = "";
+            _ContractActionPanel.SetActive(false);
         }
     }
 
@@ -30,5 +32,12 @@ public class ViewingContract : MonoBehaviour
         _ToHeader.text = contract.ContractOwner + " | " + "hacker@acexmail.com";
         _Subject.text = contract.ContractStatus;
         _MessageContent.text = contract.ContractMessage;
+        _ContractActionPanel.SetActive(true);
     }
+
+    public void AcceptContract() {
+        GameController.Instance.AcceptContract();
+    }
+
+    public void DeclineContract() => GameController.Instance.DeclineContract();
 }
