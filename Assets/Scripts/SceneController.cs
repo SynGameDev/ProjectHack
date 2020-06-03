@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,6 +29,7 @@ public class SceneController : MonoBehaviour
     private void Start() {
         SceneManager.LoadSceneAsync(PlayerDash, LoadSceneMode.Additive);
         _CurrentlyLoadedScenes.Add(PlayerDash);
+        ToolbarController.Instance.SwitchToolbar("Main");
     }
 
 
@@ -54,6 +55,7 @@ public class SceneController : MonoBehaviour
 
         SceneManager.LoadSceneAsync(UserDesktop, LoadSceneMode.Additive);           // Load the user Desktop
         _CurrentlyLoadedScenes.Add(UserDesktop);                    // add this to loaded scenes
+        ToolbarController.Instance.SwitchToolbar("User");
     }
 
     // Disconnect From Desktop
@@ -68,6 +70,7 @@ public class SceneController : MonoBehaviour
 
         SceneManager.LoadSceneAsync(PlayerDash, LoadSceneMode.Additive);
         _CurrentlyLoadedScenes.Add(PlayerDash);
+        ToolbarController.Instance.SwitchToolbar("Main");
     }
 
     
