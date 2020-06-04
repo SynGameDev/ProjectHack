@@ -13,6 +13,12 @@ public class NodePuzzlePiece : MonoBehaviour {
     [SerializeField] private List<NodeConnectorController> AllNodes = new List<NodeConnectorController>();
     [SerializeField] private GameObject PuzzleStatusText;
 
+    [Header("Timer Settings")]
+    [SerializeField] private TextMeshProUGUI _TimerText;
+    [SerializeField] private float _SecondsToCompleted;
+    private float _CurrentTimer;
+
+
 
     private void Awake() {
         PuzzleStatusText.SetActive(false);
@@ -22,7 +28,18 @@ public class NodePuzzlePiece : MonoBehaviour {
 
     private void Update() {
         CheckIfCompleted();
+        TimerControl();
     }
+
+    private void TimerControl() {
+        _SecondsToCompleted -= 1;
+        if(_SecondsToCompleted <= 0) {
+            PuzzleCompleted("Failed");
+        }
+
+        _TimerText = _SecondsToCompleted.ToString("F0");
+    }
+
     private void CheckIfCompleted() {
         var TotalNodes = AllNodes.Count;
         var Connected = 0;
@@ -33,19 +50,20 @@ public class NodePuzzlePiece : MonoBehaviour {
         }
 
         if(Connected == TotalNodes) {
-            PuzzleCompleted();
+            PuzzleCompleted("Success");
         }
     }
 
-    private void PuzzleCompleted() {
+    private IEnumerator PuzzleCompleted(string status) {
+        _TimerText.gameObject.SetActive(false);
         PuzzleStatusText.SetActive(true);
-        StartCoroutine(ClosePuzzle());
-    }
+        PuzzleStatusText.GetComponent<TextMeshProUGUI>().text = status;
 
-    private IEnumerator ClosePuzzle() {
         yield return new WaitForSeconds(3);
         SceneController.Instance.CloseTerminalConnector();
-        SceneController.Instance.OpenUserDesktop();
+
+        if(status = "Success")
+            SceneController.Instance.OpenUserDesktop();
     }
 
     public void ConnectNode() {
