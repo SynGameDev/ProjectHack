@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToolbarController : MonoBehaviour
 {
-    public ToolbarController Instance;                      // Singleton Instacne
+    public static ToolbarController Instance;                      // Singleton Instacne
 
     private string CurrentToolbar;                          // String stating which toolbar is active
 
@@ -17,6 +17,9 @@ public class ToolbarController : MonoBehaviour
     private List<GameObject> _UserTerminalToolbar = new List<GameObject>();
 
     private List<GameObject> _LoadToolbarTools = new List<GameObject>();            // Current toolbars that are being displayed
+
+    [Space(20)]
+    [SerializeField] private Transform ToolSpawnTransform;
 
 
     private void Awake() {
@@ -47,7 +50,7 @@ public class ToolbarController : MonoBehaviour
     }
 
     private void _UserTerminalToolbarSetup() {
-        _MainDashToolbar.Add(_DisconnectFromHost);
+        _UserTerminalToolbar.Add(_DisconnectFromHost);
     }
 
     public void SwitchToolbar(string Toolbar) {
@@ -60,6 +63,8 @@ public class ToolbarController : MonoBehaviour
 
         _LoadToolbarTools.Clear();                  // Empty the list
 
+        Debug.Log(Toolbar);
+
         // Check which tool bar needs to be displayed now & Start the process
         switch(CurrentToolbar) {
             case "Main":
@@ -67,6 +72,7 @@ public class ToolbarController : MonoBehaviour
                 break;
             case "User":
                 LoadToolbar(_UserTerminalToolbar);
+                Debug.Log("Test");
                 break;
             default:
                 break;
@@ -77,11 +83,11 @@ public class ToolbarController : MonoBehaviour
         // Foreach tool that needs to be displayed
         foreach(var tool in Tools) {
             var go = Instantiate(tool);                 // Create the tool
-            go.transform.SetParent(this.gameObject.transform);            // Assign the tool to the toolbar
+            go.transform.SetParent(ToolSpawnTransform);            // Assign the tool to the toolbar
 
             go.transform.localScale = Vector3.one;          // Set the scale to 1
 
-            _LoadedToolbarTools.Add(go);                // Add tool to the toolbar  
+            _LoadToolbarTools.Add(go);                // Add tool to the toolbar  
         }
     }
 

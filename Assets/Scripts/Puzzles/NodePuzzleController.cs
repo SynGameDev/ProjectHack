@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NodePuzzlePiece : MonoBehaviour {
+public class NodePuzzleController : MonoBehaviour {
     
     [Header("Puzzle Stats")]
     [SerializeField] private int _TotalConnectors;
@@ -37,14 +37,14 @@ public class NodePuzzlePiece : MonoBehaviour {
             PuzzleCompleted("Failed");
         }
 
-        _TimerText = _SecondsToCompleted.ToString("F0");
+        _TimerText.text = _SecondsToCompleted.ToString("F0");
     }
 
     private void CheckIfCompleted() {
         var TotalNodes = AllNodes.Count;
         var Connected = 0;
         foreach(var node in AllNodes) {
-            if(node.IsConnected) {
+            if(node.IsConnected()) {
                 Connected += 1;
             }
         }
@@ -62,7 +62,7 @@ public class NodePuzzlePiece : MonoBehaviour {
         yield return new WaitForSeconds(3);
         SceneController.Instance.CloseTerminalConnector();
 
-        if(status = "Success")
+        if(status == "Success")
             SceneController.Instance.OpenUserDesktop();
     }
 

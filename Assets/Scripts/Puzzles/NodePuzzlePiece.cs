@@ -8,10 +8,11 @@ public class NodePuzzlePiece : MonoBehaviour {
 
     public void RotatePiece() {
         var CurrentRotation = transform.rotation;                   // Get the current rotation
+        float y = CurrentRotation.y += 90;
 
-        Vector3 NewRotPos = (CurrentRotation.x, CurrentRotation.y += 90, CurrentRotation.z);                // Increaase the Y rotation
+        Vector3 NewRotPos = new Vector3(CurrentRotation.x, y, CurrentRotation.z);                // Increaase the Y rotation
 
-        transform.rotation = Quaterion.Euler(NewRotPos);                // Set the new rotation
+        transform.rotation = Quaternion.Euler(NewRotPos);                // Set the new rotation
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

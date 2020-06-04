@@ -17,7 +17,7 @@ public class NodeConnectorController : MonoBehaviour {
         var ConnectedNodes = 0;                         // Total node pieces that are connected
         // Loop through each node & Check if it's connected
         foreach(var NodePiece in LinkedNodes) {
-            if(NodePiece.IsNodeConnected) {
+            if(NodePiece.IsNodeConnected()) {
                 ConnectedNodes += 1;                // ... If it's connected then increase the account
             }
         }
@@ -29,12 +29,12 @@ public class NodeConnectorController : MonoBehaviour {
     }
 
     private void ActivateNode() {
-        this.gameObject.GetComponent<Image>().color = color.green;          // Change the color to green
+        this.gameObject.GetComponent<Image>().color = Color.green;          // Change the color to green
         _IsConnected = true;                // Set node as connected
     }
 
     private void DeactivateNode() {
-        this.gameObject.GetComponent<Image>().color = color.red;                // Set color to red 
+        this.gameObject.GetComponent<Image>().color = Color.red;                // Set color to red 
         _IsConnected = false;               // Set node as not connected
     }
 
