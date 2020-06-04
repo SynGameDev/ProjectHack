@@ -17,6 +17,10 @@ public class SceneController : MonoBehaviour
     [Header("Application Load Number")]
     public int ConnectToUser;
 
+
+    [Header("Puzzles")]
+    public int TerminalConnector;
+
     public void Awake() {
         if(Instance == null) {
             Instance = this;
@@ -71,6 +75,19 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadSceneAsync(PlayerDash, LoadSceneMode.Additive);
         _CurrentlyLoadedScenes.Add(PlayerDash);
         ToolbarController.Instance.SwitchToolbar("Main");
+    }
+
+
+    // Puzzles
+    public void OpenTerminalConnector() {
+        SceneManager.LoadSceneAsync(TerminalConnector, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(TerminalConnector);
+    }
+
+    public void CloseTerminalConnector() {
+        SceneManager.UnloadSceneAsync(TerminalConnector);
+        _CurrentlyLoadedScenes.Remove(TerminalConnector);
+
     }
 
     
