@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -17,10 +17,12 @@ public class ConnectToTerminal : MonoBehaviour
         Debug.Log(GameController.Instance.ActiveContract);
         // Check if the charcter has entered the correct data.
         if(_EnteredAddress.text == GameController.Instance.GetActiveContract().TerminalIP) {
-            StartCoroutine(DisplayText());
+            SceneController.Instance.OpenTerminalConnector();
+            CloseApp();
         }
     }
 
+/*
     private IEnumerator DisplayText() {
         _SuccessText.SetActive(true);                   // Show the success text
         _ConnectButton.SetActive(false);                // Hide the connect button
@@ -28,7 +30,7 @@ public class ConnectToTerminal : MonoBehaviour
         yield return new WaitForSeconds(3);             // Wait the tie
         SceneController.Instance.OpenUserDesktop();             // Open the user desktop
     }
-
+*/
 
     // Close the application
     public void CloseApp() {
