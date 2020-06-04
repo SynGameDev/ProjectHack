@@ -24,6 +24,8 @@ public class ConnectToTerminal : MonoBehaviour
             CloseApp();
         } else {
             _ErrorText.SetActive(true);
+            _ErrorText.GetComponent<TextMeshProUGUI>().text = "Unable to find specified terminal";
+            _ErrorText.GetComponent<TextMeshProUGUI>().color = Color.red;
         }
     }
 

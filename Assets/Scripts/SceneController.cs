@@ -33,7 +33,7 @@ public class SceneController : MonoBehaviour
     private void Start() {
         SceneManager.LoadSceneAsync(PlayerDash, LoadSceneMode.Additive);
         _CurrentlyLoadedScenes.Add(PlayerDash);
-        ToolbarController.Instance.SwitchToolbar("Main");
+        
     }
 
 

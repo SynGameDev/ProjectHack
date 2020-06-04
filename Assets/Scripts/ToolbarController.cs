@@ -33,6 +33,7 @@ public class ToolbarController : MonoBehaviour
 
     private void Start() {
         InitToolbar();
+        SwitchToolbar("Main");
     }
 
     /// <summary>
@@ -58,12 +59,12 @@ public class ToolbarController : MonoBehaviour
 
         // Foreach tool that is currently active, Remove it from the scene
         foreach(var tool in _LoadToolbarTools) {
+            Debug.Log(tool.name);
             Destroy(tool);
         }
 
         _LoadToolbarTools.Clear();                  // Empty the list
 
-        Debug.Log(Toolbar);
 
         // Check which tool bar needs to be displayed now & Start the process
         switch(CurrentToolbar) {
@@ -80,8 +81,10 @@ public class ToolbarController : MonoBehaviour
     }
 
     private void LoadToolbar(List<GameObject> Tools) {
+        
         // Foreach tool that needs to be displayed
         foreach(var tool in Tools) {
+            Debug.Log("Test");
             var go = Instantiate(tool);                 // Create the tool
             go.transform.SetParent(ToolSpawnTransform);            // Assign the tool to the toolbar
 
