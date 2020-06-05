@@ -5,12 +5,7 @@ using TMPro;
 
 public class NodePuzzleController : MonoBehaviour {
     
-    [Header("Puzzle Stats")]
-    [SerializeField] private int _TotalConnectors;
-    private int _CurrentlyConnected;
 
-    [Header("Puzzle Object")]   
-    [SerializeField] private List<NodeConnectorController> AllNodes = new List<NodeConnectorController>();
     [SerializeField] private GameObject PuzzleStatusText;
 
     [Header("Timer Settings")]
@@ -18,13 +13,13 @@ public class NodePuzzleController : MonoBehaviour {
     [SerializeField] private float _SecondsToCompleted;
     private float _CurrentTimer;
 
+    [SerializeField] private PuzzlePieceController _EndNode;
+
 
 
     private void Awake() {
         PuzzleStatusText.SetActive(false);
     }
-
-
 
     private void Update() {
         CheckIfCompleted();
@@ -32,7 +27,7 @@ public class NodePuzzleController : MonoBehaviour {
     }
 
     private void TimerControl() {
-        _SecondsToCompleted -= 1;
+        _SecondsToCompleted -= 1 * Time.deltaTime;
         if(_SecondsToCompleted <= 0) {
             PuzzleCompleted("Failed");
         }
@@ -41,18 +36,11 @@ public class NodePuzzleController : MonoBehaviour {
     }
 
     private void CheckIfCompleted() {
-        var TotalNodes = AllNodes.Count;
-        var Connected = 0;
-        foreach(var node in AllNodes) {
-            if(node.IsConnected()) {
-                Connected += 1;
-            }
-        }
-
-        if(Connected == TotalNodes) {
-            PuzzleCompleted("Success");
+        if(_EndNode.PieceIsConnected()) {
+            StartCoroutine(PuzzleCompleted("Completed"));
         }
     }
+
 
     private IEnumerator PuzzleCompleted(string status) {
         _TimerText.gameObject.SetActive(false);
@@ -64,13 +52,5 @@ public class NodePuzzleController : MonoBehaviour {
 
         if(status == "Success")
             SceneController.Instance.OpenUserDesktop();
-    }
-
-    public void ConnectNode() {
-        _CurrentlyConnected += 1;
-    }
-
-    public void DisconnectNode() {
-        _CurrentlyConnected -= 1;
     }
 }
