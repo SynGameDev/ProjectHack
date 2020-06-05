@@ -37,7 +37,7 @@ public class NodePuzzleController : MonoBehaviour {
 
     private void CheckIfCompleted() {
         if(_EndNode.PieceIsConnected()) {
-            StartCoroutine(PuzzleCompleted("Completed"));
+            StartCoroutine(PuzzleCompleted("Success"));
         }
     }
 

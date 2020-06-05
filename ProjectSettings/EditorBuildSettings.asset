@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Applications/ConnectToTerminal_App.unity
     guid: d6a95c298fb653f41bc46de7e5a756bc
+  - enabled: 1
+    path: Assets/Scenes/Puzzles/NodeConnectionPuzzle.unity
+    guid: 6e8a40b271413fc48b8ac7c19a6eaeae
   m_configObjects: {}
