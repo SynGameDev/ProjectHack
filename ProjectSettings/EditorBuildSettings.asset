@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Applications/SoftwareCenter_App.unity
     guid: 42086c161bf91d946bad906aa2a58a28
+  - enabled: 1
+    path: Assets/Scenes/Applications/Installation.unity
+    guid: 9aafc2a5faabfa54d86c46f298d6e2c2
+  - enabled: 1
+    path: Assets/Scenes/Applications/AceXTerminal.unity
+    guid: f90f6d0b8da510947b54ac4d245d79b3
   m_configObjects: {}
