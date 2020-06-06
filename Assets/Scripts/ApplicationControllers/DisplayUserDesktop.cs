@@ -33,12 +33,16 @@ public class DisplayUserDesktop : MonoBehaviour
         foreach(var app in contract.InstalledApplication) {
             if(_RowCount_1 < MaxItemsInRow) {
                 CreateApp(app, _Row_1);
+                _RowCount_1 += 1;
             } else if(_RowCount_2 < MaxItemsInRow) {
                 CreateApp(app, _Row_2);
+                _RowCount_2 += 1;
             } else if(_RowCount_3 < MaxItemsInRow) {
                 CreateApp(app, _Row_3);
+                _RowCount_3 += 1;
             } else {
                 CreateApp(app, _Row_4);
+                _RowCount_4 += 1;
             }
         }
     }
@@ -51,7 +55,6 @@ public class DisplayUserDesktop : MonoBehaviour
         go.transform.SetParent(row);
         go.transform.localScale = new Vector3(2, 2, 2);
 
-        go.AddComponent<OpenApplications>();
         go.GetComponent<OpenApplications>().SetAppToOpen("Software Center");
 
         var AppCenter = go.GetComponent<AppCenterApp>();
