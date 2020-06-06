@@ -57,7 +57,7 @@ public class AceXTerminalController : MonoBehaviour
         }
 
         _CommandInput.text = "";
-        _CommandInput.Select();
+        _CommandInput.ActivateInputField();
     }
 
     private bool FilterInput(string command) {
