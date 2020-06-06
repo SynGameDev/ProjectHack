@@ -56,6 +56,9 @@ public class AceXTerminalController : MonoBehaviour
                         case "opn":
                             OpenApplication(InputSplit[1]);
                             break;
+                        case "rma":
+                            RemoveApplication(InputSplit[1]);
+                            break;
                     }
                 } else {
                     DisplayInput("Invalid Command");
@@ -82,7 +85,7 @@ public class AceXTerminalController : MonoBehaviour
             var appurl = AppUrl as ApplicationScriptableObject;
             if(appurl.ApplicationDownloadURL == url) {
                 Found = true;
-                DownloadApplication(appurl);
+                StartCoroutine(DownloadApplication(appurl));
                 break;
             }
         }
@@ -90,6 +93,19 @@ public class AceXTerminalController : MonoBehaviour
         if(Found == false)
             DisplayInput("Unable To Locate Download File");
     } 
+
+    private void RemoveApplication(string ApplicationName) {
+        var AppName = ApplicationName.Replace("_", " ");
+
+        foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
+            var App = app as ApplicationScriptableObject;
+
+            if(App.ApplicationName == AppName) {
+                StartCoroutine(RemoveApp(App));
+                break;
+            }
+        }
+    }
 
     private void HideApplication(string ApplicationName) {
         ScriptableObject AppTohide = null;
@@ -171,8 +187,18 @@ public class AceXTerminalController : MonoBehaviour
         DisplayInput(HiddenApps);
     }
 
-    private void DownloadApplication(ScriptableObject AppToDownload) {
+    private IEnumerator DownloadApplication(ScriptableObject AppToDownload) {
+        DisplayInput("Downloading & Installing");
+        yield return new WaitForSeconds(3);
         SoftwareApplicationInstaller.Instance.InstallProgram(AppToDownload);
+        DisplayInput("Application Installed");
+    }
+
+    private IEnumerator RemoveApp(ScriptableObject AppToRemove) {
+        DisplayInput("Uninstalling Application");
+        yield return new WaitForSeconds(3);
+        SoftwareApplicationInstaller.Instance.UninstallProgram(AppToRemove);
+        DisplayInput("Application Uninstalled");
     }
 
 }
