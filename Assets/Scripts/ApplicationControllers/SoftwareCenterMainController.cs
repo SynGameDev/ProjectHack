@@ -56,14 +56,19 @@ public class SoftwareCenterMainController : MonoBehaviour
                 var Application = app as ApplicationScriptableObject;
                 if(Row_1_Count < MaxItemsInRow) {
                     CreateAppItem(Application, _Row_1);
+                    Row_1_Count += 1;
                 } else if(Row_2_Count < MaxItemsInRow) {
                     CreateAppItem(Application, _Row_2);
+                    Row_2_Count += 1;
                 } else if(Row_3_Count < MaxItemsInRow) {
                     CreateAppItem(Application, _Row_3);
+                    Row_3_Count += 1;
                 } else if(Row_4_Count < MaxItemsInRow) {
                     CreateAppItem(Application, _Row_4);
+                    Row_4_Count += 1;
                 } else if(Row_5_Count < MaxItemsInRow) {
                     CreateAppItem(Application, _Row_5);
+                    Row_5_Count += 1;
                 }
             }
         }
