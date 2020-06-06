@@ -55,6 +55,7 @@ public class DisplayUserDesktop : MonoBehaviour
         go.transform.SetParent(row);
         go.transform.localScale = new Vector3(2, 2, 2);
 
+        go.AddComponent<OpenApplications>();
         go.GetComponent<OpenApplications>().SetAppToOpen("Software Center");
 
         var AppCenter = go.GetComponent<AppCenterApp>();

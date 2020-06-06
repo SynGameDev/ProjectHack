@@ -46,4 +46,8 @@ public class ViewingSoftwareApp : MonoBehaviour
 
     }
 
+    public void CloseWindow() {
+        this.gameObject.SetActive(false);
+    }
+
 }

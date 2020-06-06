@@ -33,7 +33,9 @@ public class SoftwareCenterMainController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ShowText;
     private List<GameObject> _CurrentlyShowingApp = new List<GameObject>();
 
-
+    private void Awake() {
+        GameObject.FindGameObjectWithTag("SoftwareCenterViewingWindow").SetActive(false);
+    }
 
     private void Start() {
         FindInstalledApplications();
@@ -114,6 +116,8 @@ public class SoftwareCenterMainController : MonoBehaviour
 
         go.transform.SetParent(row);
         go.transform.localScale = new Vector3(2, 2, 2);
+
+        go.AddComponent<SoftwareCenterAppControl>();
 
         go.GetComponent<AppCenterApp>().AppData = App;
         go.GetComponent<AppCenterApp>().AppName.text = App.ApplicationName;
