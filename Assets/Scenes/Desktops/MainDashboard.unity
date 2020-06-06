@@ -563,6 +563,7 @@ MonoBehaviour:
   PlayerDash: 1
   UserDesktop: 2
   ConnectToUser: 3
+  SoftwareCenter: 5
   TerminalConnector: 4
 --- !u!1 &519420028
 GameObject:
