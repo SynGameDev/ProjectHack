@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SoftwareCenterMainController : MonoBehaviour
 {
@@ -26,6 +27,13 @@ public class SoftwareCenterMainController : MonoBehaviour
 
     [Header("Application Status")]
     [SerializeField] private bool _ShowInstalledApps;
+    private ScriptableObject _ViewingApplication;
+
+    [Space(10)]
+    [SerializeField] private TextMeshProUGUI _ShowText;
+    private List<GameObject> _CurrentlyShowingApp = new List<GameObject>();
+
+
 
     private void Start() {
         FindInstalledApplications();
@@ -40,11 +48,18 @@ public class SoftwareCenterMainController : MonoBehaviour
 
 
     public void SwitchDisplay() {
+        foreach(var app in _CurrentlyShowingApp)  {
+            Destroy(app);
+        }
+
+        _CurrentlyShowingApp.Clear();
         if(_ShowInstalledApps) {
             _ShowInstalledApps = false;
+            _ShowText.text = "Show Installed Apps";
             ShowAvailableApps();
         } else {
             _ShowInstalledApps = true;
+            _ShowText.text = "Show Available Apps";
             ShowInstalledApps();
         }
     }
@@ -103,6 +118,7 @@ public class SoftwareCenterMainController : MonoBehaviour
         go.GetComponent<AppCenterApp>().AppData = App;
         go.GetComponent<AppCenterApp>().AppName.text = App.ApplicationName;
         go.GetComponent<AppCenterApp>().AppIcon.sprite = App.ApplicationIcon;
+        _CurrentlyShowingApp.Add(go);
 
     }
 
@@ -118,5 +134,16 @@ public class SoftwareCenterMainController : MonoBehaviour
         foreach(var app in DatabaseController.Instance.GetSoftwareApps()    ) {
             ApplicationObjects.Add(app);
         }
+    }
+
+    // Setters
+
+    // Getters
+    public ScriptableObject GetViewingApp() => _ViewingApplication;
+    public bool CheckIfInstalled(ScriptableObject App) {
+        if(InstalledApplications.Contains(App)) 
+            return true;
+
+        return false;
     }
 }
