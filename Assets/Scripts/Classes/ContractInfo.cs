@@ -19,6 +19,7 @@ public class ContractInfo
     public string ContractStatus;                   // Offered, Accepted, Declined, Completed
 
     public List<ScriptableObject> InstalledApplication = new List<ScriptableObject>();
+    public List<ScriptableObject> HiddenApplications = new List<ScriptableObject>();
 
     // Terminal Settings
     public int HHD;             // Storage Space
