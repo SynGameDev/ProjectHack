@@ -36,6 +36,9 @@ public class SoftwareCenterMainController : MonoBehaviour
     [Header("Sub Applications")]
     [SerializeField] private GameObject _ViewingApplicationObject;
 
+    [Header("Action Controller")]
+    private string _ApplicationAction;
+
     private void Awake() {
         //GameObject.FindGameObjectWithTag("SoftwareCenterViewingWindow").SetActive(false);
     }
@@ -146,10 +149,12 @@ public class SoftwareCenterMainController : MonoBehaviour
 
     // Setters
     public void SetViewingApp(ScriptableObject _App) => _ViewingApplication = _App;
+    public void SetActionText(string action) => _ApplicationAction = action;
 
     // Getters
     public ScriptableObject GetViewingApp() => _ViewingApplication;
     public GameObject GetViewingAppWindow() => _ViewingApplicationObject;
+    public string GetApplicationAction() => _ApplicationAction;
 
     public bool CheckIfInstalled(ScriptableObject App) {
         if(InstalledApplications.Contains(App)) 

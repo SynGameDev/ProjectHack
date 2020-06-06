@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SoftwareCenterViewingWindow
   - SoftwareCenter
+  - UserDesktop
   layers:
   - Default
   - TransparentFX

@@ -47,7 +47,19 @@ public class DisplayUserDesktop : MonoBehaviour
         }
     }
 
+
+    public void UpdateDesktop() {
+        foreach(var app in _AppsOnDesktop) {
+            Destroy(app);
+        }
+
+        _AppsOnDesktop.Clear();
+
+        DisplayApps();
+    }
+
     private void CreateApp(ScriptableObject app, Transform row) {
+
         var App = app as ApplicationScriptableObject;
         var go = Instantiate(_DesktopAppPrefab);
 
@@ -62,6 +74,8 @@ public class DisplayUserDesktop : MonoBehaviour
         AppCenter.AppData = App;
         AppCenter.AppName.text = App.ApplicationName;
         AppCenter.AppIcon.sprite = App.ApplicationIcon;
+
+        _AppsOnDesktop.Add(go);
 
     }
 }

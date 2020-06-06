@@ -16,5 +16,6 @@ MonoBehaviour:
   ApplicationDescription: The Only Terminal that can crack AceX
   ApplicationScreenshots: []
   ApplicationIcon: {fileID: 0}
-  PurchaseAmount: 130
+  OpenCloseApp: {fileID: 0}
+  PurchaseAmount: 0
   HDDSpace: 7
