@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzles/NodeConnectionPuzzle.unity
     guid: 6e8a40b271413fc48b8ac7c19a6eaeae
+  - enabled: 1
+    path: Assets/Scenes/Applications/SoftwareCenter_App.unity
+    guid: 42086c161bf91d946bad906aa2a58a28
   m_configObjects: {}
