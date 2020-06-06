@@ -77,6 +77,33 @@ public class SoftwareCenterMainController : MonoBehaviour
             if(!InstalledApplications.Contains(app)) {
 
                 var Application = app as ApplicationScriptableObject;
+                if(!Application.CrackedApplication) {
+                    if(Row_1_Count < MaxItemsInRow) {
+                        CreateAppItem(Application, _Row_1);
+                        Row_1_Count += 1;
+                    } else if(Row_2_Count < MaxItemsInRow) {
+                        CreateAppItem(Application, _Row_2);
+                        Row_2_Count += 1;
+                    } else if(Row_3_Count < MaxItemsInRow) {
+                        CreateAppItem(Application, _Row_3);
+                        Row_3_Count += 1;
+                    } else if(Row_4_Count < MaxItemsInRow) {
+                        CreateAppItem(Application, _Row_4);
+                        Row_4_Count += 1;
+                    } else if(Row_5_Count < MaxItemsInRow) {
+                        CreateAppItem(Application, _Row_5);
+                        Row_5_Count += 1;
+                    }
+                }
+            }
+        }
+    }
+
+    private void ShowInstalledApps() {
+        foreach(var app in InstalledApplications) {
+            var Application = app as ApplicationScriptableObject;
+
+
                 if(Row_1_Count < MaxItemsInRow) {
                     CreateAppItem(Application, _Row_1);
                     Row_1_Count += 1;
@@ -93,25 +120,7 @@ public class SoftwareCenterMainController : MonoBehaviour
                     CreateAppItem(Application, _Row_5);
                     Row_5_Count += 1;
                 }
-            }
-        }
-    }
-
-    private void ShowInstalledApps() {
-        foreach(var app in InstalledApplications) {
-            var Application = app as ApplicationScriptableObject;
-
-            if(Row_1_Count < MaxItemsInRow) {
-                CreateAppItem(Application, _Row_1);
-            } else if(Row_2_Count < MaxItemsInRow) {
-                CreateAppItem(Application, _Row_2);
-            } else if(Row_3_Count < MaxItemsInRow) {
-                CreateAppItem(Application, _Row_3);
-            } else if(Row_4_Count < MaxItemsInRow) {
-                CreateAppItem(Application, _Row_4);
-            } else if(Row_5_Count < MaxItemsInRow) {
-                CreateAppItem(Application, _Row_5);
-            }
+            
         }
     }
 
@@ -142,7 +151,7 @@ public class SoftwareCenterMainController : MonoBehaviour
     }
 
     private void GetAllApps() {
-        foreach(var app in DatabaseController.Instance.GetSoftwareApps()    ) {
+        foreach(var app in ApplicationDatabase.Instance.GetSoftwareApps()    ) {
             ApplicationObjects.Add(app);
         }
     }
