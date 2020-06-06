@@ -10,26 +10,15 @@ public class OpenApplications : MonoBehaviour, IPointerClickHandler
     [SerializeField] private TextMeshProUGUI _Text;
 
     public void OnPointerClick(PointerEventData pointerEventData) {
-        OpenApplication();
+        SceneController.Instance.OpenApplication(GetComponentInChildren<TextMeshProUGUI>().text);
     }
 
     private void Start() {
        // _ApplicationToOpen = _Text.text;
     }
 
-    public void OpenApplication() {
-        var app = GetComponentInChildren<TextMeshProUGUI>().text;
-        Debug.Log(app);
-        switch(app) {
-            case "Software Center":
-                OpenSoftwareCenter();
-                break;
-            case "AceXTerminal":
-                SceneController.Instance.OpenAceXTerminal();
-                break;
 
-        }
-    }
+    
 
     private void OpenSoftwareCenter() => SceneController.Instance.OpenSoftwareCenter();
 

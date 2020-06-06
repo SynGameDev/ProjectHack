@@ -294,6 +294,9 @@ MonoBehaviour:
   ValidCommand:
   - dwn
   - hde
+  - shw
+  - opn
+  - see
 --- !u!1 &533056017
 GameObject:
   m_ObjectHideFlags: 0

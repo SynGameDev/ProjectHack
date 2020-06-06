@@ -47,6 +47,15 @@ public class AceXTerminalController : MonoBehaviour
                         case "hde":
                             HideApplication(InputSplit[1]);
                             break;
+                        case "see":
+                            ListHiddenApps();
+                            break;
+                        case "shw":
+                            UnhideApplication(InputSplit[1]);
+                            break;
+                        case "opn":
+                            OpenApplication(InputSplit[1]);
+                            break;
                     }
                 } else {
                     DisplayInput("Invalid Command");
@@ -101,6 +110,65 @@ public class AceXTerminalController : MonoBehaviour
         } else {
             DisplayInput("Application Not Found");
         }
+    }
+
+    private void UnhideApplication(string ApplicationName) {
+        ScriptableObject AppTohide = null;
+
+        ApplicationName = ApplicationName.Replace("_", " ");
+        foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
+            var App = app as ApplicationScriptableObject;
+            if(App.ApplicationName == ApplicationName) {
+                AppTohide = App;
+                break;
+            }
+        }
+
+        if(AppTohide != null) {
+            GameController.Instance.GetActiveContract().InstalledApplication.Add(AppTohide);
+            GameController.Instance.GetActiveContract().HiddenApplications.Remove(AppTohide);
+            GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
+        } else {
+            DisplayInput("Application Not Found");
+        }
+    }
+
+    private void OpenApplication(string ApplicatioName) {
+        var AppName = ApplicatioName.Replace("_", " ");
+        bool AppFound = false;
+
+        foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
+            var App = app as ApplicationScriptableObject;
+
+            if(App.ApplicationName == AppName) {
+                AppFound = true;
+                SceneController.Instance.OpenApplication(AppName);
+                break;
+            }
+        }
+
+        if(!AppFound) {
+            foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
+                AppFound = true;
+                SceneController.Instance.OpenApplication(AppName);
+                break;
+            }
+        }
+
+        if(!AppFound) {
+            DisplayInput("Unable To Locate Application");
+        }
+
+    }
+
+    private void ListHiddenApps() {
+        string HiddenApps = "";
+        foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
+            var App = app as ApplicationScriptableObject;
+            HiddenApps += " | " + App.ApplicationName;
+        }
+
+        DisplayInput(HiddenApps);
     }
 
     private void DownloadApplication(ScriptableObject AppToDownload) {

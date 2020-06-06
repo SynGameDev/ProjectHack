@@ -142,4 +142,18 @@ public class SceneController : MonoBehaviour
 
         return false;
     }
+
+    // Methods
+    public void OpenApplication(string app) {
+
+        switch(app) {
+            case "Software Center":
+                OpenSoftwareCenter();
+                break;
+            case "AceXTerminal":
+                OpenAceXTerminal();
+                break;
+
+        }
+    }
 }
