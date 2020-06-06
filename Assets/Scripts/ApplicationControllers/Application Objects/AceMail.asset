@@ -16,5 +16,7 @@ MonoBehaviour:
   ApplicationDescription: There is no better way to email your work buddies
   ApplicationScreenshots: []
   ApplicationIcon: {fileID: 0}
+  CrackedApplication: 0
+  ApplicationDownloadURL: ace.download.AceMailv1_9
   PurchaseAmount: 0
   HDDSpace: 3

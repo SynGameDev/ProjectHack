@@ -17,5 +17,7 @@ MonoBehaviour:
     anything
   ApplicationScreenshots: []
   ApplicationIcon: {fileID: 21300000, guid: ae81ae46a8a11b549b7ab47085a1d266, type: 3}
+  CrackedApplication: 0
+  ApplicationDownloadURL: ace.download.AceEditv1_0
   PurchaseAmount: 10
   HDDSpace: 2
