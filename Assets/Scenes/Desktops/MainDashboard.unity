@@ -564,7 +564,9 @@ MonoBehaviour:
   UserDesktop: 2
   ConnectToUser: 3
   SoftwareCenter: 5
+  AceXTerminal: 7
   TerminalConnector: 4
+  InstallProgress: 6
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +683,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2ef22d511c556254086e8df8da351ac2, type: 2}
   - {fileID: 11400000, guid: ad5c2da12912f2744b59f10d1efab344, type: 2}
   - {fileID: 11400000, guid: eec411a091a49f844bf8221ea5fa0059, type: 2}
+  - {fileID: 11400000, guid: 38177ccf72e038e4cbe621f504e640e5, type: 2}
+  - {fileID: 11400000, guid: 78515b567f33f2f4e9f993ec38a6c1b7, type: 2}
+  _CrackedSoftwareApplication: []
   SoftwareCenter: {fileID: 11400000, guid: 38177ccf72e038e4cbe621f504e640e5, type: 2}
 --- !u!4 &578896121
 Transform:
