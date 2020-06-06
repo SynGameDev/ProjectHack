@@ -17,10 +17,14 @@ public class SceneController : MonoBehaviour
     [Header("Application Load Number")]
     public int ConnectToUser;
     public int SoftwareCenter;
+    public int AceXTerminal;
 
 
     [Header("Puzzles")]
     public int TerminalConnector;
+
+    [Header("Other Windows")]
+    public int InstallProgress;
 
     public void Awake() {
         if(Instance == null) {
@@ -90,11 +94,34 @@ public class SceneController : MonoBehaviour
         _CurrentlyLoadedScenes.Remove(SoftwareCenter);
     }
 
+    public void OpenAceXTerminal() {
+        SceneManager.LoadSceneAsync(AceXTerminal, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(AceXTerminal);
+    }
+
+    public void CloseAceXTerminal() {
+        SceneManager.UnloadSceneAsync(AceXTerminal);
+        _CurrentlyLoadedScenes.Remove(AceXTerminal);
+    }
+
+    public void OpenInstallProgress() {
+        SceneManager.LoadSceneAsync(InstallProgress, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(InstallProgress);
+    }
+
+    public void CloseInstallProgress() {
+        SceneManager.UnloadSceneAsync(InstallProgress);
+        _CurrentlyLoadedScenes.Remove(InstallProgress);
+    }
+
+    
+
     #endregion
 
 
 
     #region Puzzles
+
     // Puzzles
     public void OpenTerminalConnector() {
         SceneManager.LoadSceneAsync(TerminalConnector, LoadSceneMode.Additive);
@@ -108,4 +135,11 @@ public class SceneController : MonoBehaviour
     }
 
     #endregion
+
+    public bool CheckIfLoaded(int SceneToCheck) {
+        if(_CurrentlyLoadedScenes.Contains(SceneToCheck))
+            return true;
+
+        return false;
+    }
 }
