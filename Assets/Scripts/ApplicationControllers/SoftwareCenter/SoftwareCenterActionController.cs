@@ -11,7 +11,7 @@ public class SoftwareCenterActionController : MonoBehaviour
 
     public void Actioned() {
         GameObject.FindGameObjectWithTag("SoftwareCenter").GetComponent<SoftwareCenterMainController>().SetActionText(ActionText.text);
-        Installer.SetActive(true);
+        SceneController.Instance.OpenInstallProgress();
 
     }
 }
