@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 public class SoftwareApplicationInstaller : MonoBehaviour
 {
+    public static SoftwareApplicationInstaller Instance;
+
     [Header("Installer Application")]
     [SerializeField] private GameObject InstallApp;
     [SerializeField] private Image _SliderBar;
@@ -17,7 +19,17 @@ public class SoftwareApplicationInstaller : MonoBehaviour
     
 
     private void Awake() {
+
+        if(Instance == null) {
+            Instance = this;
+        } else {
+            Destroy(this.gameObject);
+        }
+
         InstallerType = GameObject.FindGameObjectWithTag("SoftwareCenter").GetComponent<SoftwareCenterMainController>().GetApplicationAction();
+
+        if(SceneController.Instance.CheckIfLoaded(SceneController.Instance.SoftwareCenter))
+            _SoftwareCenter = GameObject.FindGameObjectWithTag("SoftwareCenter").GetComponent<SoftwareCenterMainController>();
     }
 
     private void Update() {
@@ -43,7 +55,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
         UpdateText();
         yield return new WaitForSeconds(3);
         UpdateApplication();
-        this.gameObject.SetActive(false);
+        SceneController.Instance.CloseInstallProgress();
     }
 
     private void UpdateText() {
@@ -72,12 +84,12 @@ public class SoftwareApplicationInstaller : MonoBehaviour
         }
     }
 
-    private void InstallProgram(ScriptableObject AppToInstall) {
+    public void InstallProgram(ScriptableObject AppToInstall) {
         GameController.Instance.GetActiveContract().InstalledApplication.Add(AppToInstall);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
     }
 
-    private void UninstallProgram(ScriptableObject AppToRemove) {
+    public void UninstallProgram(ScriptableObject AppToRemove) {
         GameController.Instance.GetActiveContract().InstalledApplication.Remove(AppToRemove);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
     }
