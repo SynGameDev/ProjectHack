@@ -16,6 +16,7 @@ public class SceneController : MonoBehaviour
 
     [Header("Application Load Number")]
     public int ConnectToUser;
+    public int SoftwareCenter;
 
 
     [Header("Puzzles")]
@@ -77,7 +78,23 @@ public class SceneController : MonoBehaviour
         ToolbarController.Instance.SwitchToolbar("Main");
     }
 
+    #region Applications
 
+    public void OpenSoftwareCenter() {
+        SceneManager.LoadSceneAsync(SoftwareCenter, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(SoftwareCenter);
+    }
+
+    public void CloseSoftwareCenter() {
+        SceneManager.UnloadSceneAsync(SoftwareCenter);
+        _CurrentlyLoadedScenes.Remove(SoftwareCenter);
+    }
+
+    #endregion
+
+
+
+    #region Puzzles
     // Puzzles
     public void OpenTerminalConnector() {
         SceneManager.LoadSceneAsync(TerminalConnector, LoadSceneMode.Additive);
@@ -90,5 +107,5 @@ public class SceneController : MonoBehaviour
 
     }
 
-    
+    #endregion
 }

@@ -24,7 +24,7 @@ public class DisplayUserDesktop : MonoBehaviour
     [SerializeField] private GameObject _DesktopAppPrefab;
 
     private void Start() {
-        
+        DisplayApps();
     }   
 
     private void DisplayApps() {
@@ -48,6 +48,11 @@ public class DisplayUserDesktop : MonoBehaviour
         var go = Instantiate(_DesktopAppPrefab);
 
         go.name = App.ApplicationName;
+        go.transform.SetParent(row);
+        go.transform.localScale = new Vector3(2, 2, 2);
+
+        go.AddComponent<OpenApplications>();
+        go.GetComponent<OpenApplications>().SetAppToOpen("Software Center");
 
         var AppCenter = go.GetComponent<AppCenterApp>();
         AppCenter.AppData = App;

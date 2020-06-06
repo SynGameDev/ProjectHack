@@ -30,10 +30,12 @@ public class GameController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        _AvailableContracts.Add(SetupTestContract());             // TEST
+        
     }
 
     private void Start() {
+        DisplayAvailableContracts();
+        _AvailableContracts.Add(SetupTestContract());             // TEST
         DisplayAvailableContracts();
     }
 
@@ -105,8 +107,7 @@ public class GameController : MonoBehaviour
         info.TerminalType = "Desktop";
         info.TerminalIP = "192.111.111";
 
-        info.AddApp(DatabaseController.Instance.SoftwareCenter);
-
+        info.InstalledApplication.Add(DatabaseController.Instance.SoftwareCenter);
         
 
         return info;

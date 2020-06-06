@@ -12,6 +12,7 @@ public class ApplicationScriptableObject : ScriptableObject
     public List<Sprite> ApplicationScreenshots = new List<Sprite>();
 
     public Sprite ApplicationIcon;
+    public MonoBehaviour OpenCloseApp;
 
     [Tooltip("Amount to obtain the application")] public int PurchaseAmount;
     [Tooltip("Space the application will take on the HDD")] public int HDDSpace;

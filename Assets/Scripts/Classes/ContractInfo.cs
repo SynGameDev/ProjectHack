@@ -23,7 +23,7 @@ public class ContractInfo
     // Terminal Settings
     public int HHD;             // Storage Space
 
-    public void AddApp(ScriptableObject app) => InstalledApplication.Add(app);
+    // public void AddApp(ScriptableObject app) => InstalledApplication.Add(app);
     
 
 }
