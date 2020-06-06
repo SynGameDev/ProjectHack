@@ -84,7 +84,6 @@ public class ToolbarController : MonoBehaviour
         
         // Foreach tool that needs to be displayed
         foreach(var tool in Tools) {
-            Debug.Log("Test");
             var go = Instantiate(tool);                 // Create the tool
             go.transform.SetParent(ToolSpawnTransform);            // Assign the tool to the toolbar
 
