@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37bf3d506e2e01489d8067cb1a980f1, type: 3}
+  m_Name: AceEdit
+  m_EditorClassIdentifier: 
+  ApplicationName: AceEdit
+  ApplicationDescription: The Best & Fast Text Editor. It can be use for practicly
+    anything
+  ApplicationScreenshots: []
+  ApplicationIcon: {fileID: 21300000, guid: ae81ae46a8a11b549b7ab47085a1d266, type: 3}
+  PurchaseAmount: 10
+  HDDSpace: 2

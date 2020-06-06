@@ -105,6 +105,10 @@ public class GameController : MonoBehaviour
         info.TerminalType = "Desktop";
         info.TerminalIP = "192.111.111";
 
+        info.AddApp(DatabaseController.Instance.SoftwareCenter);
+
+        
+
         return info;
     }
 

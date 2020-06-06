@@ -17,6 +17,13 @@ public class ContractInfo
 
     // Contract Status
     public string ContractStatus;                   // Offered, Accepted, Declined, Completed
+
+    public List<ScriptableObject> InstalledApplication = new List<ScriptableObject>();
+
+    // Terminal Settings
+    public int HHD;             // Storage Space
+
+    public void AddApp(ScriptableObject app) => InstalledApplication.Add(app);
     
 
 }

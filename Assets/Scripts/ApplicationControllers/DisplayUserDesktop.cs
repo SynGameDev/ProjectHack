@@ -1,0 +1,58 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DisplayUserDesktop : MonoBehaviour
+{
+    
+
+    [Header("Item Rows")]
+    [SerializeField] private Transform _Row_1;
+    [SerializeField] private Transform _Row_2;
+    [SerializeField] private Transform _Row_3;
+    [SerializeField] private Transform _Row_4;
+
+    [Header("Row Stats")]
+    [SerializeField] private int MaxItemsInRow;
+    private int _RowCount_1;
+    private int _RowCount_2;
+    private int _RowCount_3;
+    private int _RowCount_4;
+
+    private List<GameObject> _AppsOnDesktop = new List<GameObject>();
+
+    [SerializeField] private GameObject _DesktopAppPrefab;
+
+    private void Start() {
+        
+    }   
+
+    private void DisplayApps() {
+        ContractInfo contract = GameController.Instance.GetActiveContract();
+
+        foreach(var app in contract.InstalledApplication) {
+            if(_RowCount_1 < MaxItemsInRow) {
+                CreateApp(app, _Row_1);
+            } else if(_RowCount_2 < MaxItemsInRow) {
+                CreateApp(app, _Row_2);
+            } else if(_RowCount_3 < MaxItemsInRow) {
+                CreateApp(app, _Row_3);
+            } else {
+                CreateApp(app, _Row_4);
+            }
+        }
+    }
+
+    private void CreateApp(ScriptableObject app, Transform row) {
+        var App = app as ApplicationScriptableObject;
+        var go = Instantiate(_DesktopAppPrefab);
+
+        go.name = App.ApplicationName;
+
+        var AppCenter = go.GetComponent<AppCenterApp>();
+        AppCenter.AppData = App;
+        AppCenter.AppName.text = App.ApplicationName;
+        AppCenter.AppIcon.sprite = App.ApplicationIcon;
+
+    }
+}
