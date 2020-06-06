@@ -98,7 +98,7 @@ public class SoftwareCenterMainController : MonoBehaviour
         go.name = App.ApplicationName;
 
         go.transform.SetParent(row);
-        go.transform.localScale = Vector3.one;
+        go.transform.localScale = new Vector3(2, 2, 2);
 
         go.GetComponent<AppCenterApp>().AppData = App;
         go.GetComponent<AppCenterApp>().AppName.text = App.ApplicationName;
