@@ -11,6 +11,9 @@ public class CloseApplications : MonoBehaviour
             case "Software Center":
                 SceneController.Instance.CloseSoftwareCenter();
                 break;
+            case "AceXTerminal":
+                SceneController.Instance.CloseAceXTerminal();
+                break;
         }
     }
 }
