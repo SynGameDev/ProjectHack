@@ -7,39 +7,41 @@ using TMPro;
 public class AceXTerminalController : MonoBehaviour
 {
     [Header("Input Fields")]
-    [SerializeField] private TMP_InputField _CommandInput;
+    [SerializeField] private TMP_InputField _CommandInput;              // Where commands will be entered
 
-    [Header("Transforms")]
-    [SerializeField] private Transform _CommandSpawnLocation;
+    [Header("Transforms")]  
+    [SerializeField] private Transform _CommandSpawnLocation;           // Location to display input & output
 
     [Header("Prefabs")]
-    [SerializeField] private GameObject CommandPrefab;
+    [SerializeField] private GameObject CommandPrefab;                          // Prefab to display input & output
 
     [Header("Validation")]
-    [SerializeField] private List<string> ValidCommand = new List<string>();
+    [SerializeField] private List<string> ValidCommand = new List<string>();                // List of valid commands
 
     private void Update() {
+        // Submit Input
         if(Input.GetKeyDown(KeyCode.Return)) {
-            DisplayInput(_CommandInput.text);
-            ValidateInput();
+            DisplayInput(_CommandInput.text);               // Display the text entered
+            ValidateInput();                // Validate the einput
         }
     }
 
     private void DisplayInput(string text) {
-        var go = Instantiate(CommandPrefab);
-        go.GetComponent<TextMeshProUGUI>().text = text;
-        go.transform.SetParent(_CommandSpawnLocation);
-        go.transform.localScale = Vector3.one;
+        var go = Instantiate(CommandPrefab);                    // Create the prefab
+        go.GetComponent<TextMeshProUGUI>().text = text;         // Assign th message
+        go.transform.SetParent(_CommandSpawnLocation);              // Set the location to display message
+        go.transform.localScale = Vector3.one;                  // Scale the object to correct size
 
     }
 
     public void ValidateInput() {
-        if(_CommandInput.text != "" || _CommandInput.text != null) {
-            var FullInput = _CommandInput.text;
-            string[] InputSplit = FullInput.Split(' ');
+        if(_CommandInput.text != "" || _CommandInput.text != null) {            // Make sure input isn't blank
+            var FullInput = _CommandInput.text;                 // Get the total innput
+            string[] InputSplit = FullInput.Split(' ');             // Split the inputs up to tell the different methods
 
-            if(InputSplit[0].Length == 3) {
-                if(FilterInput(InputSplit[0])) {
+            if(InputSplit[0].Length == 3) {                     // Make sure the action command is only 3 letters
+                // Loop through each command and run the valid action
+                if(FilterInput(InputSplit[0])) {                    
                     switch(InputSplit[0]) {
                         case "dwn":
                             DownloadFile(InputSplit[1]);
@@ -68,11 +70,13 @@ public class AceXTerminalController : MonoBehaviour
             }
         }
 
-        _CommandInput.text = "";
-        _CommandInput.ActivateInputField();
+        _CommandInput.text = "";                // Remove the input text
+        _CommandInput.ActivateInputField();     // Activate the field again
     }
 
-    private bool FilterInput(string command) {
+
+    // Check if the command ins valid
+    private bool FilterInput(string command) {     
         if(ValidCommand.Contains(command))
             return true;
 
@@ -80,27 +84,31 @@ public class AceXTerminalController : MonoBehaviour
     }
 
     private void DownloadFile(string url) {
-        bool Found = false;
+        bool Found = false;                 // File Found
+
+        // Loop through all the apps in the Software List
         foreach(var AppUrl in ApplicationDatabase.Instance.GetSoftwareApps()) {
-            var appurl = AppUrl as ApplicationScriptableObject;
-            if(appurl.ApplicationDownloadURL == url) {
-                Found = true;
-                StartCoroutine(DownloadApplication(appurl));
-                break;
+            var appurl = AppUrl as ApplicationScriptableObject;         // Setup the scriptable object
+            if(appurl.ApplicationDownloadURL == url) {          // Check if the URL is found on the software
+                Found = true;                   // ... Set to found
+                StartCoroutine(DownloadApplication(appurl));                // Start downloading the app
+                break;          // Break the loop
             }
         }
 
-        if(Found == false)
+        if(Found == false)              // If the app isn't found display error message
             DisplayInput("Unable To Locate Download File");
     } 
 
-    private void RemoveApplication(string ApplicationName) {
-        var AppName = ApplicationName.Replace("_", " ");
 
-        foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
+    private void RemoveApplication(string ApplicationName) {
+        var AppName = ApplicationName.Replace("_", " ");                // Remove the under scrote and replace it with a space
+
+        // Loop through each application to find the application to remove
+        foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {          
             var App = app as ApplicationScriptableObject;
 
-            if(App.ApplicationName == AppName) {
+            if(App.ApplicationName == AppName) {                // If the app is found start removing the app
                 StartCoroutine(RemoveApp(App));
                 break;
             }
@@ -108,9 +116,11 @@ public class AceXTerminalController : MonoBehaviour
     }
 
     private void HideApplication(string ApplicationName) {
-        ScriptableObject AppTohide = null;
+        ScriptableObject AppTohide = null;              // Initial Object
 
-        ApplicationName = ApplicationName.Replace("_", " ");
+        ApplicationName = ApplicationName.Replace("_", " ");                // Remove the under score & replace with space
+
+        // Loop through each installed app & hide the app if found
         foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
             var App = app as ApplicationScriptableObject;
             if(App.ApplicationName == ApplicationName) {
@@ -127,7 +137,7 @@ public class AceXTerminalController : MonoBehaviour
             DisplayInput("Application Not Found");
         }
 
-        LogAction("Hide " + ApplicationName);
+        LogAction("Hide " + ApplicationName);           // Add to the action log
     }
 
     private void UnhideApplication(string ApplicationName) {
@@ -154,9 +164,11 @@ public class AceXTerminalController : MonoBehaviour
     }
 
     private void OpenApplication(string ApplicatioName) {
-        var AppName = ApplicatioName.Replace("_", " ");
-        bool AppFound = false;
+        var AppName = ApplicatioName.Replace("_", " ");         // Replace the underscore witha space
+        bool AppFound = false;              // init found to false
 
+
+        // loop through each application. if the application is found then open the application
         foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
             var App = app as ApplicationScriptableObject;
 
@@ -167,6 +179,8 @@ public class AceXTerminalController : MonoBehaviour
             }
         }
 
+
+        // loop through each application. if the application is found then open the application (Only Loop though this if the app wasn't found)
         if(!AppFound) {
             foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
                 AppFound = true;
@@ -175,7 +189,7 @@ public class AceXTerminalController : MonoBehaviour
             }
         }
 
-        if(!AppFound) {
+        if(!AppFound) {             // If app cannoot be found display an error messsage
             DisplayInput("Unable To Locate Application");
         }
 
@@ -193,12 +207,12 @@ public class AceXTerminalController : MonoBehaviour
 
     private IEnumerator DownloadApplication(ScriptableObject AppToDownload) {
         var app = AppToDownload as ApplicationScriptableObject;
-        LogAction("Install " + app.ApplicationName);
+        LogAction("Install " + app.ApplicationName);                // Add to log file
 
-        DisplayInput("Downloading & Installing");
-        yield return new WaitForSeconds(3);
-        SoftwareApplicationInstaller.Instance.InstallProgram(AppToDownload);
-        DisplayInput("Application Installed");
+        DisplayInput("Downloading & Installing");               // Display Downloading message
+        yield return new WaitForSeconds(3);                     // Wait Timer
+        SoftwareApplicationInstaller.Instance.InstallProgram(AppToDownload);            // Add Application to downloaded
+        DisplayInput("Application Installed");                  // Display output message
     }
 
     private IEnumerator RemoveApp(ScriptableObject AppToRemove) {

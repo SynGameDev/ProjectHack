@@ -19,7 +19,7 @@ public class DisplayUserDesktop : MonoBehaviour
     private int _RowCount_3;
     private int _RowCount_4;
 
-    private List<GameObject> _AppsOnDesktop = new List<GameObject>();
+    private List<GameObject> _AppsOnDesktop = new List<GameObject>();               // List of apps display on the desktop since last update
 
     [SerializeField] private GameObject _DesktopAppPrefab;
 
@@ -28,8 +28,9 @@ public class DisplayUserDesktop : MonoBehaviour
     }   
 
     private void DisplayApps() {
-        ContractInfo contract = GameController.Instance.GetActiveContract();
+        ContractInfo contract = GameController.Instance.GetActiveContract();            // Get the current contract
 
+        // Loop through each application and assign it to a row on the desktop
         foreach(var app in contract.InstalledApplication) {
             if(_RowCount_1 < MaxItemsInRow) {
                 CreateApp(app, _Row_1);
@@ -49,33 +50,34 @@ public class DisplayUserDesktop : MonoBehaviour
 
 
     public void UpdateDesktop() {
+        // Remove all apps from the desktop
         foreach(var app in _AppsOnDesktop) {
             Destroy(app);
         }
 
         _AppsOnDesktop.Clear();
 
-        DisplayApps();
+        DisplayApps();              // Add the desktop items
     }
 
     private void CreateApp(ScriptableObject app, Transform row) {
 
-        var App = app as ApplicationScriptableObject;
-        var go = Instantiate(_DesktopAppPrefab);
+        var App = app as ApplicationScriptableObject;               // Get the Object
+        var go = Instantiate(_DesktopAppPrefab);                // Create the item
 
-        go.name = App.ApplicationName;
-        go.transform.SetParent(row);
-        go.transform.localScale = new Vector3(2, 2, 2);
+        go.name = App.ApplicationName;                  // Set the name of the object
+        go.transform.SetParent(row);                    // Set the position of the object
+        go.transform.localScale = new Vector3(2, 2, 2);         // Init the scale of the object
 
-        go.AddComponent<OpenApplications>();
-        go.GetComponent<OpenApplications>().SetAppToOpen("Software Center");
+        go.AddComponent<OpenApplications>();                    // Add script to open object
+        go.GetComponent<OpenApplications>().SetAppToOpen("Software Center");                // Assign the app that needs to open it
 
-        var AppCenter = go.GetComponent<AppCenterApp>();
-        AppCenter.AppData = App;
-        AppCenter.AppName.text = App.ApplicationName;
-        AppCenter.AppIcon.sprite = App.ApplicationIcon;
+        var AppCenter = go.GetComponent<AppCenterApp>();                    // Get the App Cetner Item
+        AppCenter.AppData = App;                            // Set the scriptable object
+        AppCenter.AppName.text = App.ApplicationName;           // Set the name
+        AppCenter.AppIcon.sprite = App.ApplicationIcon;         // Set the icon
 
-        _AppsOnDesktop.Add(go);
+        _AppsOnDesktop.Add(go);                 // Add to desktop list
 
     }
 }

@@ -8,26 +8,28 @@ public class SoftwareApplicationInstaller : MonoBehaviour
     public static SoftwareApplicationInstaller Instance;
 
     [Header("Installer Application")]
-    [SerializeField] private GameObject InstallApp;
-    [SerializeField] private Image _SliderBar;
-    [SerializeField] private TextMeshProUGUI _ActionText;
-    float SliderPercentage = 0f;
-    private string InstallerType;
+    [SerializeField] private GameObject InstallApp;                     // This gameobject
+    [SerializeField] private Image _SliderBar;                          // Progress Slider
+    [SerializeField] private TextMeshProUGUI _ActionText;                   // Action Text
+    float SliderPercentage = 0f;                // Current slider percentage
+    private string InstallerType;               // Type of installer
 
     [Header("Software Center")]
-    [SerializeField] private SoftwareCenterMainController _SoftwareCenter;
+    [SerializeField] private SoftwareCenterMainController _SoftwareCenter;          // Software Center
     
 
     private void Awake() {
 
+            // Create instance
         if(Instance == null) {
             Instance = this;
         } else {
             Destroy(this.gameObject);
         }
 
-        InstallerType = GameObject.FindGameObjectWithTag("SoftwareCenter").GetComponent<SoftwareCenterMainController>().GetApplicationAction();
+        InstallerType = GameObject.FindGameObjectWithTag("SoftwareCenter").GetComponent<SoftwareCenterMainController>().GetApplicationAction();     // Set the installer
 
+        // If downloading form software center than assign the software center
         if(SceneController.Instance.CheckIfLoaded(SceneController.Instance.SoftwareCenter))
             _SoftwareCenter = GameObject.FindGameObjectWithTag("SoftwareCenter").GetComponent<SoftwareCenterMainController>();
     }
@@ -37,6 +39,8 @@ public class SoftwareApplicationInstaller : MonoBehaviour
         CheckForComplete();
     }
 
+
+    // Increase teh download slider
     private void IncreaseSlider() {
         
 
@@ -46,15 +50,18 @@ public class SoftwareApplicationInstaller : MonoBehaviour
 
     }
 
+
+    // Check if the download has completed
     private void CheckForComplete() {
         if(SliderPercentage >= 1) 
             StartCoroutine(FinishInstall());
     }
 
+    
     private IEnumerator FinishInstall() {
-        UpdateText();
+        UpdateText();               // Display Finised Test
         yield return new WaitForSeconds(3);
-        UpdateApplication();
+        UpdateApplication();            
         SceneController.Instance.CloseInstallProgress();
     }
 
