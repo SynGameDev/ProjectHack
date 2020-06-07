@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     [Header("Currently Active Contract")]
     public ContractInfo ActiveContract;                   // Current contract that has been accepted;
     [SerializeField] private TextMeshProUGUI _ActiveContractMessage;                    // Text Information
+    private GameObject ActiveContractButton;
 
     [Header("Available Contracts")]
     [SerializeField] private GameObject _ContractButtonPrefab;
@@ -54,6 +55,8 @@ public class GameController : MonoBehaviour
             go.transform.SetParent(_ContractContainer);
             go.transform.localScale = Vector3.one;
 
+            contract.ContractButton = go;
+
         }
     }
 
@@ -82,6 +85,12 @@ public class GameController : MonoBehaviour
     public void AcceptContract() {
         ActiveContract = _ViewingContract;
         _ViewingContract = null;
+        ActiveContract.ContractStatus = "Accepted";
+    }
+
+    public void CompleteContract() {
+        Destroy(ActiveContract.ContractButton);
+        ActiveContract = null;
     }
 
     // Getters 
@@ -94,13 +103,15 @@ public class GameController : MonoBehaviour
     }
 
 
+
+
     // TEST
     public ContractInfo SetupTestContract() {
         var info = new ContractInfo();
         info.ContractID = 1;
         info.ContractName = "Test Contract";
         info.ContractOwner = "Alex A";
-        info.ContractStatus = "Accepted";
+        info.ContractStatus = "Pending";
         info.ContractMessage = "Installed Data on my friends computer to spy on them";
         info.ContractSubject = "Install Software";  
 

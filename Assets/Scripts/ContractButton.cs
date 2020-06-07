@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ContractButton : MonoBehaviour
 {
@@ -12,4 +13,10 @@ public class ContractButton : MonoBehaviour
     }
 
     public void SetContract(ContractInfo con) => _Contract = con; 
+
+    public void Update() {
+        if(_Contract.ContractStatus == "Accepted") {
+            GetComponentInChildren<Image>().color = Color.green;
+        }
+    }
 }

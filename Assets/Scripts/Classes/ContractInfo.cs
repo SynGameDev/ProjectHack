@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ContractInfo
 {
+    // Controller Settings
+    public GameObject ContractButton;
+
     // Contract Details
     public int ContractID;
     public string ContractName;                     // Name of contract
