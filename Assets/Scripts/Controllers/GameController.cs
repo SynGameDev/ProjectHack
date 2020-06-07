@@ -90,6 +90,23 @@ public class GameController : MonoBehaviour
 
     public void CompleteContract() {
         Destroy(ActiveContract.ContractButton);
+        var ObjectiveToComplete = ActiveContract.Objective.Count;
+        var ObjectivesCompleted = 0;
+        foreach(var action in ActiveContract.ActionLog) {
+            if(ActiveContract.Objective.Contains(action)) {
+                ObjectivesCompleted += 1;
+            }
+        }
+
+
+        if(ObjectivesCompleted >= ObjectiveToComplete) {
+            ActiveContract.ContractStatus = "Success";
+            SceneController.Instance.OpenContractCompletedSuccessPopup();
+        } else {
+            ActiveContract.ContractStatus = "Failed";
+            SceneController.Instance.OpenContractCompletedFailedPopup();
+        }
+
         ActiveContract = null;
     }
 
@@ -119,6 +136,11 @@ public class GameController : MonoBehaviour
         info.TerminalIP = "192.111.111";
 
         info.InstalledApplication.Add(ApplicationDatabase.Instance.SoftwareCenter);
+
+        info.Objective.Add("Install AceXTerminal");
+        info.Objective.Add("Install DirtyRat KeyLogger");
+        info.Objective.Add("Hide Application");
+        info.Objective.Add("Uninstall AcexTerminal");
         
 
         return info;

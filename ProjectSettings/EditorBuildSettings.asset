@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Applications/AceXTerminal.unity
     guid: f90f6d0b8da510947b54ac4d245d79b3
+  - enabled: 1
+    path: Assets/Scenes/Popups/ContractCompletedSuccess.unity
+    guid: 68d8755ed7b880a4cb7449eed8181b46
   m_configObjects: {}

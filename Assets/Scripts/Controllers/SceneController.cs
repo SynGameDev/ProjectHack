@@ -23,8 +23,10 @@ public class SceneController : MonoBehaviour
     [Header("Puzzles")]
     public int TerminalConnector;
 
-    [Header("Other Windows")]
+    [Header("Popups")]
     public int InstallProgress;
+    public int ContractCompletedSuccess;
+    public int ContractCompletedFailed;
 
     public void Awake() {
         if(Instance == null) {
@@ -135,6 +137,32 @@ public class SceneController : MonoBehaviour
     }
 
     #endregion
+
+    public void OpenContractCompletedSuccessPopup() {
+        SceneManager.LoadSceneAsync(ContractCompletedSuccess, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(ContractCompletedSuccess);
+        StartCoroutine(CloseContractSuccessCompleted());
+    }
+
+    public IEnumerator CloseContractSuccessCompleted() {
+        yield return new WaitForSeconds(2);
+        SceneManager.UnloadSceneAsync(ContractCompletedSuccess);
+        _CurrentlyLoadedScenes.Remove(ContractCompletedSuccess);
+    }
+
+    public void OpenContractCompletedFailedPopup() {
+        SceneManager.LoadSceneAsync(ContractCompletedFailed, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(ContractCompletedFailed);
+        StartCoroutine(CloseContractFailedCompleted());
+    }
+
+    public IEnumerator CloseContractFailedCompleted() {
+        yield return new WaitForSeconds(2);
+        SceneManager.UnloadSceneAsync(ContractCompletedFailed);
+        _CurrentlyLoadedScenes.Remove(ContractCompletedFailed);
+    }
+
+    
 
     public bool CheckIfLoaded(int SceneToCheck) {
         if(_CurrentlyLoadedScenes.Contains(SceneToCheck))

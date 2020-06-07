@@ -126,6 +126,8 @@ public class AceXTerminalController : MonoBehaviour
         } else {
             DisplayInput("Application Not Found");
         }
+
+        LogAction("Hide " + ApplicationName);
     }
 
     private void UnhideApplication(string ApplicationName) {
@@ -147,6 +149,8 @@ public class AceXTerminalController : MonoBehaviour
         } else {
             DisplayInput("Application Not Found");
         }
+
+        LogAction("Unhide " + ApplicationName);
     }
 
     private void OpenApplication(string ApplicatioName) {
@@ -188,6 +192,9 @@ public class AceXTerminalController : MonoBehaviour
     }
 
     private IEnumerator DownloadApplication(ScriptableObject AppToDownload) {
+        var app = AppToDownload as ApplicationScriptableObject;
+        LogAction("Install " + app.ApplicationName);
+
         DisplayInput("Downloading & Installing");
         yield return new WaitForSeconds(3);
         SoftwareApplicationInstaller.Instance.InstallProgram(AppToDownload);
@@ -195,10 +202,17 @@ public class AceXTerminalController : MonoBehaviour
     }
 
     private IEnumerator RemoveApp(ScriptableObject AppToRemove) {
+        var app = AppToRemove as ApplicationScriptableObject;
+        LogAction("Uninstall " + app.ApplicationName);
+
         DisplayInput("Uninstalling Application");
         yield return new WaitForSeconds(3);
         SoftwareApplicationInstaller.Instance.UninstallProgram(AppToRemove);
         DisplayInput("Application Uninstalled");
     }
 
+
+    private void LogAction(string action) {
+        GameController.Instance.GetActiveContract().ActionLog.Add(action);
+    }
 }

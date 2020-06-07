@@ -28,6 +28,10 @@ public class ContractInfo
     public int HHD;             // Storage Space
 
     // public void AddApp(ScriptableObject app) => InstalledApplication.Add(app);
+
+    // Objectives
+    public List<string> Objective = new List<string>();
+    public List<string> ActionLog = new List<string>();               // Record Data Completed on terminal
     
 
 }

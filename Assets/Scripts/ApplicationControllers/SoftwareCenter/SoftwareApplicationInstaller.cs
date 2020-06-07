@@ -87,11 +87,20 @@ public class SoftwareApplicationInstaller : MonoBehaviour
     public void InstallProgram(ScriptableObject AppToInstall) {
         GameController.Instance.GetActiveContract().InstalledApplication.Add(AppToInstall);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
+        var i = AppToInstall as ApplicationScriptableObject;
+        LogAction("Install " + i.ApplicationName);
     }
 
     public void UninstallProgram(ScriptableObject AppToRemove) {
         GameController.Instance.GetActiveContract().InstalledApplication.Remove(AppToRemove);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
+
+        var i = AppToRemove as ApplicationScriptableObject;
+        LogAction("Install " + i.ApplicationName);
+    }
+
+    private void LogAction(string action) {
+        GameController.Instance.GetActiveContract().ActionLog.Add(action);
     }
 
 }
