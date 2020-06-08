@@ -44,7 +44,7 @@ public class DateTimeController : MonoBehaviour
             _Min = 0;
             if(_Hour > 23) {
                 _Hour = 0;
-                // Increase Day
+                IncreaseDate();
             }
         }
 
@@ -56,8 +56,8 @@ public class DateTimeController : MonoBehaviour
         string MinText = "";
         string HourText = "";
 
-        MinText = (_Min >= 10) ? _Min.ToString("F0") : "0" + _Min.ToString("F0");
-        HourText = (_Hour >= 10) ? _Min.ToString("F0") : "0" + _Hour.ToString("F0");
+        MinText = (_Min >= 10) ? _Hour.ToString("F0") : "0" + _Min.ToString("F0");
+        HourText = (_Hour >= 10) ? _Hour.ToString("F0") : "0" + _Hour.ToString("F0");
 
         var prefix = (_Hour > 12) ? "PM" : "AM";
 
@@ -122,5 +122,14 @@ public class DateTimeController : MonoBehaviour
     public int GetMonth() => _Month;
     public int GetYear() => _Year;
     // Setters
+
+    public void SetTime(int hour, float min, int day, int month, int year) {
+        _Min = min;
+        _Hour = hour;
+
+        _Date = day;
+        _Month = month;
+        _Year = year;
+    }
 
 }

@@ -6,7 +6,8 @@ using UnityEngine;
 public class ContractInfo
 {
     // Controller Settings
-    public GameObject ContractButton;
+    [System.NonSerialized]
+     public GameObject ContractButton;
 
     // Contract Details
     public int ContractID;

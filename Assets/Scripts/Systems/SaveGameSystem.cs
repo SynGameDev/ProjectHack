@@ -23,6 +23,10 @@ public class SaveGameSystem : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Y)) {
             SaveGame();
         }
+
+        if(Input.GetKeyDown(KeyCode.I)) {
+            LoadGame();
+        }
     }
     
     public SaveData CreateSaveObject() {
@@ -53,12 +57,41 @@ public class SaveGameSystem : MonoBehaviour
         // TODO: Display Saving Game Screen
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/" + SaveGame.SaveName);
+        FileStream file = File.Create(Application.persistentDataPath + "/" + "test.synsave");
         bf.Serialize(file, SaveGame);
 
 
-        Debug.Log("Game Saved");
+        Debug.Log("Game Saved | " + Application.persistentDataPath);
 
+    }
+
+    private void LoadGame() {
+        if(File.Exists(Application.persistentDataPath + "/test.synsave")) {
+            
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/test.synsave", FileMode.Open);
+            SaveData save = (SaveData)bf.Deserialize(file);
+            file.Close();
+
+            UnloadData(save);
+
+
+        }
+    }
+
+
+    private void UnloadData(SaveData save) {
+        GameController.Instance.LoadPlayer(save.PlayerInfo);
+
+        foreach(var contract in save.AvailableContracts) {
+            GameController.Instance.AddContract(contract);
+        }
+
+        GameController.Instance.SetActiveContract(save.ActiveContract);
+
+        DateTimeController.Instance.SetTime(save.Hour, save.Minute, save.Day, save.Month, save.Year);
+
+        Debug.Log("Game loaded");
     }
 }
 
