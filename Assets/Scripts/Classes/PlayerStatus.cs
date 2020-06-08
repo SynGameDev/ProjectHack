@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerStatus
 {
 
+
+    public string PlayerName;
+
     public List<ContractInfo> CompletedContracts = new List<ContractInfo>();
 
     // Daily Stats
