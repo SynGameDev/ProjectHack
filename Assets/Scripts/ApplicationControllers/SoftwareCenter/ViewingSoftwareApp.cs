@@ -26,17 +26,17 @@ public class ViewingSoftwareApp : MonoBehaviour
     private void SetupDisplay() {
         var App = _App as ApplicationScriptableObject;
 
-        _AppIcon.sprite = App.ApplicationIcon;
-        _AppTitle.text = App.ApplicationName;
-        _AppDescription.text = App.ApplicationDescription;
+        _AppIcon.sprite = App.AppData.ApplicationIcon;
+        _AppTitle.text = App.AppData.ApplicationName;
+        _AppDescription.text = App.AppData.ApplicationDescription;
 
         if(_SoftwareCenter.CheckIfInstalled(_App)) {
             _Cost.gameObject.SetActive(false);
             _InstallButton.text = "Uninstall";
         } else {
             _Cost.gameObject.SetActive(true);
-            if(App.PurchaseAmount > 0) {
-                _Cost.text = App.PurchaseAmount.ToString();
+            if(App.AppData.PurchaseAmount > 0) {
+                _Cost.text = App.AppData.PurchaseAmount.ToString();
                 _InstallButton.text = "Buy";
             } else {
                 _Cost.text = "Free";

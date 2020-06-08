@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37bf3d506e2e01489d8067cb1a980f1, type: 3}
   m_Name: AceXTerminal
   m_EditorClassIdentifier: 
-  ApplicationName: AceXTerminal
-  ApplicationDescription: The Only Terminal that can crack AceX
-  ApplicationScreenshots: []
-  ApplicationIcon: {fileID: 0}
-  CrackedApplication: 0
-  ApplicationDownloadURL: ace.download.AceXTerminal.banned
-  PurchaseAmount: 0
-  HDDSpace: 7
+  AppData:
+    ApplicationName: 
+    ApplicationDescription: 
+    ApplicationIcon: {fileID: 0}
+    CrackedApplication: 0
+    ApplicationDownloadURL: 
+    PurchaseAmount: 0
+    HDDSpace: 0

@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37bf3d506e2e01489d8067cb1a980f1, type: 3}
   m_Name: AceEdit
   m_EditorClassIdentifier: 
-  ApplicationName: AceEdit
-  ApplicationDescription: The Best & Fast Text Editor. It can be use for practicly
-    anything
-  ApplicationScreenshots: []
-  ApplicationIcon: {fileID: 21300000, guid: ae81ae46a8a11b549b7ab47085a1d266, type: 3}
-  CrackedApplication: 0
-  ApplicationDownloadURL: ace.download.AceEditv1_0
-  PurchaseAmount: 10
-  HDDSpace: 2
+  AppData:
+    ApplicationName: AceEdit
+    ApplicationDescription: Add Description Here
+    ApplicationIcon: {fileID: 21300000, guid: ee946bac74fd00a4ba37f7c6a9c0ff71, type: 3}
+    CrackedApplication: 0
+    ApplicationDownloadURL: ace.software.download.AceEdit.stable
+    PurchaseAmount: 20
+    HDDSpace: 2

@@ -89,7 +89,7 @@ public class AceXTerminalController : MonoBehaviour
         // Loop through all the apps in the Software List
         foreach(var AppUrl in ApplicationDatabase.Instance.GetSoftwareApps()) {
             var appurl = AppUrl as ApplicationScriptableObject;         // Setup the scriptable object
-            if(appurl.ApplicationDownloadURL == url) {          // Check if the URL is found on the software
+            if(appurl.AppData.ApplicationDownloadURL == url) {          // Check if the URL is found on the software
                 Found = true;                   // ... Set to found
                 StartCoroutine(DownloadApplication(appurl));                // Start downloading the app
                 break;          // Break the loop
@@ -106,9 +106,9 @@ public class AceXTerminalController : MonoBehaviour
 
         // Loop through each application to find the application to remove
         foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {          
-            var App = app as ApplicationScriptableObject;
+            var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
 
-            if(App.ApplicationName == AppName) {                // If the app is found start removing the app
+            if(App.AppData.ApplicationName == AppName) {                // If the app is found start removing the app
                 StartCoroutine(RemoveApp(App));
                 break;
             }
@@ -122,16 +122,18 @@ public class AceXTerminalController : MonoBehaviour
 
         // Loop through each installed app & hide the app if found
         foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
-            var App = app as ApplicationScriptableObject;
-            if(App.ApplicationName == ApplicationName) {
-                AppTohide = App;
+            var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
+
+            if(App.AppData.ApplicationName == ApplicationName) {
+                AppTohide = App as ApplicationScriptableObject;
                 break;
             }
         }
 
         if(AppTohide != null) {
-            GameController.Instance.GetActiveContract().HiddenApplications.Add(AppTohide);
-            GameController.Instance.GetActiveContract().InstalledApplication.Remove(AppTohide);
+            var app = AppTohide as ApplicationScriptableObject;
+            GameController.Instance.GetActiveContract().HiddenApplications.Add(app.AppData.ApplicationID);
+            GameController.Instance.GetActiveContract().InstalledApplication.Remove(app.AppData.ApplicationID);
             GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         } else {
             DisplayInput("Application Not Found");
@@ -145,16 +147,17 @@ public class AceXTerminalController : MonoBehaviour
 
         ApplicationName = ApplicationName.Replace("_", " ");
         foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
-            var App = app as ApplicationScriptableObject;
-            if(App.ApplicationName == ApplicationName) {
+            var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
+            if(App.AppData.ApplicationName == ApplicationName) {
                 AppTohide = App;
                 break;
             }
         }
 
         if(AppTohide != null) {
-            GameController.Instance.GetActiveContract().InstalledApplication.Add(AppTohide);
-            GameController.Instance.GetActiveContract().HiddenApplications.Remove(AppTohide);
+            var app = AppTohide as ApplicationScriptableObject;
+            GameController.Instance.GetActiveContract().InstalledApplication.Add(app.AppData.ApplicationID);
+            GameController.Instance.GetActiveContract().HiddenApplications.Remove(app.AppData.ApplicationID);
             GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         } else {
             DisplayInput("Application Not Found");
@@ -170,9 +173,9 @@ public class AceXTerminalController : MonoBehaviour
 
         // loop through each application. if the application is found then open the application
         foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
-            var App = app as ApplicationScriptableObject;
+            var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
 
-            if(App.ApplicationName == AppName) {
+            if(App.AppData.ApplicationName == AppName) {
                 AppFound = true;
                 SceneController.Instance.OpenApplication(AppName);
                 break;
@@ -198,8 +201,8 @@ public class AceXTerminalController : MonoBehaviour
     private void ListHiddenApps() {
         string HiddenApps = "";
         foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
-            var App = app as ApplicationScriptableObject;
-            HiddenApps += " | " + App.ApplicationName;
+            var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
+            HiddenApps += " | " + App.AppData.ApplicationName;
         }
 
         DisplayInput(HiddenApps);
@@ -207,7 +210,7 @@ public class AceXTerminalController : MonoBehaviour
 
     private IEnumerator DownloadApplication(ScriptableObject AppToDownload) {
         var app = AppToDownload as ApplicationScriptableObject;
-        LogAction("Install " + app.ApplicationName);                // Add to log file
+        LogAction("Install " + app.AppData.ApplicationName);                // Add to log file
 
         DisplayInput("Downloading & Installing");               // Display Downloading message
         yield return new WaitForSeconds(3);                     // Wait Timer
@@ -217,7 +220,7 @@ public class AceXTerminalController : MonoBehaviour
 
     private IEnumerator RemoveApp(ScriptableObject AppToRemove) {
         var app = AppToRemove as ApplicationScriptableObject;
-        LogAction("Uninstall " + app.ApplicationName);
+        LogAction("Uninstall " + app.AppData.ApplicationName);
 
         DisplayInput("Uninstalling Application");
         yield return new WaitForSeconds(3);

@@ -5,9 +5,11 @@ using TMPro;
 
 public class DateTimeController : MonoBehaviour
 {
+    public static DateTimeController Instance;
+
     [Header("Time Settings")]
     [SerializeField, Range(1, 4)] private float _TimeScale;
-    [SerializeField] private float _Hour;
+    [SerializeField] private int _Hour;
     [SerializeField] private float _Min;
 
     [SerializeField] private TextMeshProUGUI _Time;
@@ -18,6 +20,14 @@ public class DateTimeController : MonoBehaviour
     [SerializeField] private int _Year;
 
     [SerializeField] private TextMeshProUGUI _DateText;
+
+    private void Awake() {
+        if(Instance == null) {
+            Instance = this;
+        } else {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start() {
         _DateText.text = DateText();
@@ -104,5 +114,13 @@ public class DateTimeController : MonoBehaviour
         return _Date.ToString("F0") + "-" + _Month.ToString("F0") + "-" + _Year.ToString("F0");
     }
 
+    // Getters
+    public float GetMin() => _Min;
+    public int GetHour() => _Hour;
+
+    public int GetDay() => _Date;
+    public int GetMonth() => _Month;
+    public int GetYear() => _Year;
+    // Setters
 
 }

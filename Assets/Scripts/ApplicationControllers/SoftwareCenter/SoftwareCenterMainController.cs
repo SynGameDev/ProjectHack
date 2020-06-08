@@ -77,7 +77,7 @@ public class SoftwareCenterMainController : MonoBehaviour
             if(!InstalledApplications.Contains(app)) {
 
                 var Application = app as ApplicationScriptableObject;
-                if(!Application.CrackedApplication) {
+                if(!Application.AppData.CrackedApplication) {
                     if(Row_1_Count < MaxItemsInRow) {
                         CreateAppItem(Application, _Row_1);
                         Row_1_Count += 1;
@@ -127,7 +127,7 @@ public class SoftwareCenterMainController : MonoBehaviour
     private void CreateAppItem(ScriptableObject app, Transform row) {
         var go = Instantiate(_AppContainerPrefab);
         var App = app as ApplicationScriptableObject;
-        go.name = App.ApplicationName;
+        go.name = App.AppData.ApplicationName;
 
         go.transform.SetParent(row);
         go.transform.localScale = new Vector3(2, 2, 2);
@@ -136,8 +136,8 @@ public class SoftwareCenterMainController : MonoBehaviour
         go.GetComponent<SoftwareCenterAppControl>()._App = app;
 
         go.GetComponent<AppCenterApp>().AppData = App;
-        go.GetComponent<AppCenterApp>().AppName.text = App.ApplicationName;
-        go.GetComponent<AppCenterApp>().AppIcon.sprite = App.ApplicationIcon;
+        go.GetComponent<AppCenterApp>().AppName.text = App.AppData.ApplicationName;
+        go.GetComponent<AppCenterApp>().AppIcon.sprite = App.AppData.ApplicationIcon;
         _CurrentlyShowingApp.Add(go);
 
     }
@@ -146,7 +146,7 @@ public class SoftwareCenterMainController : MonoBehaviour
         var CurrentContract = GameController.Instance.GetActiveContract();
 
         foreach(var App in CurrentContract.InstalledApplication) {
-            InstalledApplications.Add(App);
+            InstalledApplications.Add(ApplicationDatabase.Instance.GetApplication(App));
         }
     }
 

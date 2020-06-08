@@ -407,6 +407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 125489923}
   - component: {fileID: 125489924}
+  - component: {fileID: 125489925}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -440,10 +441,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71eecd69c2993048905c9985dfd2be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveContract:
+    ContractButton: {fileID: 0}
+    ContractID: 0
+    ContractName: 
+    ContractOwner: 
+    ContractMessage: 
+    ContractSubject: 
+    TerminalType: 
+    TerminalIP: 
+    ContractStatus: 
+    InstalledApplication: []
+    HiddenApplications: []
+    HHD: 0
+    Objective: []
+    ActionLog: []
   _ActiveContractMessage: {fileID: 2110293181}
   _ContractButtonPrefab: {fileID: 1990131545823150536, guid: a2187823445450a47a1fc2fdac711b73,
     type: 3}
   _ContractContainer: {fileID: 1702994061}
+  _ViewingContract:
+    ContractButton: {fileID: 0}
+    ContractID: 0
+    ContractName: 
+    ContractOwner: 
+    ContractMessage: 
+    ContractSubject: 
+    TerminalType: 
+    TerminalIP: 
+    ContractStatus: 
+    InstalledApplication: []
+    HiddenApplications: []
+    HHD: 0
+    Objective: []
+    ActionLog: []
+--- !u!114 &125489925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125489922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf5dbe16349ea64a91aa380d01baa95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &126409800
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +611,8 @@ MonoBehaviour:
   AceXTerminal: 7
   TerminalConnector: 4
   InstallProgress: 6
-  ContractCompleted: 8
+  ContractCompletedSuccess: 0
+  ContractCompletedFailed: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,7 +1470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _TimeScale: 1
-  _Hour: 3
+  _Hour: 0
   _Min: 0
   _Time: {fileID: 769126368}
   _Date: 1

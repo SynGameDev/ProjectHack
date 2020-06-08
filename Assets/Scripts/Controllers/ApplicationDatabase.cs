@@ -21,6 +21,17 @@ public class ApplicationDatabase : MonoBehaviour
         }
     }
 
+    public ScriptableObject GetApplication(string id) {
+        foreach(var app in _SoftwareApplications) {
+            var App = app as ApplicationScriptableObject;
+            if(App.AppData.ApplicationID == id) {
+                return App;
+            }
+        }
+
+        return null;
+    }
+
     public List<ScriptableObject> GetSoftwareApps() => _SoftwareApplications;
     public List<ScriptableObject> GetCrackedApps() => _CrackedSoftwareApplication;
 }

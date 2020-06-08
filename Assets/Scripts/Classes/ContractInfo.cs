@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ContractInfo
 {
     // Controller Settings
@@ -21,8 +22,8 @@ public class ContractInfo
     // Contract Status
     public string ContractStatus;                   // Offered, Accepted, Declined, Completed
 
-    public List<ScriptableObject> InstalledApplication = new List<ScriptableObject>();
-    public List<ScriptableObject> HiddenApplications = new List<ScriptableObject>();
+    public List<string> InstalledApplication = new List<string>();
+    public List<string> HiddenApplications = new List<string>();
 
     // Terminal Settings
     public int HHD;             // Storage Space
@@ -32,6 +33,21 @@ public class ContractInfo
     // Objectives
     public List<string> Objective = new List<string>();
     public List<string> ActionLog = new List<string>();               // Record Data Completed on terminal
+
+    public ScriptableObject GetApplication(string AppID) {
+        foreach(var id in InstalledApplication) {
+            if(id == AppID) {
+                return ApplicationDatabase.Instance.GetApplication(id);
+            }
+        }
+
+        foreach(var id in HiddenApplications) {
+            if(id == AppID) 
+                return ApplicationDatabase.Instance.GetApplication(id);
+        }
+
+        return null;
+    }
     
 
 }

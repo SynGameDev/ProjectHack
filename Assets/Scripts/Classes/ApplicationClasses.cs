@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApplicationClasses : MonoBehaviour
+[System.Serializable]
+public class ApplicationClass
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Application Deatils")]
+    public string ApplicationID;
+    public string ApplicationName;
+    [TextArea]
+    public string ApplicationDescription;
+    public Sprite ApplicationIcon;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Server Information")]
+    public bool CrackedApplication;
+    public string ApplicationDownloadURL;
+
+    [Header("Store Information")]
+    [Tooltip("Amount to obtain the application")] public int PurchaseAmount;
+    [Tooltip("Space the application will take on the HDD")] public int HDDSpace;
 }

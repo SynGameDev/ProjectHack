@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
 
+    [Header("Player Settings")]
+    private PlayerStatus Player;
+
     [Header("Currently Active Contract")]
     public ContractInfo ActiveContract;                   // Current contract that has been accepted;
     [SerializeField] private TextMeshProUGUI _ActiveContractMessage;                    // Text Information
@@ -36,7 +39,8 @@ public class GameController : MonoBehaviour
 
     private void Start() {
         DisplayAvailableContracts();
-        _AvailableContracts.Add(SetupTestContract());             // TEST
+        _AvailableContracts.Add(SetupTestContract());             // TEST METHOD
+        Player = CreatePlayer();                                // TEST METHOD
         DisplayAvailableContracts();
     }
 
@@ -113,6 +117,8 @@ public class GameController : MonoBehaviour
     // Getters 
     public ContractInfo GetActiveContract() => ActiveContract;
     public ContractInfo GetViewingContract() => _ViewingContract;
+    public PlayerStatus GetPlayerData() => Player;
+    public List<ContractInfo> GetAvailableContracts() => _AvailableContracts;
 
     // Setters
     public void SetViewingButton(GameObject contract) {
@@ -135,7 +141,7 @@ public class GameController : MonoBehaviour
         info.TerminalType = "Desktop";
         info.TerminalIP = "192.111.111";
 
-        info.InstalledApplication.Add(ApplicationDatabase.Instance.SoftwareCenter);
+        info.InstalledApplication.Add("App_1");
 
         info.Objective.Add("Install AceXTerminal");
         info.Objective.Add("Install DirtyRat KeyLogger");
@@ -144,6 +150,13 @@ public class GameController : MonoBehaviour
         
 
         return info;
+    }
+
+    private PlayerStatus CreatePlayer() {
+        var player = new PlayerStatus();
+        
+        player.PlayerName = "DirtyRat";
+        return player;
     }
 
     
