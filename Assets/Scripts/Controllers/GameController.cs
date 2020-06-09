@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     [Header("Viewing Contract")]
     [SerializeField] private ContractInfo _ViewingContract;
     private GameObject _ViewingContractButton;
+    private TextFile _OpenFile;
     
     
 
@@ -119,6 +120,7 @@ public class GameController : MonoBehaviour
     public ContractInfo GetViewingContract() => _ViewingContract;
     public PlayerStatus GetPlayerData() => Player;
     public List<ContractInfo> GetAvailableContracts() => _AvailableContracts;
+    public TextFile GetOpenTextFile() => _OpenFile;
 
     // Setters
     public void SetViewingButton(GameObject contract) {
@@ -127,6 +129,7 @@ public class GameController : MonoBehaviour
 
     public void AddContract(ContractInfo contract) => _AvailableContracts.Add(contract);
     public void SetActiveContract(ContractInfo contract) => ActiveContract = contract;
+    public void SetOpenTextFile(TextFile file) => _OpenFile = TextFileDatabase.FindTextFile(file);
 
     // Save System
     public void LoadPlayer(PlayerStatus NewPlayer) {
