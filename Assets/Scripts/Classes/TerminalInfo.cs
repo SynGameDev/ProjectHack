@@ -13,6 +13,12 @@ public class TerminalInfo {
     public List<string> InstalledApplication = new List<string>();
     public List<string> HiddenApplications = new List<string>();
 
+    // Anti Virus
+    public int AntiVirusLevel;
+
+    // Application Bools
+    public bool BackDoorInstalled;
+
     // Terminal Settings
     public int HHD;             // Storage Space
 

@@ -18,6 +18,9 @@ public class AceXTerminalController : MonoBehaviour
     [Header("Validation")]
     [SerializeField] private List<string> ValidCommand = new List<string>();                // List of valid commands
 
+    [Header("Open Terminal Application")]
+    private GameObject OpenTerminalApp;
+
     private void Update() {
         // Submit Input
         if(Input.GetKeyDown(KeyCode.Return)) {
@@ -26,7 +29,7 @@ public class AceXTerminalController : MonoBehaviour
         }
     }
 
-    private void DisplayInput(string text) {
+    public void DisplayInput(string text) {
         var go = Instantiate(CommandPrefab);                    // Create the prefab
         go.GetComponent<TextMeshProUGUI>().text = text;         // Assign th message
         go.transform.SetParent(_CommandSpawnLocation);              // Set the location to display message
@@ -60,6 +63,9 @@ public class AceXTerminalController : MonoBehaviour
                             break;
                         case "rma":
                             RemoveApplication(InputSplit[1]);
+                            break;
+                        case "run":
+                            RunApplication(InputSplit[1]);
                             break;
                     }
                 } else {
@@ -231,5 +237,21 @@ public class AceXTerminalController : MonoBehaviour
 
     private void LogAction(string action) {
         GameController.Instance.GetActiveContract().ActionLog.Add(action);
+    }
+
+    private void RunApplication(string ApplicationData) {
+        var AppInfo = ApplicationData.Split(' ');
+
+        if(OpenTerminalApp != null)
+            Destroy(OpenTerminalApp);
+
+        var go = new GameObject();
+        go.Transform.SetParent(this.gameObject.transform);
+
+        switch(AppInfo[0]) {
+            case "HITW":
+                go.AddComponent<HoleInTheWallApp>(0);
+                break;
+        }
     }
 }

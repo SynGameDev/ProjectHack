@@ -19,7 +19,7 @@ public class ConnectToTerminal : MonoBehaviour
 
         Debug.Log(GameController.Instance.ActiveContract);
         // Check if the charcter has entered the correct data.
-        if(_EnteredAddress.text == GameController.Instance.GetActiveContract().TerminalIP) {
+        if(_EnteredAddress.text == GameController.Instance.GetActiveContract().Terminal.TerminalIP) {
             SceneController.Instance.OpenTerminalConnector();
             CloseApp();
         } else {
