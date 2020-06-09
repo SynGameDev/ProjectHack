@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +11,10 @@ public class OpenApplications : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData pointerEventData) {
         SceneController.Instance.OpenApplication(GetComponentInChildren<TextMeshProUGUI>().text);
+
+        if(_Text.text == "AceEdit") {
+            GameController.Instance.SetOpenTextFile(_Text.text);
+        }
     }
 
     private void Start() {
@@ -27,7 +31,4 @@ public class OpenApplications : MonoBehaviour, IPointerClickHandler
 
 
     // Setters
-    public void SetAppToOpen(string app) {
-        _ApplicationToOpen = app;
-    }
 }

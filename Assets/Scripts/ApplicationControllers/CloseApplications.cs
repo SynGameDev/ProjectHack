@@ -17,6 +17,9 @@ public class CloseApplications : MonoBehaviour
             case "AceEdit":
                 SceneController.Instance.CloseAceEdit();
                 break;
+            case "System Directory":
+                SceneController.Instance.CloseFolderSystem();
+                break;
         }
     }
 }
