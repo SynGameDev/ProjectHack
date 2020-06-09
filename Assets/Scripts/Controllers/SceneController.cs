@@ -19,6 +19,7 @@ public class SceneController : MonoBehaviour
     public int SoftwareCenter;
     public int AceXTerminal;
     public int AceEdit;
+    public int SystemDirectory;
 
 
     [Header("Puzzles")]
@@ -120,11 +121,22 @@ public class SceneController : MonoBehaviour
     public void OpenAceEdit() {
         SceneManager.LoadSceneAsync(AceEdit, LoadSceneMode.Addtive);
         _CurrentlyLoadedScenes.Add(AceEdit);
+        
     }
 
     public void CloseAceEdit() {
         SceneManager.UnloadSceneAsync(AceEdit);
-        _CurrentlyLoadedScenes.Remove(AceEdit)
+        _CurrentlyLoadedScenes.Remove(AceEdit);
+    }
+
+    public void OpenFolderSystem() {
+        SceneManager.LoadSceneAsync(SystemDirectory, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(SystemDirectory);
+    }
+
+    public void CloseFolderSystem() {
+        SceneManager.UnloadSceneAsync(SystemDirectory);
+        _CurrentlyLoadedScenes.Remove(SystemDirectory);
     }
 
     #endregion
@@ -192,6 +204,9 @@ public class SceneController : MonoBehaviour
                 break;
             case "AceEdit":
                 OpenAceEdit();
+                break;
+            case "System Directory":
+                OpenFolderSystem();
                 break;
 
         }
