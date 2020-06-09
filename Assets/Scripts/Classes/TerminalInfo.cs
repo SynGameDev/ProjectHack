@@ -28,6 +28,7 @@ public class TerminalInfo {
     public List<string> Objective = new List<string>();
     public List<string> ActionLog = new List<string>();               // Record Data Completed on terminal
 
+
     public ScriptableObject GetApplication(string AppID) {
         foreach(var id in InstalledApplication) {
             if(id == AppID) {
