@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +13,9 @@ public class CloseApplications : MonoBehaviour
                 break;
             case "AceXTerminal":
                 SceneController.Instance.CloseAceXTerminal();
+                break;
+            case "AceEdit":
+                SceneController.Instance.CloseAceEdit();
                 break;
         }
     }

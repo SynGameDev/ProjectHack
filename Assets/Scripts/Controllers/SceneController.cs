@@ -18,6 +18,7 @@ public class SceneController : MonoBehaviour
     public int ConnectToUser;
     public int SoftwareCenter;
     public int AceXTerminal;
+    public int AceEdit;
 
 
     [Header("Puzzles")]
@@ -116,7 +117,15 @@ public class SceneController : MonoBehaviour
         _CurrentlyLoadedScenes.Remove(InstallProgress);
     }
 
-    
+    public void OpenAceEdit() {
+        SceneManager.LoadSceneAsync(AceEdit, LoadSceneMode.Addtive);
+        _CurrentlyLoadedScenes.Add(AceEdit);
+    }
+
+    public void CloseAceEdit() {
+        SceneManager.UnloadSceneAsync(AceEdit);
+        _CurrentlyLoadedScenes.Remove(AceEdit)
+    }
 
     #endregion
 
@@ -180,6 +189,9 @@ public class SceneController : MonoBehaviour
                 break;
             case "AceXTerminal":
                 OpenAceXTerminal();
+                break;
+            case "AceEdit":
+                OpenAceEdit();
                 break;
 
         }
