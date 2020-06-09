@@ -16,7 +16,7 @@ public class ContractInfo
     public string ContractMessage;                  // What needs to be completed in the contract
     public string ContractSubject;
 
-    public TerminalInfo _Terminal;
+    public TerminalInfo Terminal;
 
     // Contract Status
     public string ContractStatus;                   // Offered, Accepted, Declined, Completed

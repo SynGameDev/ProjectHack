@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +31,7 @@ public class DisplayUserDesktop : MonoBehaviour
         ContractInfo contract = GameController.Instance.GetActiveContract();            // Get the current contract
 
         // Loop through each application and assign it to a row on the desktop
-        foreach(var app in contract.InstalledApplication) {
+        foreach(var app in contract.Terminal.InstalledApplication) {
             if(_RowCount_1 < MaxItemsInRow) {
                 CreateApp(ApplicationDatabase.Instance.GetApplication(app), _Row_1);
                 _RowCount_1 += 1;

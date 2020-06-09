@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,5 +20,7 @@ public class PlayerStatus
 
     // Daily Stats
     public List<ContractInfo> ContractsCompletedToday = new List<ContractInfo>();
+
+    public List<TerminalInfo> UnlockedTerminal = new List<TerminalInfo>();
     
 }

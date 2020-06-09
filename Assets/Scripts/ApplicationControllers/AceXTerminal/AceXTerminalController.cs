@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -121,7 +121,7 @@ public class AceXTerminalController : MonoBehaviour
         ApplicationName = ApplicationName.Replace("_", " ");                // Remove the under score & replace with space
 
         // Loop through each installed app & hide the app if found
-        foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
+        foreach(var app in GameController.Instance.GetActiveContract().Terminal.InstalledApplication) {
             var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
 
             if(App.AppData.ApplicationName == ApplicationName) {
@@ -132,8 +132,8 @@ public class AceXTerminalController : MonoBehaviour
 
         if(AppTohide != null) {
             var app = AppTohide as ApplicationScriptableObject;
-            GameController.Instance.GetActiveContract().HiddenApplications.Add(app.AppData.ApplicationID);
-            GameController.Instance.GetActiveContract().InstalledApplication.Remove(app.AppData.ApplicationID);
+            GameController.Instance.GetActiveContract().Terminal.HiddenApplications.Add(app.AppData.ApplicationID);
+            GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Remove(app.AppData.ApplicationID);
             GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         } else {
             DisplayInput("Application Not Found");
@@ -146,7 +146,7 @@ public class AceXTerminalController : MonoBehaviour
         ScriptableObject AppTohide = null;
 
         ApplicationName = ApplicationName.Replace("_", " ");
-        foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
+        foreach(var app in GameController.Instance.GetActiveContract().Terminal.HiddenApplications) {
             var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
             if(App.AppData.ApplicationName == ApplicationName) {
                 AppTohide = App;
@@ -156,8 +156,8 @@ public class AceXTerminalController : MonoBehaviour
 
         if(AppTohide != null) {
             var app = AppTohide as ApplicationScriptableObject;
-            GameController.Instance.GetActiveContract().InstalledApplication.Add(app.AppData.ApplicationID);
-            GameController.Instance.GetActiveContract().HiddenApplications.Remove(app.AppData.ApplicationID);
+            GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Add(app.AppData.ApplicationID);
+            GameController.Instance.GetActiveContract().Terminal.HiddenApplications.Remove(app.AppData.ApplicationID);
             GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         } else {
             DisplayInput("Application Not Found");
@@ -172,7 +172,7 @@ public class AceXTerminalController : MonoBehaviour
 
 
         // loop through each application. if the application is found then open the application
-        foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {
+        foreach(var app in GameController.Instance.GetActiveContract().Terminal.InstalledApplication) {
             var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
 
             if(App.AppData.ApplicationName == AppName) {
@@ -185,7 +185,7 @@ public class AceXTerminalController : MonoBehaviour
 
         // loop through each application. if the application is found then open the application (Only Loop though this if the app wasn't found)
         if(!AppFound) {
-            foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
+            foreach(var app in GameController.Instance.GetActiveContract().Terminal.HiddenApplications) {
                 AppFound = true;
                 SceneController.Instance.OpenApplication(AppName);
                 break;
@@ -200,7 +200,7 @@ public class AceXTerminalController : MonoBehaviour
 
     private void ListHiddenApps() {
         string HiddenApps = "";
-        foreach(var app in GameController.Instance.GetActiveContract().HiddenApplications) {
+        foreach(var app in GameController.Instance.GetActiveContract().Terminal.HiddenApplications) {
             var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
             HiddenApps += " | " + App.AppData.ApplicationName;
         }
@@ -214,7 +214,7 @@ public class AceXTerminalController : MonoBehaviour
 
         DisplayInput("Downloading & Installing");               // Display Downloading message
         yield return new WaitForSeconds(3);                     // Wait Timer
-        SoftwareApplicationInstaller.Instance.InstallProgram(AppToDownload);            // Add Application to downloaded
+        SoftwareApplicationInstaller.Instance.Terminal.InstallProgram(AppToDownload);            // Add Application to downloaded
         DisplayInput("Application Installed");                  // Display output message
     }
 
