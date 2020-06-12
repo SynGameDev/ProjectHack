@@ -56,7 +56,7 @@ public class DateTimeController : MonoBehaviour
         string MinText = "";
         string HourText = "";
 
-        MinText = (_Min >= 10) ? _Hour.ToString("F0") : "0" + _Min.ToString("F0");
+        MinText = (_Min >= 9.5f) ? _Min.ToString("F0") : "0" + _Min.ToString("F0");
         HourText = (_Hour >= 10) ? _Hour.ToString("F0") : "0" + _Hour.ToString("F0");
 
         var prefix = (_Hour > 12) ? "PM" : "AM";
@@ -121,6 +121,10 @@ public class DateTimeController : MonoBehaviour
     public int GetDay() => _Date;
     public int GetMonth() => _Month;
     public int GetYear() => _Year;
+
+    public string GetDateTime() {
+        return TimeText() + " " + DateText();
+    }
     // Setters
 
     public void SetTime(int hour, float min, int day, int month, int year) {

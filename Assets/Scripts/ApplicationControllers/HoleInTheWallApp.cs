@@ -32,7 +32,7 @@ public class HoleInTheWallApp : MonoBehaviour {
 
             switch(GameController.Instance.GetActiveContract().Terminal.AntiVirusLevel) {
                 case 0:
-                    GameController.Instance.GetActiveContract.Terminal.BackDoorInstalled = true;
+                    GameController.Instance.GetActiveContract().Terminal.BackDoorInstalled = true;
                     _Terminal.DisplayInput("Back Door Install Completed");
                     break;
                 // TODO: Open Puzzle Level
@@ -46,7 +46,7 @@ public class HoleInTheWallApp : MonoBehaviour {
         _Terminal.DisplayInput("Removing Application");
         yield return new WaitForSeconds(1f);
         if(Installed) {
-            GameController.Instance.GetActiveContract().BackDoorInstalled = false;
+            GameController.Instance.GetActiveContract().Terminal.BackDoorInstalled = false;
             Installed = false;
         }
     }
@@ -61,7 +61,7 @@ public class HoleInTheWallApp : MonoBehaviour {
         }
     }
 
-    private void FindTerminal() => _Terminal = GameObject.FindGameObjectWithTag("AceXTerminal");
+    private void FindTerminal() => _Terminal = GameObject.FindGameObjectWithTag("AceXTerminal").GetComponent<AceXTerminalController>();
 
     private void CheckTerminalStillOpen() {
         if(_Terminal == null) {

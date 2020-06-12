@@ -13,7 +13,7 @@ public class OpenApplications : MonoBehaviour, IPointerClickHandler
         SceneController.Instance.OpenApplication(GetComponentInChildren<TextMeshProUGUI>().text);
 
         if(_Text.text == "AceEdit") {
-            GameController.Instance.SetOpenTextFile(_Text.text);
+            GameController.Instance.SetOpenTextFile(TextFileDatabase.Instance.FindFile(_Text.text));
         }
     }
 

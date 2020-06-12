@@ -10,8 +10,7 @@ public class AceEditController : MonoBehaviour {
     private bool Unsaved;
 
     [Header("Display Settings")]
-    [SerializeField] private GameObject _LinePrefab;
-    [SerializeField] private Transform _EditorContentContainer;
+    [SerializeField] private TextMeshProUGUI _Content;
     private void Awake() {
         CreateSingleInstance();
     }
@@ -23,13 +22,7 @@ public class AceEditController : MonoBehaviour {
     private void OpenTextFile() {
         var file = GameController.Instance.GetOpenTextFile();
         
-        foreach(var line in file.LineData) {
-            var go = Instantiate(line);
-            go.GetComponent<TextMeshProUGUI>().text = line;
-
-            go.transform.SetParent(_EditorContentContainer);
-            go.transform.localScale = Vector3.one;
-        }
+        _Content.text = file.FileContent;
     }
 
     public void ChangeTextFile() {
@@ -41,13 +34,9 @@ public class AceEditController : MonoBehaviour {
     }
 
     public void UpdateTextFile() {
-        GameController.Instance.GetOpenTextFile().Clear();
+        GameController.Instance.GetOpenTextFile().FileContent = _Content.text;
 
-        foreach(var child in transform) {
-            GameController.Instance.GetOpenTextFile().Add(child.GetComponent<TextMeshProUGUI>().text);
-        }
-
-        GameController.Instance.GetOpenTextFile().LastUpdateInfo = DateTimeController.Instance.GetTime() + " " + DateTimeController.Instance.GetDate();
+        GameController.Instance.GetOpenTextFile().LastUpdateInfo = DateTimeController.Instance.GetDateTime();
 
         // TODO: Change Save Icon For a time
     }

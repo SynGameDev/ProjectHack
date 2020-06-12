@@ -119,7 +119,7 @@ public class SceneController : MonoBehaviour
     }
 
     public void OpenAceEdit() {
-        SceneManager.LoadSceneAsync(AceEdit, LoadSceneMode.Addtive);
+        SceneManager.LoadSceneAsync(AceEdit, LoadSceneMode.Additive);
         _CurrentlyLoadedScenes.Add(AceEdit);
         
     }

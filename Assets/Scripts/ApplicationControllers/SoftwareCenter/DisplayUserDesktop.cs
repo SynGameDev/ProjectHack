@@ -70,7 +70,7 @@ public class DisplayUserDesktop : MonoBehaviour
         go.transform.localScale = new Vector3(2, 2, 2);         // Init the scale of the object
 
         go.AddComponent<OpenApplications>();                    // Add script to open object
-        go.GetComponent<OpenApplications>().SetAppToOpen("Software Center");                // Assign the app that needs to open it
+        //go.GetComponent<OpenApplications>().SetAppToOpen("Software Center");                // Assign the app that needs to open it
 
         var AppCenter = go.GetComponent<AppCenterApp>();                    // Get the App Cetner Item
         AppCenter.AppData = App;                            // Set the scriptable object

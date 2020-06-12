@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class TextFile {
     public string FileName;
-    public List<string> LineData = new List<string>();
+    public string FileContent;
     public string LastUpdateInfo;
 }

@@ -145,7 +145,7 @@ public class SoftwareCenterMainController : MonoBehaviour
     private void FindInstalledApplications() {
         var CurrentContract = GameController.Instance.GetActiveContract();
 
-        foreach(var App in CurrentContract.InstalledApplication) {
+        foreach(var App in CurrentContract.Terminal.InstalledApplication) {
             InstalledApplications.Add(ApplicationDatabase.Instance.GetApplication(App));
         }
     }

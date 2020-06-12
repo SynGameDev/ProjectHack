@@ -93,7 +93,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
 
     public void InstallProgram(ScriptableObject AppToInstall) {
         var app = AppToInstall as ApplicationScriptableObject;
-        GameController.Instance.GetActiveContract().InstalledApplication.Add(app.AppData.ApplicationID);
+        GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Add(app.AppData.ApplicationID);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         var i = AppToInstall as ApplicationScriptableObject;
         LogAction("Install " + i.AppData.ApplicationName);
@@ -101,7 +101,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
 
     public void UninstallProgram(ScriptableObject AppToRemove) {
         var app = AppToRemove as ApplicationScriptableObject;
-        GameController.Instance.GetActiveContract().InstalledApplication.Remove(app.AppData.ApplicationID);
+        GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Remove(app.AppData.ApplicationID);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
 
         var i = AppToRemove as ApplicationScriptableObject;
@@ -109,7 +109,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
     }
 
     private void LogAction(string action) {
-        GameController.Instance.GetActiveContract().ActionLog.Add(action);
+        GameController.Instance.GetActiveContract().Terminal.ActionLog.Add(action);
     }
 
 }

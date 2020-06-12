@@ -95,10 +95,10 @@ public class GameController : MonoBehaviour
 
     public void CompleteContract() {
         Destroy(ActiveContract.ContractButton);
-        var ObjectiveToComplete = ActiveContract.Objective.Count;
+        var ObjectiveToComplete = ActiveContract.Terminal.Objective.Count;
         var ObjectivesCompleted = 0;
-        foreach(var action in ActiveContract.ActionLog) {
-            if(ActiveContract.Objective.Contains(action)) {
+        foreach(var action in ActiveContract.Terminal.ActionLog) {
+            if(ActiveContract.Terminal.Objective.Contains(action)) {
                 ObjectivesCompleted += 1;
             }
         }
@@ -129,7 +129,7 @@ public class GameController : MonoBehaviour
 
     public void AddContract(ContractInfo contract) => _AvailableContracts.Add(contract);
     public void SetActiveContract(ContractInfo contract) => ActiveContract = contract;
-    public void SetOpenTextFile(TextFile file) => _OpenFile = TextFileDatabase.FindTextFile(file);
+    public void SetOpenTextFile(TextFile file) => _OpenFile = file;
 
     // Save System
     public void LoadPlayer(PlayerStatus NewPlayer) {
@@ -149,15 +149,15 @@ public class GameController : MonoBehaviour
         info.ContractMessage = "Installed Data on my friends computer to spy on them";
         info.ContractSubject = "Install Software";  
 
-        info.TerminalType = "Desktop";
-        info.TerminalIP = "192.111.111";
+        info.Terminal.TerminalType = "Desktop";
+        info.Terminal.TerminalIP = "192.111.111";
 
-        info.InstalledApplication.Add("App_1");
+        info.Terminal.InstalledApplication.Add("App_1");
 
-        info.Objective.Add("Install AceXTerminal");
-        info.Objective.Add("Install DirtyRat KeyLogger");
-        info.Objective.Add("Hide Application");
-        info.Objective.Add("Uninstall AcexTerminal");
+        info.Terminal.Objective.Add("Install AceXTerminal");
+        info.Terminal.Objective.Add("Install DirtyRat KeyLogger");
+        info.Terminal.Objective.Add("Hide Application");
+        info.Terminal.Objective.Add("Uninstall AcexTerminal");
         
 
         return info;

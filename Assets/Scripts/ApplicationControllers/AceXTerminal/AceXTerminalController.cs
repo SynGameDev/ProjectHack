@@ -111,7 +111,7 @@ public class AceXTerminalController : MonoBehaviour
         var AppName = ApplicationName.Replace("_", " ");                // Remove the under scrote and replace it with a space
 
         // Loop through each application to find the application to remove
-        foreach(var app in GameController.Instance.GetActiveContract().InstalledApplication) {          
+        foreach(var app in GameController.Instance.GetActiveContract().Terminal.InstalledApplication) {          
             var App = ApplicationDatabase.Instance.GetApplication(app) as ApplicationScriptableObject;
 
             if(App.AppData.ApplicationName == AppName) {                // If the app is found start removing the app
@@ -220,7 +220,7 @@ public class AceXTerminalController : MonoBehaviour
 
         DisplayInput("Downloading & Installing");               // Display Downloading message
         yield return new WaitForSeconds(3);                     // Wait Timer
-        SoftwareApplicationInstaller.Instance.Terminal.InstallProgram(AppToDownload);            // Add Application to downloaded
+        SoftwareApplicationInstaller.Instance.InstallProgram(AppToDownload);            // Add Application to downloaded
         DisplayInput("Application Installed");                  // Display output message
     }
 
@@ -236,7 +236,7 @@ public class AceXTerminalController : MonoBehaviour
 
 
     private void LogAction(string action) {
-        GameController.Instance.GetActiveContract().ActionLog.Add(action);
+        GameController.Instance.GetActiveContract().Terminal.ActionLog.Add(action);
     }
 
     private void RunApplication(string ApplicationData) {
@@ -246,11 +246,11 @@ public class AceXTerminalController : MonoBehaviour
             Destroy(OpenTerminalApp);
 
         var go = new GameObject();
-        go.Transform.SetParent(this.gameObject.transform);
+        go.transform.SetParent(this.gameObject.transform);
 
         switch(AppInfo[0]) {
             case "HITW":
-                go.AddComponent<HoleInTheWallApp>(0);
+                go.AddComponent<HoleInTheWallApp>();
                 break;
         }
     }
