@@ -41,13 +41,13 @@ public class SaveGameSystem : MonoBehaviour
 
     }
 
-    private void SaveGame() {
+    public void SaveGame(string name) {
         SaveData SaveGame = CreateSaveObject();
 
         // TODO: Display Saving Game Screen
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/" + "test.synsave");
+        FileStream file = File.Create(Application.persistentDataPath + "/" + name + ".synsave");
         bf.Serialize(file, SaveGame);
 
 

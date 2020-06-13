@@ -5,20 +5,61 @@ using System.IO;
 
 public class MainMenuController : MonoBehaviour
 {
-    [Header("Icons")]
-    [SerializeField] private Sprite _NewGameIcon;
-    [SerializeField] private Sprite _LoadGameIcon;
+    public static MainMenuController Instance;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject _NewGameIcon;
+    [SerializeField] private GameObject _LoadGameIcon;
+
+    [Header("Spawn Points & Containers")]
+    [SerializeField] private Transform _ButtonTransform;
+
+    [Header("Other Settings")]
+    [SerializeField] private GameObject NewUserPanel;
+    private int CurrentObjects = 0;
+    
 
     private void Awake() {
+        Instance = this;
+
         GetLoadGames();
+        SetupNewGames();
     }
 
     private void GetLoadGames() {
         var dirPaths = new DirectoryInfo(Application.persistentDataPath);
         FileInfo[] info = dirPaths.GetFiles("*.SynSave");
         foreach(var SaveFile in info) {
-            Debug.Log(SaveFile.Name);
+            var go = Instantiate(_LoadGameIcon);
+            string[] name = SaveFile.Name.Split('.');
+            
+            go.transform.SetParent(_ButtonTransform);
+            go.transform.localScale = Vector3.one;
+
+            go.GetComponent<LoadGameData>().LoadGameName = SaveFile.Name;
+            go.GetComponent<LoadGameData>().LoadGameText.text = name[0];
+            CurrentObjects += 1;
         }
     }
+
+    private void SetupNewGames() {
+        if(CurrentObjects <= 5) {
+            var total = 5 - CurrentObjects;
+            for(int i = 0; i < total; i++) {
+                var go = Instantiate(_NewGameIcon);
+                go.transform.SetParent(_ButtonTransform);
+                go.transform.localScale = Vector3.one;
+
+                
+            }
+        } 
+    }
+
+    public GameObject GetNewGamePanel() {
+        return NewUserPanel;
+    }
+
+    // TODO: Quit Game
+    // TODO: Open Settings Menu
 
 }
