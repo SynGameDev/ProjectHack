@@ -18,16 +18,6 @@ public class SaveGameSystem : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Y)) {
-            SaveGame();
-        }
-
-        if(Input.GetKeyDown(KeyCode.I)) {
-            LoadGame();
-        }
-    }
     
     public SaveData CreateSaveObject() {
         SaveData save = new SaveData();
@@ -65,8 +55,8 @@ public class SaveGameSystem : MonoBehaviour
 
     }
 
-    private void LoadGame() {
-        if(File.Exists(Application.persistentDataPath + "/test.synsave")) {
+    public void LoadGame(string filename) {
+        if(File.Exists(Application.persistentDataPath + "/" + filename)) {
             
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/test.synsave", FileMode.Open);
@@ -74,7 +64,6 @@ public class SaveGameSystem : MonoBehaviour
             file.Close();
 
             UnloadData(save);
-
 
         }
     }

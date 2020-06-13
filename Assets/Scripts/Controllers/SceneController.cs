@@ -30,6 +30,9 @@ public class SceneController : MonoBehaviour
     public int ContractCompletedSuccess;
     public int ContractCompletedFailed;
 
+    [Header("Other")]
+    public int MainMenu;
+
     public void Awake() {
         if(Instance == null) {
             Instance = this;
@@ -137,6 +140,10 @@ public class SceneController : MonoBehaviour
     public void CloseFolderSystem() {
         SceneManager.UnloadSceneAsync(SystemDirectory);
         _CurrentlyLoadedScenes.Remove(SystemDirectory);
+    }
+
+    public void CloseMainMenu() {
+        SceneManager.UnloadSceneAsync(MainMenu);
     }
 
     #endregion
