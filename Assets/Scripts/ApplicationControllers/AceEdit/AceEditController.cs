@@ -10,7 +10,12 @@ public class AceEditController : MonoBehaviour {
     private bool Unsaved;
 
     [Header("Display Settings")]
-    [SerializeField] private TextMeshProUGUI _Content;
+    [SerializeField] private TMP_InputField _Content;
+    [SerializeField] private GameObject _FileListObject;
+
+    [Header("Header Details")]
+    [SerializeField] private TMP_InputField _FileTitle;
+
     private void Awake() {
         CreateSingleInstance();
     }
@@ -19,10 +24,14 @@ public class AceEditController : MonoBehaviour {
         OpenTextFile();
     }
 
-    private void OpenTextFile() {
-        var file = GameController.Instance.GetOpenTextFile();
-        
-        _Content.text = file.FileContent;
+    public void OpenTextFile() {
+        if(GameController.Instance.GetOpenTextFile() == null) {
+            OpenFileList();
+        } else {
+            _FileListObject.SetActive(false);
+            _Content.text = GameController.Instance.GetOpenTextFile().FileContent;
+            _FileTitle.text = GameController.Instance.GetOpenTextFile().FileName;
+        }
     }
 
     public void ChangeTextFile() {
@@ -31,6 +40,14 @@ public class AceEditController : MonoBehaviour {
         }
         
         OpenTextFile();
+    }
+
+    public void SaveTextFile() {
+        var content = _Content.text;
+        var title = _FileTitle.text;
+
+        GameController.Instance.GetOpenTextFile().FileContent = content;
+        GameController.Instance.GetOpenTextFile().FileName = title;
     }
 
     public void UpdateTextFile() {
@@ -47,5 +64,14 @@ public class AceEditController : MonoBehaviour {
         } else {
             Destroy(this.gameObject);
         }
+    }
+
+
+    public void OpenFileList() {
+        _FileListObject.SetActive(true);
+    }
+
+    public void CloseApp() {
+        SceneController.Instance.CloseAceEdit();
     }
 }

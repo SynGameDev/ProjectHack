@@ -236,7 +236,7 @@ public class AceXTerminalController : MonoBehaviour
 
 
     private void LogAction(string action) {
-        GameController.Instance.GetActiveContract().Terminal.ActionLog.Add(action);
+        GameController.Instance.GetActiveContract().ActionLog.Add(action);
     }
 
     private void RunApplication(string ApplicationData) {

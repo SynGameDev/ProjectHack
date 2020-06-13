@@ -12,9 +12,11 @@ public class OpenApplications : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData pointerEventData) {
         SceneController.Instance.OpenApplication(GetComponentInChildren<TextMeshProUGUI>().text);
 
+        /*
         if(_Text.text == "AceEdit") {
             GameController.Instance.SetOpenTextFile(TextFileDatabase.Instance.FindFile(_Text.text));
         }
+        */
     }
 
     private void Start() {

@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private ContractInfo _ViewingContract;
     private GameObject _ViewingContractButton;
     private TextFile _OpenFile;
+
+    [Header("Terminals")]
+    private List<TerminalInfo> _TerminalList = new List<TerminalInfo>();
     
     
 
@@ -41,7 +44,7 @@ public class GameController : MonoBehaviour
     private void Start() {
         DisplayAvailableContracts();
         _AvailableContracts.Add(SetupTestContract());             // TEST METHOD
-        Player = CreatePlayer();                                // TEST METHOD
+        Player = CreatePlayer();                                // TEST METHOD        
         DisplayAvailableContracts();
     }
 
@@ -95,10 +98,10 @@ public class GameController : MonoBehaviour
 
     public void CompleteContract() {
         Destroy(ActiveContract.ContractButton);
-        var ObjectiveToComplete = ActiveContract.Terminal.Objective.Count;
+        var ObjectiveToComplete = ActiveContract.Objective.Count;
         var ObjectivesCompleted = 0;
-        foreach(var action in ActiveContract.Terminal.ActionLog) {
-            if(ActiveContract.Terminal.Objective.Contains(action)) {
+        foreach(var action in ActiveContract.ActionLog) {
+            if(ActiveContract.Objective.Contains(action)) {
                 ObjectivesCompleted += 1;
             }
         }
@@ -149,18 +152,27 @@ public class GameController : MonoBehaviour
         info.ContractMessage = "Installed Data on my friends computer to spy on them";
         info.ContractSubject = "Install Software";  
 
-        info.Terminal.TerminalType = "Desktop";
-        info.Terminal.TerminalIP = "192.111.111";
+        info.Terminal = CreateTerminal();
+        
 
-        info.Terminal.InstalledApplication.Add("App_1");
-
-        info.Terminal.Objective.Add("Install AceXTerminal");
-        info.Terminal.Objective.Add("Install DirtyRat KeyLogger");
-        info.Terminal.Objective.Add("Hide Application");
-        info.Terminal.Objective.Add("Uninstall AcexTerminal");
+        info.Objective.Add("Install AceXTerminal");
+        info.Objective.Add("Install DirtyRat KeyLogger");
+        info.Objective.Add("Hide Application");
+        info.Objective.Add("Uninstall AcexTerminal");
         
 
         return info;
+    }
+
+    private TerminalInfo CreateTerminal() {
+        var terminal = new TerminalInfo();
+
+        terminal.TerminalType = "Desktop";
+        terminal.TerminalIP = "192.111.111";
+        terminal.InstalledApplication.Add("App_1");
+        terminal.TextFileList.Add(TestTextFile());
+
+        return terminal;
     }
 
     private PlayerStatus CreatePlayer() {
@@ -168,6 +180,15 @@ public class GameController : MonoBehaviour
         
         player.PlayerName = "DirtyRat";
         return player;
+    }
+
+    private TextFile TestTextFile() {
+        TextFile text = new TextFile();
+
+        text.FileName = "Test Text File";
+        text.FileContent ="This is a test of the content";
+
+        return text;
     }
 
     

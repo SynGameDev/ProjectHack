@@ -1,61 +1,73 @@
-Date : 2020-06-07 03:29:19
+Date : 2020-06-13 00:17:05
 Directory : c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts
-Total : 29 files,  1389 codes, 55 comments, 396 blanks, all 1840 lines
+Total : 38 files,  1838 codes, 93 comments, 560 blanks, all 2491 lines
 
 Languages
 +----------+------------+------------+------------+------------+------------+
 | language | files      | code       | comment    | blank      | total      |
 +----------+------------+------------+------------+------------+------------+
-| C#       |         29 |      1,389 |         55 |        396 |      1,840 |
+| C#       |         38 |      1,838 |         93 |        560 |      2,491 |
 +----------+------------+------------+------------+------------+------------+
 
 Directories
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 | path                                                                                                                                                    | files      | code       | comment    | blank      | total      |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
-| .                                                                                                                                                       |         29 |      1,389 |         55 |        396 |      1,840 |
-| ApplicationControllers                                                                                                                                  |         10 |        563 |          8 |        149 |        720 |
-| ApplicationControllers\AceXTerminal                                                                                                                     |          1 |        170 |          0 |         35 |        205 |
-| ApplicationControllers\SoftwareCenter                                                                                                                   |          7 |        357 |          5 |         99 |        461 |
-| Classes                                                                                                                                                 |          2 |         29 |          7 |         14 |         50 |
-| Controllers                                                                                                                                             |          5 |        367 |         21 |        130 |        518 |
+| .                                                                                                                                                       |         38 |      1,838 |         93 |        560 |      2,491 |
+| ApplicationControllers                                                                                                                                  |         13 |        721 |         30 |        204 |        955 |
+| ApplicationControllers\AceEdit                                                                                                                          |          2 |         64 |          1 |         18 |         83 |
+| ApplicationControllers\AceXTerminal                                                                                                                     |          1 |        198 |          8 |         52 |        258 |
+| ApplicationControllers\SoftwareCenter                                                                                                                   |          7 |        365 |         12 |        104 |        481 |
+| Classes                                                                                                                                                 |          5 |         85 |         14 |         39 |        138 |
+| Controllers                                                                                                                                             |          5 |        503 |         23 |        167 |        693 |
 | Open Applications                                                                                                                                       |          3 |         28 |          2 |          9 |         39 |
+| Pop Windows                                                                                                                                             |          1 |         12 |          0 |          5 |         17 |
 | Puzzles                                                                                                                                                 |          3 |        282 |          4 |         58 |        344 |
-| ScriptableObjects                                                                                                                                       |          1 |         20 |          0 |          5 |         25 |
+| ScriptableObjects                                                                                                                                       |          1 |         10 |          0 |          2 |         12 |
+| Systems                                                                                                                                                 |          1 |         77 |          7 |         40 |        124 |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
 
 Files
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
 | filename                                                                                                                                                | language | code       | comment    | blank      | total      |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\AceXTerminal\AceXTerminalController.cs           | C#       |        170 |          0 |         35 |        205 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\CloseApplications.cs                             | C#       |         17 |          0 |          3 |         20 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\OpenApplications.cs                              | C#       |         19 |          3 |         12 |         34 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\AceEdit\AceEditController.cs                     | C#       |         46 |          1 |         13 |         60 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\AceEdit\FileButtonData.cs                        | C#       |         18 |          0 |          5 |         23 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\AceXTerminal\AceXTerminalController.cs           | C#       |        198 |          8 |         52 |        258 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\CloseApplications.cs                             | C#       |         23 |          0 |          3 |         26 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\HoleInTheWallApp.cs                              | C#       |         55 |          1 |         15 |         71 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\OpenApplications.cs                              | C#       |         16 |          8 |         12 |         36 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\AppCenterApp.cs                   | C#       |         11 |          0 |          4 |         15 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\DisplayUserDesktop.cs             | C#       |         61 |          0 |         21 |         82 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\SoftwareApplicationInstaller.cs   | C#       |         75 |          2 |         21 |         98 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\DisplayUserDesktop.cs             | C#       |         60 |          3 |         21 |         84 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\SoftwareApplicationInstaller.cs   | C#       |         84 |          6 |         26 |        116 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\SoftwareCenterActionController.cs | C#       |         14 |          0 |          4 |         18 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\SoftwareCenterAppControl.cs       | C#       |         15 |          0 |          4 |         19 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\SoftwareCenterMainController.cs   | C#       |        138 |          3 |         34 |        175 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ApplicationControllers\SoftwareCenter\ViewingSoftwareApp.cs             | C#       |         43 |          0 |         11 |         54 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Classes\ApplicationClasses.cs                                           | C#       |         12 |          2 |          5 |         19 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Classes\ContractInfo.cs                                                 | C#       |         17 |          5 |          9 |         31 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Classes\ApplicationClasses.cs                                           | C#       |         19 |          0 |          4 |         23 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Classes\ContractInfo.cs                                                 | C#       |         18 |          3 |         10 |         31 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Classes\PlayerStatus.cs                                                 | C#       |         14 |          4 |          9 |         27 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Classes\TerminalInfo.cs                                                 | C#       |         26 |          7 |         15 |         48 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Classes\TextFile.cs                                                     | C#       |          8 |          0 |          1 |          9 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\CloseApplication.cs                                                     | C#       |         12 |          2 |          5 |         19 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ConnectToTerminal.cs                                                    | C#       |         27 |         11 |          9 |         47 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ContractButton.cs                                                       | C#       |         12 |          0 |          4 |         16 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\ApplicationDatabase.cs                                      | C#       |         21 |          0 |          6 |         27 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\DateTimeController.cs                                       | C#       |         88 |          1 |         20 |        109 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\GameController.cs                                           | C#       |         81 |          4 |         34 |        119 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\SceneController.cs                                          | C#       |        110 |          6 |         44 |        160 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ContractButton.cs                                                       | C#       |         18 |          0 |          5 |         23 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\ApplicationDatabase.cs                                      | C#       |         30 |          0 |          8 |         38 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\DateTimeController.cs                                       | C#       |        112 |          2 |         26 |        140 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\GameController.cs                                           | C#       |        138 |          5 |         54 |        197 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\SceneController.cs                                          | C#       |        156 |          6 |         53 |        215 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Controllers\ToolbarController.cs                                        | C#       |         67 |         10 |         26 |        103 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\DragableApplication.cs                                                  | C#       |         13 |          0 |          5 |         18 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Open Applications\OpenCloseSoftwareCenter.cs                            | C#       |         12 |          2 |          5 |         19 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Open Applications\OpenConnectToTerminal.cs                              | C#       |          7 |          0 |          2 |          9 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Open Applications\TerminalDisconnect.cs                                 | C#       |          9 |          0 |          2 |         11 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Pop Windows\ContractCompletedPopup.cs                                   | C#       |         12 |          0 |          5 |         17 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Puzzles\NodePuzzleController.cs                                         | C#       |         40 |          0 |         16 |         56 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Puzzles\NodeSteamController.cs                                          | C#       |         33 |          0 |          4 |         37 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Puzzles\PuzzlePieceController.cs                                        | C#       |        209 |          4 |         38 |        251 |
-| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ScriptableObjects\ApplicationScriptableObject.cs                        | C#       |         20 |          0 |          5 |         25 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ScriptableObjects\ApplicationScriptableObject.cs                        | C#       |         10 |          0 |          2 |         12 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\Systems\SaveGameSystem.cs                                               | C#       |         77 |          7 |         40 |        124 |
+| c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\TextFileDatabase.cs                                                     | C#       |         14 |          0 |          4 |         18 |
 | c:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack\Assets\Scripts\ViewingContract.cs                                                      | C#       |         36 |          0 |          8 |         44 |
-| Total                                                                                                                                                   |          |      1,389 |         55 |        396 |      1,840 |
+| Total                                                                                                                                                   |          |      1,838 |         93 |        560 |      2,491 |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

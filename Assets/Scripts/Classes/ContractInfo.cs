@@ -21,6 +21,9 @@ public class ContractInfo
     // Contract Status
     public string ContractStatus;                   // Offered, Accepted, Declined, Completed
 
+    public List<string> Objective = new List<string>();
+    public List<string> ActionLog = new List<string>();               // Record Data Completed on terminal
+
     
     
 

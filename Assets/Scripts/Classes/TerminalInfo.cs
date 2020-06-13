@@ -13,6 +13,9 @@ public class TerminalInfo {
     public List<string> InstalledApplication = new List<string>();
     public List<string> HiddenApplications = new List<string>();
 
+    // File System
+    public List<TextFile> TextFileList = new List<TextFile>();
+
     // Anti Virus
     public int AntiVirusLevel;
 
@@ -25,8 +28,7 @@ public class TerminalInfo {
     // public void AddApp(ScriptableObject app) => InstalledApplication.Add(app);
 
     // Objectives
-    public List<string> Objective = new List<string>();
-    public List<string> ActionLog = new List<string>();               // Record Data Completed on terminal
+    
 
 
     public ScriptableObject GetApplication(string AppID) {
