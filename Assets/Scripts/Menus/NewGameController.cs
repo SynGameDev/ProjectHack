@@ -27,28 +27,34 @@ public class NewGameController : MonoBehaviour
     }
 
     public void StartNewGame() {
-        var username = _NewUsername.text;
+        var username = MainMenuController.Instance.NewUsername();
         var namevalid = false;
 
         var dirPaths = new DirectoryInfo(Application.persistentDataPath);
         FileInfo[] info = dirPaths.GetFiles("*.SynSave");
         foreach(var SaveFile in info) {
+            Debug.Log(SaveFile.Name);
             if(SaveFile.Name == username + ".synsave") {
                 namevalid = true;
             }
         }
 
-        if(namevalid) {
+        if(!namevalid) {
             SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
-            SaveGameSystem.Instance.SaveGame(username);
-            SaveGameSystem.Instance.LoadGame(username + ".synsave");
-            SceneController.Instance.CloseMainMenu();
+            StartCoroutine(StartTheGame(username));
             
 
         } else {
             Debug.Log("Username has been taken");
             // TODO: Display error message in game
         }
+    }
+
+    private IEnumerator StartTheGame(string username) {
+        yield return new WaitForSeconds(0.5f);
+        SaveGameSystem.Instance.SaveGame(username);
+        SaveGameSystem.Instance.LoadGame(username + ".synsave");
+        SceneController.Instance.CloseMainMenu();
     }
 
     public void ShowNewGamePanel() {

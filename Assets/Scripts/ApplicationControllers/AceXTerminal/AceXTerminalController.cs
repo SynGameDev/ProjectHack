@@ -145,7 +145,7 @@ public class AceXTerminalController : MonoBehaviour
             DisplayInput("Application Not Found");
         }
 
-        LogAction("Hide " + ApplicationName);           // Add to the action log
+        LogAction("Hide " + ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);           // Add to the action log
     }
 
     private void UnhideApplication(string ApplicationName) {
@@ -169,7 +169,7 @@ public class AceXTerminalController : MonoBehaviour
             DisplayInput("Application Not Found");
         }
 
-        LogAction("Unhide " + ApplicationName);
+        LogAction("Unhide " + ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
     }
 
     private void OpenApplication(string ApplicatioName) {
@@ -216,7 +216,7 @@ public class AceXTerminalController : MonoBehaviour
 
     private IEnumerator DownloadApplication(ScriptableObject AppToDownload) {
         var app = AppToDownload as ApplicationScriptableObject;
-        LogAction("Install " + app.AppData.ApplicationName);                // Add to log file
+        LogAction("Install " + app.AppData.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);                // Add to log file
 
         DisplayInput("Downloading & Installing");               // Display Downloading message
         yield return new WaitForSeconds(3);                     // Wait Timer
@@ -226,7 +226,7 @@ public class AceXTerminalController : MonoBehaviour
 
     private IEnumerator RemoveApp(ScriptableObject AppToRemove) {
         var app = AppToRemove as ApplicationScriptableObject;
-        LogAction("Uninstall " + app.AppData.ApplicationName);
+        LogAction("Uninstall " + app.AppData.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
 
         DisplayInput("Uninstalling Application");
         yield return new WaitForSeconds(3);

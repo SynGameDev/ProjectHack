@@ -42,7 +42,7 @@ public class HoleInTheWallApp : MonoBehaviour {
         Installed = true;
     }
 
-    private IEnumerator RemoveApp() {
+    public IEnumerator RemoveApp() {
         _Terminal.DisplayInput("Removing Application");
         yield return new WaitForSeconds(1f);
         if(Installed) {

@@ -96,7 +96,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
         GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Add(app.AppData.ApplicationID);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         var i = AppToInstall as ApplicationScriptableObject;
-        LogAction("Install " + i.AppData.ApplicationName);
+        LogAction("Install " + i.AppData.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
     }
 
     public void UninstallProgram(ScriptableObject AppToRemove) {
@@ -104,8 +104,14 @@ public class SoftwareApplicationInstaller : MonoBehaviour
         GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Remove(app.AppData.ApplicationID);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
 
+        switch(app.AppData.ApplicationName) {
+            case "Hole In The Wall":
+                StartCoroutine(HoleInTheWallApp.Instance.RemoveApp());
+                break;
+        }
+
         var i = AppToRemove as ApplicationScriptableObject;
-        LogAction("Install " + i.AppData.ApplicationName);
+        LogAction("Uninstall " + i.AppData.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
     }
 
     private void LogAction(string action) {

@@ -35,5 +35,9 @@ MonoBehaviour:
       function: 1
       layoutName: 
       menuPath: File/New Scene
+    - icon: {fileID: 2800000, guid: e60f5d5fdcd9db64e91d82705264428b, type: 3}
+      function: 1
+      layoutName: 
+      menuPath: Assets/Create/Scriptable Objects/Applications/New Application
     playModeLayout: 
     saveLayoutOnChange: 0

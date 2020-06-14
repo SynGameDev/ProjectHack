@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using TMPro;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MainMenuController : MonoBehaviour
 
     [Header("Other Settings")]
     [SerializeField] private GameObject NewUserPanel;
+    [SerializeField] private TMP_InputField _UsernameInput;
     private int CurrentObjects = 0;
     
 
@@ -58,6 +60,8 @@ public class MainMenuController : MonoBehaviour
     public GameObject GetNewGamePanel() {
         return NewUserPanel;
     }
+
+    public string NewUsername() => _UsernameInput.text;
 
     // TODO: Quit Game
     // TODO: Open Settings Menu

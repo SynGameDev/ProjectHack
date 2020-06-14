@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
 
     [Header("Terminals")]
     private List<TerminalInfo> _TerminalList = new List<TerminalInfo>();
+    private TerminalInfo _CurrentlyConnectedToTerminal;
     
     
 
@@ -124,6 +125,8 @@ public class GameController : MonoBehaviour
     public PlayerStatus GetPlayerData() => Player;
     public List<ContractInfo> GetAvailableContracts() => _AvailableContracts;
     public TextFile GetOpenTextFile() => _OpenFile;
+    public List<TerminalInfo> GetAllTerminals() => _TerminalList;
+    public TerminalInfo GetActiveTerminal() => _CurrentlyConnectedToTerminal;
 
     // Setters
     public void SetViewingButton(GameObject contract) {
@@ -133,6 +136,7 @@ public class GameController : MonoBehaviour
     public void AddContract(ContractInfo contract) => _AvailableContracts.Add(contract);
     public void SetActiveContract(ContractInfo contract) => ActiveContract = contract;
     public void SetOpenTextFile(TextFile file) => _OpenFile = file;
+    public void SetActiveTerminal(TerminalInfo terminal) => _CurrentlyConnectedToTerminal = terminal;
 
     // Save System
     public void LoadPlayer(PlayerStatus NewPlayer) {
@@ -144,6 +148,8 @@ public class GameController : MonoBehaviour
 
     // TEST
     public ContractInfo SetupTestContract() {
+        var term = CreateTerminal();
+
         var info = new ContractInfo();
         info.ContractID = 1;
         info.ContractName = "Test Contract";
@@ -152,7 +158,8 @@ public class GameController : MonoBehaviour
         info.ContractMessage = "Installed Data on my friends computer to spy on them";
         info.ContractSubject = "Install Software";  
 
-        info.Terminal = CreateTerminal();
+        info.Terminal = term;
+        _TerminalList.Add(term);
         
 
         info.Objective.Add("Install AceXTerminal");

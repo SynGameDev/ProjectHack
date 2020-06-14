@@ -17,12 +17,23 @@ public class ConnectToTerminal : MonoBehaviour
     
     public void ValidateTerminalConnecting() {
 
-        Debug.Log(GameController.Instance.ActiveContract);
-        // Check if the charcter has entered the correct data.
-        if(_EnteredAddress.text == GameController.Instance.GetActiveContract().Terminal.TerminalIP) {
-            SceneController.Instance.OpenTerminalConnector();
-            CloseApp();
-        } else {
+        var found = false;
+        foreach(var terminal in GameController.Instance.GetAllTerminals()) {
+            if(terminal.TerminalIP == _EnteredAddress.text) {
+
+                if(terminal.BackDoorInstalled) {
+                    SceneController.Instance.OpenUserDesktop();
+                } else {
+                    SceneController.Instance.OpenTerminalConnector();
+                    GameController.Instance.SetActiveTerminal(terminal);
+                }
+                
+                CloseApp();
+                break;
+            }
+        }
+
+        if(!found) {
             _ErrorText.SetActive(true);
             _ErrorText.GetComponent<TextMeshProUGUI>().text = "Unable to find specified terminal";
             _ErrorText.GetComponent<TextMeshProUGUI>().color = Color.red;

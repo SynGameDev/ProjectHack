@@ -8,6 +8,7 @@ TagManager:
   - SoftwareCenter
   - UserDesktop
   - NewUserPanel
+  - AceXTerminal
   layers:
   - Default
   - TransparentFX
