@@ -40,7 +40,7 @@ public class NewGameController : MonoBehaviour
         }
 
         if(!namevalid) {
-            SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
             StartCoroutine(StartTheGame(username));
             
 

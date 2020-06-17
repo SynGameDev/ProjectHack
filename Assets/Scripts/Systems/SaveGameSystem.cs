@@ -56,10 +56,11 @@ public class SaveGameSystem : MonoBehaviour
     }
 
     public void LoadGame(string filename) {
-        if(File.Exists(Application.persistentDataPath + "/" + filename)) {
+        var NameOfFile = "/" + filename + "synsave";
+        if(File.Exists(Application.persistentDataPath + NameOfFile)) {
             
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/test.synsave", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + NameOfFile, FileMode.Open);
             SaveData save = (SaveData)bf.Deserialize(file);
             file.Close();
 

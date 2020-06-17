@@ -10,7 +10,7 @@ public class LoadGameData : MonoBehaviour
     public TextMeshProUGUI LoadGameText;
 
     public void LoadGame() {
-        SceneManager.LoadSceneAsync(0, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         StartCoroutine(LeaveMainMenu());
     }
 
