@@ -12,7 +12,7 @@ public class FileListController : MonoBehaviour
     }
 
     private void GetAllFiles() {
-        List<TextFile> files = GameController.Instance.GetActiveContract().Terminal.TextFileList;
+        List<TextFile> files = GameController.Instance.GetActiveTerminal().TextFileList;
 
         foreach(var file in files) {
             CreateButton(file);
@@ -21,10 +21,10 @@ public class FileListController : MonoBehaviour
 
 
     public void CreateButton(TextFile file) {
-            var go = Instantiate(_FileButtonPrefab);
-            go.GetComponent<FileButtonData>().SetFile(file);
-            go.transform.SetParent(_SpawnPoint);
-            go.transform.localScale = Vector3.one;
+        var go = Instantiate(_FileButtonPrefab);
+        go.GetComponent<FileButtonData>().SetFile(file);
+        go.transform.SetParent(_SpawnPoint);
+        go.transform.localScale = Vector3.one;
     }
 
 }

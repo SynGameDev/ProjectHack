@@ -72,6 +72,7 @@ public class AceEditController : MonoBehaviour {
     }
 
     public void CloseApp() {
+        GameController.Instance.SetOpenTextFile(null);
         SceneController.Instance.CloseAceEdit();
     }
 }

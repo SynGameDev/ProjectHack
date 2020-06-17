@@ -665,6 +665,7 @@ MonoBehaviour:
     type: 3}
   _ButtonTransform: {fileID: 1537132203}
   NewUserPanel: {fileID: 616094389}
+  _UsernameInput: {fileID: 1909999490}
 --- !u!1 &1366832138
 GameObject:
   m_ObjectHideFlags: 0

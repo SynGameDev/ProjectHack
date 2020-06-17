@@ -9,6 +9,8 @@ TagManager:
   - UserDesktop
   - NewUserPanel
   - AceXTerminal
+  - AceEditWindow
+  - Toolbar
   layers:
   - Default
   - TransparentFX

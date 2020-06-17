@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 1320680}
   - component: {fileID: 1320679}
   - component: {fileID: 1320678}
+  - component: {fileID: 1320681}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -240,6 +241,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320676}
   m_CullTransparentMesh: 0
+--- !u!114 &1320681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ded58c2ad4f97241bfa7564f7695754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DropdownItems: []
+  _DropdownContainer: {fileID: 671499619591797687, guid: 7e2376a2421a50848bae19b7d77d955e,
+    type: 3}
+  _MenuSpawnPointTag: Toolbar
 --- !u!1 &2940799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1145,7 @@ GameObject:
   - component: {fileID: 1519639583}
   m_Layer: 5
   m_Name: Toolbar
-  m_TagString: Untagged
+  m_TagString: Toolbar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

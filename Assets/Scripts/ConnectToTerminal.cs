@@ -27,6 +27,8 @@ public class ConnectToTerminal : MonoBehaviour
                     SceneController.Instance.OpenTerminalConnector();
                     GameController.Instance.SetActiveTerminal(terminal);
                 }
+
+                GameController.Instance.SetActiveTerminal(terminal);
                 
                 CloseApp();
                 break;

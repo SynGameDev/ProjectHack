@@ -28,6 +28,9 @@ public class GameController : MonoBehaviour
     [Header("Terminals")]
     private List<TerminalInfo> _TerminalList = new List<TerminalInfo>();
     private TerminalInfo _CurrentlyConnectedToTerminal;
+
+    [Header("Dropdown Menu Settings")]
+    private GameObject _DropdownMenuItem;
     
     
 
@@ -127,6 +130,7 @@ public class GameController : MonoBehaviour
     public TextFile GetOpenTextFile() => _OpenFile;
     public List<TerminalInfo> GetAllTerminals() => _TerminalList;
     public TerminalInfo GetActiveTerminal() => _CurrentlyConnectedToTerminal;
+    public GameObject GetActiveDropdownItem() => _DropdownMenuItem;
 
     // Setters
     public void SetViewingButton(GameObject contract) {
@@ -137,6 +141,7 @@ public class GameController : MonoBehaviour
     public void SetActiveContract(ContractInfo contract) => ActiveContract = contract;
     public void SetOpenTextFile(TextFile file) => _OpenFile = file;
     public void SetActiveTerminal(TerminalInfo terminal) => _CurrentlyConnectedToTerminal = terminal;
+    public void SetDropdownItem(GameObject DropdownItem) => _DropdownMenuItem = DropdownItem;
 
     // Save System
     public void LoadPlayer(PlayerStatus NewPlayer) {
@@ -178,6 +183,8 @@ public class GameController : MonoBehaviour
         terminal.TerminalIP = "192.111.111";
         terminal.InstalledApplication.Add("App_1");
         terminal.TextFileList.Add(TestTextFile());
+
+        terminal.BackDoorInstalled = true;
 
         return terminal;
     }
