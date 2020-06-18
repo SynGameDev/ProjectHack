@@ -613,7 +613,7 @@ MonoBehaviour:
   PlayerDash: 2
   UserDesktop: 3
   ConnectToUser: 4
-  SoftwareCenter: 5
+  SoftwareCenter: 6
   AceXTerminal: 8
   AceEdit: 10
   SystemDirectory: 0
