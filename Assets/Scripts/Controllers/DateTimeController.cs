@@ -44,6 +44,7 @@ public class DateTimeController : MonoBehaviour
             _Min = 0;
             if(_Hour > 23) {
                 _Hour = 0;
+                SceneController.Instance.OpenEndOfDayPopup();
                 IncreaseDate();
             }
         }

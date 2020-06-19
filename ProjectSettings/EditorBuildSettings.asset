@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Applications/AceEdit.unity
     guid: a7d0ef42ec1341d4584bfceb7b878a2c
+  - enabled: 1
+    path: Assets/Scenes/Popups/EndOfDay.unity
+    guid: 64d24324cefeb854882891ba4fef9c5b
   m_configObjects: {}

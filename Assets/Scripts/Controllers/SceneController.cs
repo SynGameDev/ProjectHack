@@ -29,6 +29,7 @@ public class SceneController : MonoBehaviour
     public int InstallProgress;
     public int ContractCompletedSuccess;
     public int ContractCompletedFailed;
+    public int EndOfDay;
 
     [Header("Other")]
     public int MainMenu;
@@ -188,6 +189,15 @@ public class SceneController : MonoBehaviour
         yield return new WaitForSeconds(2);
         SceneManager.UnloadSceneAsync(ContractCompletedFailed);
         _CurrentlyLoadedScenes.Remove(ContractCompletedFailed);
+    }
+
+    public void OpenEndOfDayPopup() {
+        SceneManager.LoadSceneAsync(EndOfDay, LoadSceneMode.Additive);
+        
+    }
+
+    public void CloseEndOfDayPopup() {
+        SceneManager.UnloadSceneAsync(EndOfDay);
     }
 
     
