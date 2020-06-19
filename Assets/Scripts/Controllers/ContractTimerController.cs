@@ -20,17 +20,25 @@ public class ContractTimerController : MonoBehaviour {
             _HoursToComplete -= 1;
 
             if(_HoursToComplete <= 0)
-                // TODO: Fail Task
+                FailContract();
         } else {
             _HoursToExpire -= 1;
 
             if(_HoursToExpire <= 0) 
-                // TODO: Delete the task
+                ExpireContract();
         }
     }
 
     private void ResetContractAccepted() {
         _ContractAccepted = true;
+    }
+
+    private void FailContract() {
+
+    }
+
+    private void ExpireContract() {
+
     }
 
     private float MinToExpire(float timer) {
