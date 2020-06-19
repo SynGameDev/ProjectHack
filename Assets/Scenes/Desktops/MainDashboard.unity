@@ -619,8 +619,8 @@ MonoBehaviour:
   SystemDirectory: 0
   TerminalConnector: 5
   InstallProgress: 7
-  ContractCompletedSuccess: 0
-  ContractCompletedFailed: 0
+  ContractCompletedSuccess: 9
+  ContractCompletedFailed: 12
   EndOfDay: 11
   MainMenu: 10
 --- !u!1 &519420028
