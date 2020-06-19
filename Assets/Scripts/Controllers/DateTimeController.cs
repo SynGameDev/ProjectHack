@@ -137,4 +137,13 @@ public class DateTimeController : MonoBehaviour
         _Year = year;
     }
 
+    public float GetMinutesInDay() {
+        var time_to_seconds = (24 * 60) / _TimeScale;
+        return time_to_seconds;
+    }
+
+    public float GetTimeScale() {
+        return _TimeScale;
+    }
+
 }
