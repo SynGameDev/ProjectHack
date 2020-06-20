@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 
             go.GetComponentInChildren<TextMeshProUGUI>().text = "Contract: " + contract.ContractID.ToString();
             go.GetComponent<ContractButton>().SetContract(contract);
+            go.GetComponent<ContractTimerController>().SetContract(contract);
 
             go.transform.SetParent(_ContractContainer);
             go.transform.localScale = Vector3.one;
@@ -96,6 +97,8 @@ public class GameController : MonoBehaviour
 
     public void AcceptContract() {
         ActiveContract = _ViewingContract;
+        _ViewingContractButton.GetComponent<ContractTimerController>().SetStatus(true);
+        _ViewingContractButton = null;
         _ViewingContract = null;
         ActiveContract.ContractStatus = "Accepted";
     }

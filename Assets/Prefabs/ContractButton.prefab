@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1140375798923004125}
   - component: {fileID: 6588283623072794177}
+  - component: {fileID: 5452520348629107504}
   m_Layer: 5
   m_Name: ContractButton
   m_TagString: Untagged
@@ -49,6 +50,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a916c9364815264b813c4b6563405cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5452520348629107504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990131545823150536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d175f47b8332e49afd6e00d7ada3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _HoursToExpire: 120
+  _HoursToComplete: 120
+  _ContractAccepted: 0
+  _TimerIcon: {fileID: 0}
 --- !u!1 &3226249638267599970
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,8 +262,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Contract: 1331'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30f3926ab063e104895d677e47a621e7, type: 2}
+  m_sharedMaterial: {fileID: 5121117130814792460, guid: 30f3926ab063e104895d677e47a621e7,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -288,7 +306,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
