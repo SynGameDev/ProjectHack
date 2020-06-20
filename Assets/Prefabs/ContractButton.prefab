@@ -66,6 +66,8 @@ MonoBehaviour:
   _HoursToComplete: 120
   _ContractAccepted: 0
   _TimerIcon: {fileID: 0}
+  _StartColor: {r: 0, g: 1, b: 0.03731489, a: 1}
+  _EndColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3226249638267599970
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,11 +134,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 03fa043da75c2474ca642fec1ff70cd1, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0

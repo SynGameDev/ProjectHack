@@ -45,21 +45,10 @@ public class EndDayController : MonoBehaviour
         _ContractsFailed.text = "CONTRACTS FAILED: " + failed_count;
 
         // Show Reward Data
-        _RankedPointsEarned.text = "EARNED POINTS: " + CalculateRankedPoints();
-        _EarnedCash.text = "EARNED CASH: " + CalculateEarnedCash();
+        _RankedPointsEarned.text = "EARNED POINTS: " + RewardSystem.Instance.GetResults()[1];
+        _EarnedCash.text = "EARNED CASH: " + RewardSystem.Instance.GetResults()[0];
     }
 
-
-    // TODO: Calculate Cash & Ranking Award
-
-    public int CalculateRankedPoints() {
-        return 120;
-
-    }
-
-    public int CalculateEarnedCash() {
-        return 100;
-    }
 
     public void ClosePanel() {
         Time.timeScale = 1;

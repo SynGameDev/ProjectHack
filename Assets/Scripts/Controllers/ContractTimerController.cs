@@ -14,6 +14,11 @@ public class ContractTimerController : MonoBehaviour {
     [Header("Objects")]
     [SerializeField] private Image _TimerIcon;
 
+    [Header("Timer Colors")]
+    [SerializeField] private Color _StartColor;
+    [SerializeField] private Color _EndColor;
+
+
     private void Awake() {
         _TimerIcon = GameObject.FindGameObjectWithTag("TimerIcon").GetComponent<Image>();
 
@@ -32,24 +37,40 @@ public class ContractTimerController : MonoBehaviour {
 
     private void Update() {
         if(_ContractAccepted) {
-            _HoursToComplete -= 1;
+            _HoursToComplete -= 1 * Time.deltaTime;
 
             if(_HoursToComplete <= 0)
                 FailContract();
 
+            // Lerp the color
+            var timer_percetnage = _HoursToComplete / CompleteTimeDetails;
+            var lerpcolor = _TimerIcon.color;
+            lerpcolor = Color.Lerp(_EndColor, _StartColor, timer_percetnage);
+
+            _Contract.ContractButton.GetComponentInChildren<Image>().color = lerpcolor;
+            _Contract.ContractButton.GetComponentInChildren<Image>().fillAmount = timer_percetnage;
+
             if(GameController.Instance.GetActiveContract() == _Contract) {
-                var timer_percetnage = _HoursToComplete / CompleteTimeDetails;
-
                 _TimerIcon.fillAmount = timer_percetnage;
-
-                // Lerp the color
+                _TimerIcon.color = lerpcolor;
             }
+
+
             
         } else {
-            _HoursToExpire -= 1;
+            _HoursToExpire -= 1 * Time.deltaTime;
 
             if(_HoursToExpire <= 0) 
                 ExpireContract();
+
+            var TimerPercentage = _HoursToExpire / CompleteTimeDetails;
+
+            _Contract.ContractButton.GetComponentInChildren<Image>().fillAmount = TimerPercentage;
+
+            // Lerp the color
+            var lerpcolor = _TimerIcon.color;
+            lerpcolor = Color.Lerp(_EndColor, _StartColor, TimerPercentage);
+            _Contract.ContractButton.GetComponentInChildren<Image>().color = lerpcolor;
         }
     }
 

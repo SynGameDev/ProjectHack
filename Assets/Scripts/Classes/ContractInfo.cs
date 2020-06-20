@@ -16,14 +16,17 @@ public class ContractInfo
     public string ContractMessage;                  // What needs to be completed in the contract
     public string ContractSubject;
 
+    public int ContractDifficulty;
+
     public TerminalInfo Terminal;
 
     // Contract Status
     public string ContractStatus;                   // Offered, Accepted, Declined, Completed
-    public float TimeToExpire = 400;
-    public float TimeToComplete = 300;
+    public float TimeToExpire = 2;
+    public float TimeToComplete = 2;
 
     public List<string> Objective = new List<string>();
+    public List<string> MainObjectives = new List<string>();
     public List<string> ActionLog = new List<string>();               // Record Data Completed on terminal
 
     

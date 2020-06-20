@@ -11,6 +11,7 @@ TagManager:
   - AceXTerminal
   - AceEditWindow
   - Toolbar
+  - TimerIcon
   layers:
   - Default
   - TransparentFX

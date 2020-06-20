@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+
 
 public class GameController : MonoBehaviour
 {
@@ -31,6 +33,15 @@ public class GameController : MonoBehaviour
 
     [Header("Dropdown Menu Settings")]
     private GameObject _DropdownMenuItem;
+
+    [Header("Objective Display")]
+    [SerializeField] private GameObject _ObjectivePrefab;
+    [SerializeField] private Transform _ObjectiveContainer_1;
+    [SerializeField] private Transform _ObjectiveContainer_2;
+    private int _RowOneCount;
+    private int _RowTwoCount;
+    private List<GameObject> ObjectiveObject = new List<GameObject>();
+
     
     
 
@@ -53,7 +64,7 @@ public class GameController : MonoBehaviour
     }
 
     private void Update() {
-        ActiveContractDisplay();
+        //ActiveContractDisplay();
     }
 
     private void DisplayAvailableContracts() {
@@ -75,9 +86,27 @@ public class GameController : MonoBehaviour
 
     private void ActiveContractDisplay() {
         if(ActiveContract != null) {
-            _ActiveContractMessage.text = ActiveContract.ContractMessage;
+            foreach(var obj in ActiveContract.Objective) {
+                var go = Instantiate(_ObjectivePrefab);
+                go.GetComponent<TextMeshProUGUI>().text = obj;
+
+                // Set the transform
+                if(_RowOneCount > 5) {
+                    go.transform.SetParent(_ObjectiveContainer_2);
+                    _RowTwoCount += 1;
+                } else {
+                    go.transform.SetParent(_ObjectiveContainer_1);
+                    _RowOneCount += 1;
+                }
+
+                go.transform.localScale = Vector3.one;
+                ObjectiveObject.Add(go);
+
+            }
         } else {
-            _ActiveContractMessage.text = "";
+            foreach(var go in ObjectiveObject) {
+                Destroy(go);
+            }
         }
     }
 
@@ -95,12 +124,25 @@ public class GameController : MonoBehaviour
         // TODO:Update Stats
     }
 
+    public void ExpiredContract(ContractInfo contract) {
+        _AvailableContracts.Remove(contract);
+        Destroy(contract.ContractButton);
+        ActiveContractDisplay();
+
+        // TODO: Update Stats
+    }
+
     public void AcceptContract() {
         ActiveContract = _ViewingContract;
         _ViewingContractButton.GetComponent<ContractTimerController>().SetStatus(true);
+        ActiveContract.ContractButton.name = ActiveContract.ContractButton.name + " (Accepted)";
+        ActiveContract.ContractButton.GetComponentInChildren<TextMeshProUGUI>().text = ActiveContract.ContractButton.name;
+        ActiveContract.ContractButton.GetComponentInChildren<Image>().fillAmount = 1;
         _ViewingContractButton = null;
         _ViewingContract = null;
         ActiveContract.ContractStatus = "Accepted";
+
+        ActiveContractDisplay();
     }
 
     public void CompleteContract() {
@@ -123,6 +165,7 @@ public class GameController : MonoBehaviour
         }
 
         ActiveContract = null;
+        ActiveContractDisplay();
     }
 
     // Getters 
