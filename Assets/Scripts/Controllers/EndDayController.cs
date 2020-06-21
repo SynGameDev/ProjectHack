@@ -32,7 +32,7 @@ public class EndDayController : MonoBehaviour
         // Loop through each contract and increase the value
         foreach(var contract in player.ContractsCompletedToday) {
             offered_count += 1;
-            if(contract.ContractStatus == "Completed") {
+            if(contract.ContractStatus == "Success") {
                 success_count += 1;
             } else {
                 failed_count += 1;
@@ -47,10 +47,28 @@ public class EndDayController : MonoBehaviour
         // Show Reward Data
         _RankedPointsEarned.text = "EARNED POINTS: " + RewardSystem.Instance.GetResults()[1];
         _EarnedCash.text = "EARNED CASH: " + RewardSystem.Instance.GetResults()[0];
+
+        player.coin += RewardSystem.Instance.GetResults()[0];
+        player.RankedPoints += RewardSystem.Instance.GetResults()[1];
+
+        player.EndOfDayStats.Add(GetClass(player.ContractsCompletedToday.Count));
+        
+    }
+
+    public EndDayClass GetClass(int comp) {
+        var day = new EndDayClass();
+        int[] date = DateTimeController.Instance.GetDateArray();
+
+        day.Date = (date[0] - 1).ToString() + "/" + date[1].ToString() + "/" + date[2].ToString();
+        day.SuccessfulCompleted = comp + " CONTRACTS";
+        day.RankedPoints = "RP: " + RewardSystem.Instance.GetResults()[0];
+        day.CashEarned = "$" + RewardSystem.Instance.GetResults()[1];
+        return day;
     }
 
 
     public void ClosePanel() {
+
         Time.timeScale = 1;
         SceneController.Instance.CloseEndOfDayPopup();
     }

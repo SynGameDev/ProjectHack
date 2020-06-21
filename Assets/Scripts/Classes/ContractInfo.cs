@@ -22,8 +22,8 @@ public class ContractInfo
 
     // Contract Status
     public string ContractStatus;                   // Offered, Accepted, Declined, Completed
-    public float TimeToExpire = 2;
-    public float TimeToComplete = 2;
+    public float TimeToExpire = 4;
+    public float TimeToComplete = 4;
 
     public List<string> Objective = new List<string>();
     public List<string> MainObjectives = new List<string>();

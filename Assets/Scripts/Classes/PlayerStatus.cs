@@ -11,6 +11,7 @@ public class PlayerStatus
     public string PlayerName;
     //public Sprite PlayerIcon = null;
     public int coin = 2;
+    public int RankedPoints = 0;
 
     // PC Data
     public int StorageSpace = 30;
@@ -24,5 +25,7 @@ public class PlayerStatus
     public List<ContractInfo> ContractsOffered = new List<ContractInfo>();
 
     public List<TerminalInfo> UnlockedTerminal = new List<TerminalInfo>();
+
+    public List<EndDayClass> EndOfDayStats = new List<EndDayClass>();
     
 }

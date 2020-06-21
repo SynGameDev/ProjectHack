@@ -30,6 +30,7 @@ public class SceneController : MonoBehaviour
     public int ContractCompletedSuccess;
     public int ContractCompletedFailed;
     public int EndOfDay;
+    public int Accountant;
 
     [Header("Other")]
     public int MainMenu;
@@ -175,7 +176,7 @@ public class SceneController : MonoBehaviour
 
     public IEnumerator CloseContractSuccessCompleted() {
         yield return new WaitForSeconds(2);
-        SceneManager.UnloadSceneAsync(ContractCompletedSuccess);
+        SceneManager.UnloadScene(ContractCompletedSuccess);
         _CurrentlyLoadedScenes.Remove(ContractCompletedSuccess);
     }
 
@@ -198,6 +199,16 @@ public class SceneController : MonoBehaviour
 
     public void CloseEndOfDayPopup() {
         SceneManager.UnloadSceneAsync(EndOfDay);
+    }
+
+    public void OpenAccountant() {
+        SceneManager.LoadSceneAsync(Accountant, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(Accountant);
+    }
+
+    public void CloseAccountant() {
+        SceneManager.UnloadSceneAsync(Accountant);
+        _CurrentlyLoadedScenes.Remove(Accountant);
     }
 
     
@@ -224,6 +235,9 @@ public class SceneController : MonoBehaviour
                 break;
             case "System Directory":
                 OpenFolderSystem();
+                break;
+            case "Accountant":
+                OpenAccountant();
                 break;
 
         }

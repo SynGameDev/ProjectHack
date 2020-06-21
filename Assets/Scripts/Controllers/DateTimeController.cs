@@ -115,6 +115,11 @@ public class DateTimeController : MonoBehaviour
         return _Date.ToString("F0") + "-" + _Month.ToString("F0") + "-" + _Year.ToString("F0");
     }
 
+    public int[] GetDateArray() {
+        int[] data = {_Date, _Month, _Year};
+        return data;
+    }
+
     // Getters
     public float GetMin() => _Min;
     public int GetHour() => _Hour;

@@ -15,7 +15,9 @@ public class GameController : MonoBehaviour
     [Header("Currently Active Contract")]
     public ContractInfo ActiveContract;                   // Current contract that has been accepted;
     [SerializeField] private TextMeshProUGUI _ActiveContractMessage;                    // Text Information
+    [SerializeField] private GameObject CompleteContractButton;
     private GameObject ActiveContractButton;
+
 
     [Header("Available Contracts")]
     [SerializeField] private GameObject _ContractButtonPrefab;
@@ -101,12 +103,13 @@ public class GameController : MonoBehaviour
 
                 go.transform.localScale = Vector3.one;
                 ObjectiveObject.Add(go);
-
+                CompleteContractButton.SetActive(true);
             }
         } else {
             foreach(var go in ObjectiveObject) {
                 Destroy(go);
             }
+            CompleteContractButton.SetActive(false);
         }
     }
 
@@ -127,6 +130,8 @@ public class GameController : MonoBehaviour
     public void ExpiredContract(ContractInfo contract) {
         _AvailableContracts.Remove(contract);
         Destroy(contract.ContractButton);
+        contract.ContractStatus = "Expired";
+        Player.ContractsCompletedToday.Add(contract);
         ActiveContractDisplay();
 
         // TODO: Update Stats
@@ -163,6 +168,8 @@ public class GameController : MonoBehaviour
             ActiveContract.ContractStatus = "Failed";
             SceneController.Instance.OpenContractCompletedFailedPopup();
         }
+
+        Player.ContractsCompletedToday.Add(ActiveContract);
 
         ActiveContract = null;
         ActiveContractDisplay();
@@ -206,17 +213,17 @@ public class GameController : MonoBehaviour
         info.ContractName = "Test Contract";
         info.ContractOwner = "Alex A";
         info.ContractStatus = "Pending";
-        info.ContractMessage = "Installed Data on my friends computer to spy on them";
+        info.ContractMessage = "Hey Man,\n\nI Heard you're the man I need to speak to.\n\nMy business partner is trying to screw me out of the business and I need to access his PC, can you install a key logger!\n\nCheers David";
         info.ContractSubject = "Install Software";  
 
         info.Terminal = term;
         _TerminalList.Add(term);
         
 
-        info.Objective.Add("Install AceXTerminal");
-        info.Objective.Add("Install DirtyRat KeyLogger");
-        info.Objective.Add("Hide Application");
-        info.Objective.Add("Uninstall AcexTerminal");
+        info.Objective.Add("Install AceXTerminal IP: 192.111.111");
+        info.Objective.Add("Install DirtyRat KeyLogger IP: 192.111.111");
+        info.Objective.Add("Hide DirtyRat KeyLogger IP: 192.111.111");
+        info.Objective.Add("Uninstall AcexTerminal IP: 192.111.111");
         
 
         return info;

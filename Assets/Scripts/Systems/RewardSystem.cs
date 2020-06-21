@@ -18,6 +18,8 @@ public class RewardSystem : MonoBehaviour
 
     [Header("Ranked Penalties")]
     [SerializeField] private int _UnhidenFileRankPen;
+    [SerializeField] private int _ExpiredContractPen;
+    [SerializeField] private int _FailedContractPen;
 
     [Header("Cash Penalties")]
     [SerializeField] private int _UnhiddenFileCashPen;
@@ -55,6 +57,10 @@ public class RewardSystem : MonoBehaviour
                         RankedPointsEarnedToday += _HardRankedPoints;
                         break;
                 }
+            } else if(contract.ContractStatus == "Expired") {
+                RankedPointsEarnedToday -= _ExpiredContractPen;
+            } else if(contract.ContractStatus == "Failed") {
+                RankedPointsEarnedToday -= _FailedContractPen;
             }
 
             foreach(var obj in contract.Objective) {
