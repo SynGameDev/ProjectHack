@@ -28,16 +28,16 @@ public class PlayerStatus
 
     public List<EndDayClass> EndOfDayStats = new List<EndDayClass>();
 
-    // Terminal Data
-    public float DownloadSpeedMutliplier = 1;
-    public float ContractSpace = 10;
-    public float ContractExpireMultiplier = 1;
-    public float ContractCompleteMultiplier = 1;
 
-
-    // Player Applications
-    public int bruteForceLevel = 0;
-    public int SQLInjectionLevel = 0;
+    // Player Application Level
+    public int DownloadLevel = 0;
+    public int ContractSpaces = 0;
+    public int ExpireTimerLevel = 0;
+    public int CompleteTimerLevel = 0;
+    public int BruteForceLevel = 0;
+    public int SQLLevel = 0;
     public int PhishLevel = 0;
+
+
     
 }
