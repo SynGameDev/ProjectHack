@@ -21,11 +21,52 @@ public class AceXTerminalController : MonoBehaviour
     [Header("Open Terminal Application")]
     private GameObject OpenTerminalApp;
 
+    [Header("Terminal Loop Input")]
+    private List<string> TerminalInputList = new List<string>();
+    private int _CurrentIndex;
+    private bool _FilterInputs;
+
+    private void Awake() {
+        TerminalInputList.Clear();
+        _CurrentIndex = -1;
+    }
+
     private void Update() {
         // Submit Input
         if(Input.GetKeyDown(KeyCode.Return)) {
+            _CurrentIndex = -1;
             DisplayInput(_CommandInput.text);               // Display the text entered
             ValidateInput();                // Validate the einput
+            TerminalInputList.Add(_CommandInput.text);
+        }
+
+        
+        
+    }
+
+    private void LoopInputs() {
+        if(Input.GetKeyDown(KeyCode.UpArrow)) {
+            _CurrentIndex += 1;
+            if(_CurrentIndex > TerminalInputList.Count) {
+                _CurrentIndex = 0;
+            }
+            _FilterInputs = true;
+        }
+
+        if(Input.GetKeyDown(KeyCode.DownArrow)) {
+            _CurrentIndex -= 1;
+            if(_CurrentIndex < -1) {
+                _CurrentIndex = TerminalInputList.Count;
+                _FilterInputs = true;
+            }
+        }
+
+        if(_CurrentIndex == -1) {
+            _FilterInputs = false;
+        }
+
+        if(_FilterInputs) {
+            _CommandInput.text = TerminalInputList[_CurrentIndex];
         }
     }
 

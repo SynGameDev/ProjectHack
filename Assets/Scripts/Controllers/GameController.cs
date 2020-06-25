@@ -237,7 +237,7 @@ public class GameController : MonoBehaviour
         terminal.InstalledApplication.Add("App_1");
         terminal.TextFileList.Add(TestTextFile());
 
-        terminal.BackDoorInstalled = true;
+        terminal.BackDoorInstalled = false;
 
         return terminal;
     }
