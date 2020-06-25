@@ -7,7 +7,7 @@ public class PlayerShop : MonoBehaviour
 {
     private PlayerStatus _Player;
 
-    [Header("Text Objects")]
+    [Header("Level Text Objects")]
     [SerializeField] private TextMeshProUGUI _DownloadLevel;
     [SerializeField] private TextMeshProUGUI _ContractSpaceLevel;
     [SerializeField] private TextMeshProUGUI _ExpireTimerLevel;
@@ -15,6 +15,15 @@ public class PlayerShop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _BruteForceLevel;
     [SerializeField] private TextMeshProUGUI _SQLLevel;
     [SerializeField] private TextMeshProUGUI _PhishLevel;
+
+    [Header("Purchase Amount Text Object")]
+    [SerializeField] private TextMeshProUGUI _DownloadCost;
+    [SerializeField] private TextMeshProUGUI _ContractSpaceCost;
+    [SerializeField] private TextMeshProUGUI _ExpireTimerCost;
+    [SerializeField] private TextMeshProUGUI _CompleteTimerCost;
+    [SerializeField] private TextMeshProUGUI _BruteForceCost;
+    [SerializeField] private TextMeshProUGUI _SQLCost;
+    [SerializeField] private TextMeshProUGUI _PhishCost;
 
 
 
