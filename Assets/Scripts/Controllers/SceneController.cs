@@ -31,6 +31,7 @@ public class SceneController : MonoBehaviour
     public int ContractCompletedFailed;
     public int EndOfDay;
     public int Accountant;
+    public int PlayerShop;
 
     [Header("Other")]
     public int MainMenu;
@@ -209,6 +210,16 @@ public class SceneController : MonoBehaviour
     public void CloseAccountant() {
         SceneManager.UnloadSceneAsync(Accountant);
         _CurrentlyLoadedScenes.Remove(Accountant);
+    }
+
+    public void OpenPlayerShop() {
+        SceneManager.LoadSceneAsync(PlayerShop);
+        _CurrentlyLoadedScenes.Add(PlayerShop);
+    }
+
+    public void ClosePlayerShop() {
+        SceneManager.UnloadSceneAsync(PlayerShop);
+        _CurrentlyLoadedScenes.Remove(PlayerShop);
     }
 
     
