@@ -117,6 +117,10 @@ public class PlayerShop : MonoBehaviour
         return Mathf.RoundToInt(ToUpgrade * _UpgradeModifer);
     }
 
+    public void ClosePlayerShop() {
+        SceneController.Instance.ClosePlayerShop();
+    }
+
 
     // Get the item cost
     public int GetDownloadLevel() => _Player.DownloadLevel;
