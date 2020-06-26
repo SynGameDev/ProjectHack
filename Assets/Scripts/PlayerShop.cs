@@ -1,10 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class PlayerShop : MonoBehaviour
 {
+
+    public static PlayerShop Instance;
     private PlayerStatus _Player;
 
     [Header("Level Text Objects")]
@@ -36,6 +38,14 @@ public class PlayerShop : MonoBehaviour
 
     [Header("Modifier Cost")]
     [SerializeField, Range(1.5f, 3)] private float _UpgradeModifer;
+
+    private void Awake() {
+        if(Instance == null) {
+            Instance = this;
+        } else {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Start() {
         _Player = GameController.Instance.GetPlayerData();
@@ -86,6 +96,21 @@ public class PlayerShop : MonoBehaviour
     public void UpgradeCompleteLevel() {
         _Player.CompleteTimerLevel += 1;
         _CompleteTimerUpgradeCost = ApplyIncrease(_CompleteTimerUpgradeCost);
+    }
+
+    public void UpgradeBruteForce() {
+        _Player.BruteForceLevel += 1;
+        _BruteForceUpgradeCost = ApplyIncrease(_BruteForceUpgradeCost);
+    }
+
+    public void UpgradeSQL() {
+        _Player.SQLLevel += 1;
+        _SQLUpgradeCost = ApplyIncrease(_SQLUpgradeCost);
+    }
+
+    public void UpgradePhish() {
+        _Player.PhishLevel += 1;
+        _PhishUpgradeCost = ApplyIncrease(_PhishUpgradeCost);
     }
 
     public int ApplyIncrease(int ToUpgrade) {
