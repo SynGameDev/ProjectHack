@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,6 +63,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
         yield return new WaitForSeconds(3);
         UpdateApplication();            
         SceneController.Instance.CloseInstallProgress();
+        // TODO: Opt: #1uvpdc
     }
 
     private void UpdateText() {
@@ -92,6 +93,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
     }
 
     public void InstallProgram(ScriptableObject AppToInstall) {
+        // TODO: Opt: #1uwmkr
         var app = AppToInstall as ApplicationScriptableObject;
         GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Add(app.AppData.ApplicationID);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();

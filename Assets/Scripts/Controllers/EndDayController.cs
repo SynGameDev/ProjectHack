@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -42,7 +42,7 @@ public class EndDayController : MonoBehaviour
         // Set the stat text
         _ContractsOfferedText.text = "CONTRACTS OFFERED: " + offered_count;
         _ContractsCompletedSuccessful.text = "CONTRACTS SUCCESSFUL: " + success_count;
-        _ContractsFailed.text = "CONTRACTS FAILED: " + failed_count;
+        _ContractsFailed.text = "CONTRACTS FAILED: " + failed_count;            // BUG: #1wu4yr
 
         // Show Reward Data
         _RankedPointsEarned.text = "EARNED POINTS: " + RewardSystem.Instance.GetResults()[1];
