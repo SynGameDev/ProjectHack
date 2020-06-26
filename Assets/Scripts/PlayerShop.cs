@@ -39,6 +39,10 @@ public class PlayerShop : MonoBehaviour
     [Header("Modifier Cost")]
     [SerializeField, Range(1.5f, 3)] private float _UpgradeModifer;
 
+    [Header("Error Panel")]
+    [SerializeField] private GameObject _ErrorPanel;
+    [SerializeField] private GameObject _ErrorWaitTime;
+
     private void Awake() {
         if(Instance == null) {
             Instance = this;
@@ -79,40 +83,71 @@ public class PlayerShop : MonoBehaviour
     // Item Cost Mod
 
     public void UpgradeDownloadLevel() {
-        _Player.DownloadLevel+= 1;
-        _DownloadUpgradeCost = ApplyIncrease(_DownloadUpgradeCost);
+        if(CanBuyItem(_DownloadUpgradeCost)) {
+            _Player.DownloadLevel+= 1;
+            _DownloadUpgradeCost = ApplyIncrease(_DownloadUpgradeCost);
+        }
     }
 
     public void UpgradeContractSpace() {
-        _Player.ContractSpaces += 5;
-        _ContractSpaceUpgradeCost = ApplyIncrease(_ContractSpaceUpgradeCost);
+        if(CanBuyItem(_ContractSpaceUpgradeCost)) {
+            _Player.ContractSpaces += 5;
+            _ContractSpaceUpgradeCost = ApplyIncrease(_ContractSpaceUpgradeCost);
+        }
     }
 
     public void UpgradeExpireLevel() {
-        _Player.ExpireTimerLevel += 1;
-        _ExpireTimerUpgradeCost = ApplyIncrease(_ExpireTimerUpgradeCost);
+        if(CanBuyItem(_ExpireTimerUpgradeCost)) {
+            _Player.ExpireTimerLevel += 1;
+            _ExpireTimerUpgradeCost = ApplyIncrease(_ExpireTimerUpgradeCost);
+        }
     }
 
     public void UpgradeCompleteLevel() {
-        _Player.CompleteTimerLevel += 1;
-        _CompleteTimerUpgradeCost = ApplyIncrease(_CompleteTimerUpgradeCost);
+        if(CanBuyItem(_CompleteTimerUpgradeCost)) {
+            _Player.CompleteTimerLevel += 1;
+            _CompleteTimerUpgradeCost = ApplyIncrease(_CompleteTimerUpgradeCost);
+        }
     }
 
     public void UpgradeBruteForce() {
-        _Player.BruteForceLevel += 1;
-        _BruteForceUpgradeCost = ApplyIncrease(_BruteForceUpgradeCost);
+        if(CanBuyItem(_BruteForceUpgradeCost)) {
+            _Player.BruteForceLevel += 1;
+            _BruteForceUpgradeCost = ApplyIncrease(_BruteForceUpgradeCost);
+        }
     }
 
     public void UpgradeSQL() {
-        _Player.SQLLevel += 1;
-        _SQLUpgradeCost = ApplyIncrease(_SQLUpgradeCost);
+        if(CanBuyItem(_SQLUpgradeCost)) {
+            _Player.SQLLevel += 1;
+            _SQLUpgradeCost = ApplyIncrease(_SQLUpgradeCost);
+        }
     }
 
     public void UpgradePhish() {
-        _Player.PhishLevel += 1;
-        _PhishUpgradeCost = ApplyIncrease(_PhishUpgradeCost);
+        if(CanBuyItem(_PhishUpgradeCost)) {
+            _Player.PhishLevel += 1;
+            _PhishUpgradeCost = ApplyIncrease(_PhishUpgradeCost);
+        }
     }
 
+    private bool CanBuyItem(int amount) {
+        if(amount < _Player.coin) {
+            _Player.coin -= amount;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void DisplayPurchaseError() {
+        _ErrorPanel.SetActive(true);
+    }
+
+    private IEnumarator HidePurchaseError() {
+        yield return new WaitForSeconds(_ErrorWaitTime);
+        _ErrorPanel.SetActive(false);
+    }
     public int ApplyIncrease(int ToUpgrade) {
         return Mathf.RoundToInt(ToUpgrade * _UpgradeModifer);
     }
