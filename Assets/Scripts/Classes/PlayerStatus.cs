@@ -38,6 +38,15 @@ public class PlayerStatus
     public int SQLLevel = 0;
     public int PhishLevel = 0;
 
+    // Application Cost
+    public int DownloadCost = 20;
+    public int SpaceCost = 25;
+    public int ExpireCost = 40;
+    public int CompleteCost = 40;
+    public int BruteForceCost = 75;
+    public int SQLCost = 45;
+    public int PhishCost = 90;
+
 
     
 }

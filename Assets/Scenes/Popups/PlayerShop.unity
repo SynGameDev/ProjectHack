@@ -981,6 +981,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 763680617}
+  - component: {fileID: 763680618}
   m_Layer: 5
   m_Name: ContractSpace
   m_TagString: Untagged
@@ -1011,6 +1012,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 37.362564, y: 48.42063}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &763680618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763680616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb24199de77f9a47a1208b3753867db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Spaces
 --- !u!1 &765737853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 778785083}
+  - component: {fileID: 778785084}
   m_Layer: 5
   m_Name: ExpireTimer
   m_TagString: Untagged
@@ -1207,6 +1222,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 37.362564, y: 48.42063}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &778785084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778785082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb24199de77f9a47a1208b3753867db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Expire
 --- !u!1 &799849750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 937506728}
+  - component: {fileID: 937506729}
   m_Layer: 5
   m_Name: SQL_Injection
   m_TagString: Untagged
@@ -1717,6 +1746,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 37.362564, y: 48.42063}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &937506729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937506727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb24199de77f9a47a1208b3753867db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: SQL
 --- !u!1 &1053351181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1053351182}
+  - component: {fileID: 1053351183}
   m_Layer: 5
   m_Name: BruteForce
   m_TagString: Untagged
@@ -1756,6 +1799,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 37.362564, y: 48.42063}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1053351183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053351181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb24199de77f9a47a1208b3753867db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Brute
 --- !u!1 &1095182267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,6 +2517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1246469871}
+  - component: {fileID: 1246469872}
   m_Layer: 5
   m_Name: Phishing
   m_TagString: Untagged
@@ -2491,6 +2548,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 37.362564, y: 48.42063}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1246469872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246469870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb24199de77f9a47a1208b3753867db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Phish
 --- !u!1 &1258233368
 GameObject:
   m_ObjectHideFlags: 0
@@ -4415,6 +4485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1818274662}
+  - component: {fileID: 1818274663}
   m_Layer: 5
   m_Name: ContractTimer
   m_TagString: Untagged
@@ -4445,6 +4516,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 37.362564, y: 48.42063}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1818274663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818274661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb24199de77f9a47a1208b3753867db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Complete
 --- !u!1 &1862361925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4768,6 +4852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940438041}
+  - component: {fileID: 1940438042}
   m_Layer: 5
   m_Name: DownloadSpeed
   m_TagString: Untagged
@@ -4798,6 +4883,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 37.362564, y: 48.42063}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1940438042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940438040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb24199de77f9a47a1208b3753867db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Download
 --- !u!1 &2019139327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4809,6 +4907,7 @@ GameObject:
   - component: {fileID: 2019139328}
   - component: {fileID: 2019139330}
   - component: {fileID: 2019139329}
+  - component: {fileID: 2019139331}
   m_Layer: 5
   m_Name: App
   m_TagString: Untagged
@@ -4874,6 +4973,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019139327}
   m_CullTransparentMesh: 0
+--- !u!114 &2019139331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019139327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529719fe7aac30e4cb0468b29782267d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DownloadLevel: {fileID: 1398057313}
+  _ContractSpaceLevel: {fileID: 799849752}
+  _ExpireTimerLevel: {fileID: 1862361927}
+  _CompleteTimerLevel: {fileID: 1185048628}
+  _BruteForceLevel: {fileID: 1095182269}
+  _SQLLevel: {fileID: 173374447}
+  _PhishLevel: {fileID: 1733858433}
+  _DownloadCost: {fileID: 1388208472}
+  _ContractSpaceCost: {fileID: 815867851}
+  _ExpireTimerCost: {fileID: 154506006}
+  _CompleteTimerCost: {fileID: 1191426501}
+  _BruteForceCost: {fileID: 1258233370}
+  _SQLCost: {fileID: 765737855}
+  _PhishCost: {fileID: 361991018}
+  _UpgradeModifer: 1.7
+  _ErrorPanel: {fileID: 0}
+  _ErrorWaitTime: 0
 --- !u!1 &2044039549
 GameObject:
   m_ObjectHideFlags: 0

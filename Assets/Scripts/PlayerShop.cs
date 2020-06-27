@@ -27,21 +27,13 @@ public class PlayerShop : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _SQLCost;
     [SerializeField] private TextMeshProUGUI _PhishCost;
 
-    [Header("Item Cost")]           // TODO: #1wwy2r
-    [SerializeField] private int _DownloadUpgradeCost;
-    [SerializeField] private int _ContractSpaceUpgradeCost;
-    [SerializeField] private int _ExpireTimerUpgradeCost;
-    [SerializeField] private int _CompleteTimerUpgradeCost;
-    [SerializeField] private int _BruteForceUpgradeCost;
-    [SerializeField] private int _SQLUpgradeCost;
-    [SerializeField] private int _PhishUpgradeCost;
 
     [Header("Modifier Cost")]
     [SerializeField, Range(1.5f, 3)] private float _UpgradeModifer;
 
     [Header("Error Panel")]
     [SerializeField] private GameObject _ErrorPanel;
-    [SerializeField] private GameObject _ErrorWaitTime;
+    [SerializeField] private float _ErrorWaitTime;
 
     private void Awake() {
         if(Instance == null) {
@@ -71,63 +63,63 @@ public class PlayerShop : MonoBehaviour
     }
 
     private void SetItemCost() {
-        _DownloadCost.text = _DownloadUpgradeCost.ToString();
-        _ContractSpaceCost.text = _ContractSpaceUpgradeCost.ToString();
-        _ExpireTimerCost.text = _ExpireTimerUpgradeCost.ToString();
-        _CompleteTimerCost.text = _CompleteTimerUpgradeCost.ToString();
-        _BruteForceCost.text = _BruteForceUpgradeCost.ToString();
-        _SQLCost.text = _SQLUpgradeCost.ToString();
-        _PhishCost.text = _PhishCost.ToString();
+        _DownloadCost.text = _Player.DownloadCost.ToString();
+        _ContractSpaceCost.text = _Player.SpaceCost.ToString();
+        _ExpireTimerCost.text = _Player.ExpireCost.ToString();
+        _CompleteTimerCost.text = _Player.CompleteCost.ToString();
+        _BruteForceCost.text = _Player.BruteForceCost.ToString();
+        _SQLCost.text = _Player.SQLCost.ToString();
+        _PhishCost.text = _Player.PhishCost.ToString();
     }
 
     // Item Cost Mod
 
     public void UpgradeDownloadLevel() {
-        if(CanBuyItem(_DownloadUpgradeCost)) {
+        if(CanBuyItem(_Player.DownloadCost)) {
             _Player.DownloadLevel+= 1;
-            _DownloadUpgradeCost = ApplyIncrease(_DownloadUpgradeCost);
+            _Player.DownloadCost = ApplyIncrease(_Player.DownloadCost);
         }
     }
 
     public void UpgradeContractSpace() {
-        if(CanBuyItem(_ContractSpaceUpgradeCost)) {
+        if(CanBuyItem(_Player.SpaceCost)) {
             _Player.ContractSpaces += 5;
-            _ContractSpaceUpgradeCost = ApplyIncrease(_ContractSpaceUpgradeCost);
+            _Player.SpaceCost = ApplyIncrease(_Player.SpaceCost);
         }
     }
 
     public void UpgradeExpireLevel() {
-        if(CanBuyItem(_ExpireTimerUpgradeCost)) {
+        if(CanBuyItem(_Player.ExpireCost)) {
             _Player.ExpireTimerLevel += 1;
-            _ExpireTimerUpgradeCost = ApplyIncrease(_ExpireTimerUpgradeCost);
+            _Player.ExpireCost = ApplyIncrease(_Player.ExpireCost);
         }
     }
 
     public void UpgradeCompleteLevel() {
-        if(CanBuyItem(_CompleteTimerUpgradeCost)) {
+        if(CanBuyItem(_Player.CompleteCost)) {
             _Player.CompleteTimerLevel += 1;
-            _CompleteTimerUpgradeCost = ApplyIncrease(_CompleteTimerUpgradeCost);
+            _Player.CompleteCost = ApplyIncrease(_Player.CompleteCost);
         }
     }
 
     public void UpgradeBruteForce() {
-        if(CanBuyItem(_BruteForceUpgradeCost)) {
+        if(CanBuyItem(_Player.BruteForceCost)) {
             _Player.BruteForceLevel += 1;
-            _BruteForceUpgradeCost = ApplyIncrease(_BruteForceUpgradeCost);
+            _Player.BruteForceCost = ApplyIncrease(_Player.BruteForceCost);
         }
     }
 
     public void UpgradeSQL() {
-        if(CanBuyItem(_SQLUpgradeCost)) {
+        if(CanBuyItem(_Player.SQLCost)) {
             _Player.SQLLevel += 1;
-            _SQLUpgradeCost = ApplyIncrease(_SQLUpgradeCost);
+            _Player.SQLCost = ApplyIncrease(_Player.SQLCost);
         }
     }
 
     public void UpgradePhish() {
-        if(CanBuyItem(_PhishUpgradeCost)) {
+        if(CanBuyItem(_Player.PhishCost)) {
             _Player.PhishLevel += 1;
-            _PhishUpgradeCost = ApplyIncrease(_PhishUpgradeCost);
+            _Player.PhishCost = ApplyIncrease(_Player.PhishCost);
         }
     }
 
@@ -144,7 +136,7 @@ public class PlayerShop : MonoBehaviour
         _ErrorPanel.SetActive(true);
     }
 
-    private IEnumarator HidePurchaseError() {
+    private IEnumerator HidePurchaseError() {
         yield return new WaitForSeconds(_ErrorWaitTime);
         _ErrorPanel.SetActive(false);
     }

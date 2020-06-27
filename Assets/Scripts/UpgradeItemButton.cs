@@ -2,9 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UpgradeItemButton : MonoBehaviour {
+public class UpgradeItemButton : MonoBehaviour, IPointerClickHandler {
     public string ItemName;
+
+    public void OnPointerClick(PointerEventData pointerEventData) {
+        Upgrade();
+    }
 
     public void Upgrade() {
         switch(ItemName) {
