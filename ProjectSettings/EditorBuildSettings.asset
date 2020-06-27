@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Popups/Accountant.unity
     guid: 0640a95ac7cfe6745891b54ebd3d6ad1
+  - enabled: 1
+    path: Assets/Scenes/Popups/PlayerShop.unity
+    guid: 6c7ebe0a248d97843908fd0c0317d769
   m_configObjects: {}

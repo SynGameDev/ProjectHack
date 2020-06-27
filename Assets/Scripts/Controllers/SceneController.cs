@@ -250,6 +250,9 @@ public class SceneController : MonoBehaviour
             case "Accountant":
                 OpenAccountant();
                 break;
+            case "Shop":
+                OpenPlayerShop();
+                break;
 
         }
     }
