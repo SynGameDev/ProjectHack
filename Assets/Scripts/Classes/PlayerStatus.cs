@@ -10,8 +10,9 @@ public class PlayerStatus
     public int PlayerDay;
     public string PlayerName;
     //public Sprite PlayerIcon = null;
-    public int coin = 2;
+    public int coin = 95;
     public int RankedPoints = 0;
+    public string PlayerIP;
 
     // PC Data
     public int StorageSpace = 30;

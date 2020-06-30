@@ -18,6 +18,7 @@ public class TerminalInfo {
 
     // Anti Virus
     public int AntiVirusLevel;
+    public List<string> BlockedIPs = new List<string>();
 
     // Application Bools
     public bool BackDoorInstalled;

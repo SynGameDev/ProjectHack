@@ -79,6 +79,8 @@ public class PlayerShop : MonoBehaviour
             _Player.DownloadLevel+= 1;
             _Player.DownloadCost = ApplyIncrease(_Player.DownloadCost);
         }
+        SetItemCost();
+        CreateTextData();
     }
 
     public void UpgradeContractSpace() {
@@ -86,6 +88,9 @@ public class PlayerShop : MonoBehaviour
             _Player.ContractSpaces += 5;
             _Player.SpaceCost = ApplyIncrease(_Player.SpaceCost);
         }
+        SetItemCost();
+        CreateTextData();
+
     }
 
     public void UpgradeExpireLevel() {
@@ -93,6 +98,8 @@ public class PlayerShop : MonoBehaviour
             _Player.ExpireTimerLevel += 1;
             _Player.ExpireCost = ApplyIncrease(_Player.ExpireCost);
         }
+        SetItemCost();
+        CreateTextData();
     }
 
     public void UpgradeCompleteLevel() {
@@ -100,6 +107,8 @@ public class PlayerShop : MonoBehaviour
             _Player.CompleteTimerLevel += 1;
             _Player.CompleteCost = ApplyIncrease(_Player.CompleteCost);
         }
+        SetItemCost();
+        CreateTextData();
     }
 
     public void UpgradeBruteForce() {
@@ -107,6 +116,8 @@ public class PlayerShop : MonoBehaviour
             _Player.BruteForceLevel += 1;
             _Player.BruteForceCost = ApplyIncrease(_Player.BruteForceCost);
         }
+        SetItemCost();
+        CreateTextData();
     }
 
     public void UpgradeSQL() {
@@ -114,6 +125,8 @@ public class PlayerShop : MonoBehaviour
             _Player.SQLLevel += 1;
             _Player.SQLCost = ApplyIncrease(_Player.SQLCost);
         }
+        SetItemCost();
+        CreateTextData();
     }
 
     public void UpgradePhish() {
@@ -121,6 +134,8 @@ public class PlayerShop : MonoBehaviour
             _Player.PhishLevel += 1;
             _Player.PhishCost = ApplyIncrease(_Player.PhishCost);
         }
+        SetItemCost();
+        CreateTextData();
     }
 
     private bool CanBuyItem(int amount) {
@@ -129,14 +144,13 @@ public class PlayerShop : MonoBehaviour
             return true;
         }
 
+        StartCoroutine(PurchaseError());
+
         return false;
     }
 
-    private void DisplayPurchaseError() {
+    private IEnumerator PurchaseError() {
         _ErrorPanel.SetActive(true);
-    }
-
-    private IEnumerator HidePurchaseError() {
         yield return new WaitForSeconds(_ErrorWaitTime);
         _ErrorPanel.SetActive(false);
     }

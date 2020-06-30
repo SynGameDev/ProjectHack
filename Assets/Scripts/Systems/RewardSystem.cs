@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RewardSystem : MonoBehaviour
 {
@@ -72,8 +73,10 @@ public class RewardSystem : MonoBehaviour
             }
         }
 
+
         int[] data = {CashEarnedToday, RankedPointsEarnedToday};    
         return data;    
+
     }
 
     private void DealPen(string obj) {

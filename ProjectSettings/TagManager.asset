@@ -12,6 +12,8 @@ TagManager:
   - AceEditWindow
   - Toolbar
   - TimerIcon
+  - PlayerStat
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -455,6 +455,7 @@ MonoBehaviour:
       HiddenApplications: []
       TextFileList: []
       AntiVirusLevel: 0
+      BlockedIPs: []
       BackDoorInstalled: 0
       HHD: 0
     ContractStatus: 
@@ -482,6 +483,7 @@ MonoBehaviour:
       HiddenApplications: []
       TextFileList: []
       AntiVirusLevel: 0
+      BlockedIPs: []
       BackDoorInstalled: 0
       HHD: 0
     ContractStatus: 
@@ -631,6 +633,7 @@ MonoBehaviour:
   AceEdit: 10
   SystemDirectory: 0
   TerminalConnector: 5
+  Maze: 15
   InstallProgress: 7
   ContractCompletedSuccess: 9
   ContractCompletedFailed: 12
@@ -1304,7 +1307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -90.2489, y: 199.69995}
+  m_AnchoredPosition: {x: -90.24902, y: 199.69995}
   m_SizeDelta: {x: -194.40057, y: -415.77548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1519639580

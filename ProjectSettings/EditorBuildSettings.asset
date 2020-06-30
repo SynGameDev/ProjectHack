@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Popups/PlayerShop.unity
     guid: 6c7ebe0a248d97843908fd0c0317d769
+  - enabled: 1
+    path: Assets/Scenes/Maze/MazeScene.unity
+    guid: 435638786cc2248479a47a05b091c289
   m_configObjects: {}

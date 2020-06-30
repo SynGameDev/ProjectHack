@@ -10,7 +10,10 @@ public class GameController : MonoBehaviour
     public static GameController Instance;
 
     [Header("Player Settings")]
+    private TextMeshProUGUI _PlayerStatText;
     private PlayerStatus Player;
+
+
 
     [Header("Currently Active Contract")]
     public ContractInfo ActiveContract;                   // Current contract that has been accepted;
@@ -63,6 +66,8 @@ public class GameController : MonoBehaviour
         _AvailableContracts.Add(SetupTestContract());             // TEST METHOD
         Player = CreatePlayer();                                // TEST METHOD        
         DisplayAvailableContracts();
+
+        
     }
 
     private void Update() {
@@ -246,6 +251,7 @@ public class GameController : MonoBehaviour
         var player = new PlayerStatus();
         
         player.PlayerName = "DirtyRat";
+        player.PlayerIP = "48.111.321";
         return player;
     }
 

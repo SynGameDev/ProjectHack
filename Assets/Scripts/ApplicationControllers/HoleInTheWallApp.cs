@@ -30,13 +30,7 @@ public class HoleInTheWallApp : MonoBehaviour {
         } else {
             _Terminal.DisplayInput("Installing Back Door...");
 
-            switch(GameController.Instance.GetActiveContract().Terminal.AntiVirusLevel) {
-                case 0:
-                    GameController.Instance.GetActiveContract().Terminal.BackDoorInstalled = true;
-                    _Terminal.DisplayInput("Back Door Install Completed");
-                    break;
-                // TODO: Open Puzzle Level
-            }
+            SceneController.Instance.OpenMaze();
         }
 
         Installed = true;
@@ -51,7 +45,18 @@ public class HoleInTheWallApp : MonoBehaviour {
         }
     }
 
-    
+    public void InstalledApp() {
+        GameController.Instance.GetActiveTerminal().BackDoorInstalled = true;
+        _Terminal.DisplayInput("Backdoor Install Completed");
+    }
+
+    public IEnumerator ErrorInstalling() {
+        _Terminal.DisplayInput("Error Installing Backdoor....");
+        yield return new WaitForSeconds(2);
+        Debug.Log("Disconnect");
+        GameController.Instance.GetActiveTerminal().BlockedIPs.Add(GameController.Instance.GetPlayerData().PlayerIP);
+        SceneController.Instance.CloseUserDesktop();
+    }
 
     private void CreateInstance() {
         if(Instance == null) {

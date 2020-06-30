@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class EndDayController : MonoBehaviour
 {
     [Header("Field Text Objects")]
@@ -12,9 +13,6 @@ public class EndDayController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _RankedPointsEarned;
     [SerializeField] private TextMeshProUGUI _EarnedCash;
 
-    private void Awake() {
-
-    }
 
     private void Start() {
         // TODO: Implement Auto Save If triggered

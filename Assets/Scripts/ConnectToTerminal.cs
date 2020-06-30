@@ -21,17 +21,24 @@ public class ConnectToTerminal : MonoBehaviour
         foreach(var terminal in GameController.Instance.GetAllTerminals()) {
             if(terminal.TerminalIP == _EnteredAddress.text) {
 
-                if(terminal.BackDoorInstalled) {
-                    SceneController.Instance.OpenUserDesktop();
-                } else {
-                    SceneController.Instance.OpenTerminalConnector();
-                    GameController.Instance.SetActiveTerminal(terminal);
-                }
+                found = true;
 
-                GameController.Instance.SetActiveTerminal(terminal);
-                
-                CloseApp();
-                break;
+                if(terminal.BlockedIPs.Contains(GameController.Instance.GetPlayerData().PlayerIP)) {
+                    _ErrorText.GetComponent<TextMeshProUGUI>().text = "Error IP Has been blocked by the terminal";
+                    _ErrorText.GetComponent<TextMeshProUGUI>().color = Color.red;
+                } else {
+                    if(terminal.BackDoorInstalled) {
+                        SceneController.Instance.OpenUserDesktop();
+                    } else {
+                        SceneController.Instance.OpenTerminalConnector();
+                        GameController.Instance.SetActiveTerminal(terminal);
+                    }
+
+                    GameController.Instance.SetActiveTerminal(terminal);
+                    
+                    CloseApp();
+                    break;
+                }
             }
         }
 

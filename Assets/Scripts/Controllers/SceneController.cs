@@ -24,6 +24,7 @@ public class SceneController : MonoBehaviour
 
     [Header("Puzzles")]
     public int TerminalConnector;
+    public int Maze;
 
     [Header("Popups")]
     public int InstallProgress;
@@ -86,7 +87,7 @@ public class SceneController : MonoBehaviour
 
 
         _CurrentlyLoadedScenes.Clear();
-
+        SceneManager.UnloadSceneAsync(UserDesktop);
         SceneManager.LoadSceneAsync(PlayerDash, LoadSceneMode.Additive);
         _CurrentlyLoadedScenes.Add(PlayerDash);
         ToolbarController.Instance.SwitchToolbar("Main");
@@ -222,7 +223,15 @@ public class SceneController : MonoBehaviour
         _CurrentlyLoadedScenes.Remove(PlayerShop);
     }
 
-    
+    public void OpenMaze() {
+        SceneManager.LoadSceneAsync(Maze, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(Maze);
+    }
+
+    public void CloseMaze() {
+        SceneManager.UnloadSceneAsync(Maze);
+        _CurrentlyLoadedScenes.Remove(Maze);
+    }
 
     public bool CheckIfLoaded(int SceneToCheck) {
         if(_CurrentlyLoadedScenes.Contains(SceneToCheck))
