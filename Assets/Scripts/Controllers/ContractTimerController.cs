@@ -47,7 +47,7 @@ public class ContractTimerController : MonoBehaviour {
             var lerpcolor = _TimerIcon.color;
             lerpcolor = Color.Lerp(_EndColor, _StartColor, timer_percetnage);
 
-            _Contract.ContractButton.GetComponentInChildren<Image>().color = lerpcolor;
+            //_Contract.ContractButton.GetComponentInChildren<Image>().color = lerpcolor;
             _Contract.ContractButton.GetComponentInChildren<Image>().fillAmount = timer_percetnage;
 
             if(GameController.Instance.GetActiveContract() == _Contract) {

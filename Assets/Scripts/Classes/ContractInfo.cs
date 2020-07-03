@@ -29,6 +29,8 @@ public class ContractInfo
     public List<string> MainObjectives = new List<string>();
     public List<string> ActionLog = new List<string>();               // Record Data Completed on terminal
 
+
+    // Timer Details
     
     
 
