@@ -20,7 +20,7 @@ public class ContractTimerController : MonoBehaviour {
 
 
     private void Awake() {
-        _TimerIcon = GameObject.FindGameObjectWithTag("TimerIcon").GetComponent<Image>();
+//        _TimerIcon = GameObject.FindGameObjectWithTag("TimerIcon").GetComponent<Image>();
 
 
     }
@@ -44,15 +44,15 @@ public class ContractTimerController : MonoBehaviour {
 
             // Lerp the color
             var timer_percetnage = _HoursToComplete / CompleteTimeDetails;
-            var lerpcolor = _TimerIcon.color;
-            lerpcolor = Color.Lerp(_EndColor, _StartColor, timer_percetnage);
+            //var lerpcolor = _TimerIcon.color;
+            //lerpcolor = Color.Lerp(_EndColor, _StartColor, timer_percetnage);
 
             //_Contract.ContractButton.GetComponentInChildren<Image>().color = lerpcolor;
             _Contract.ContractButton.GetComponentInChildren<Image>().fillAmount = timer_percetnage;
 
             if(GameController.Instance.GetActiveContract() == _Contract) {
                 _TimerIcon.fillAmount = timer_percetnage;
-                _TimerIcon.color = lerpcolor;
+               // _TimerIcon.color = lerpcolor;
             }
 
 
@@ -68,9 +68,9 @@ public class ContractTimerController : MonoBehaviour {
             _Contract.ContractButton.GetComponentInChildren<Image>().fillAmount = TimerPercentage;
 
             // Lerp the color
-            var lerpcolor = _TimerIcon.color;
-            lerpcolor = Color.Lerp(_EndColor, _StartColor, TimerPercentage);
-            _Contract.ContractButton.GetComponentInChildren<Image>().color = lerpcolor;
+            //var lerpcolor = _TimerIcon.color;
+            //lerpcolor = Color.Lerp(_EndColor, _StartColor, TimerPercentage);
+            //_Contract.ContractButton.GetComponentInChildren<Image>().color = lerpcolor;
         }
     }
 

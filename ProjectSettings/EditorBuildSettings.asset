@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/MainMenu.unity
     guid: 8420b03bb4893034f8d94152829255df
   - enabled: 1
-    path: Assets/Scenes/Desktops/MainDashboard.unity
-    guid: 5452273aad3f77745837deee92dc35ba
+    path: Assets/Scenes/Desktops/Dash.unity
+    guid: dc7e763113725364e938915ee5385b43
   - enabled: 1
     path: Assets/Scenes/Desktops/PlayerDesktop.unity
     guid: c621f96dc4424c34f8fc2d348019d90f
