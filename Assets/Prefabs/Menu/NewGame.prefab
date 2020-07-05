@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2977216627356160136}
   - component: {fileID: 3812241363717445278}
   - component: {fileID: 4931924352163454351}
+  - component: {fileID: 7070853797912099497}
   m_Layer: 5
   m_Name: NewGame
   m_TagString: Untagged
@@ -119,6 +120,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NewUserPanel: {fileID: 0}
   _NewUsername: {fileID: 0}
+--- !u!95 &7070853797912099497
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977216627356160134}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 10202a9779c99cd4b8d93ce136586473, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2977216628256947380
 GameObject:
   m_ObjectHideFlags: 0

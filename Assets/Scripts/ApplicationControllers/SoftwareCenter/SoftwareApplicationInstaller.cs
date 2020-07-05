@@ -27,7 +27,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        InstallerType = GameObject.FindGameObjectWithTag("SoftwareCenter").GetComponent<SoftwareCenterMainController>().GetApplicationAction();     // Set the installer
+        // InstallerType = GameObject.FindGameObjectWithTag("SoftwareCenter").GetComponent<SoftwareCenterMainController>().GetApplicationAction();     // Set the installer
 
         // If downloading form software center than assign the software center
         if(SceneController.Instance.CheckIfLoaded(SceneController.Instance.SoftwareCenter))
@@ -35,18 +35,21 @@ public class SoftwareApplicationInstaller : MonoBehaviour
     }
 
     private void Update() {
-        IncreaseSlider();
-        CheckForComplete();
+        if(SceneController.Instance.CheckIfLoaded(SceneController.Instance.SoftwareCenter)) {
+            IncreaseSlider();
+            CheckForComplete();
+        }
     }
 
 
     // Increase teh download slider
     private void IncreaseSlider() {
-        
+
 
         SliderPercentage += 0.3f * Time.deltaTime;
 
         _SliderBar.fillAmount = SliderPercentage;
+        
 
     }
 
@@ -118,6 +121,10 @@ public class SoftwareApplicationInstaller : MonoBehaviour
 
     private void LogAction(string action) {
         GameController.Instance.GetActiveContract().ActionLog.Add(action);
+    }
+
+    public void SetInstallerType(string type) {
+        InstallerType = type;
     }
 
 }

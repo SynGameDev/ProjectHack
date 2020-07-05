@@ -75,7 +75,7 @@ public class SceneController : MonoBehaviour
 
         SceneManager.LoadSceneAsync(UserDesktop, LoadSceneMode.Additive);           // Load the user Desktop
         _CurrentlyLoadedScenes.Add(UserDesktop);                    // add this to loaded scenes
-        ToolbarController.Instance.SwitchToolbar("User");
+//        ToolbarController.Instance.SwitchToolbar("User");
     }
 
     // Disconnect From Desktop
@@ -90,7 +90,7 @@ public class SceneController : MonoBehaviour
         SceneManager.UnloadSceneAsync(UserDesktop);
         SceneManager.LoadSceneAsync(PlayerDash, LoadSceneMode.Additive);
         _CurrentlyLoadedScenes.Add(PlayerDash);
-        ToolbarController.Instance.SwitchToolbar("Main");
+//        ToolbarController.Instance.SwitchToolbar("Main");
     }
 
     #region Applications

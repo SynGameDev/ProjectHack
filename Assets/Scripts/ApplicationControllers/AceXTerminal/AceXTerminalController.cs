@@ -106,7 +106,10 @@ public class AceXTerminalController : MonoBehaviour
                             RemoveApplication(InputSplit[1]);
                             break;
                         case "run":
-                            RunApplication(InputSplit[1]);
+                            RunApplication(InputSplit);
+                            break;
+                        case "clear":
+                            ClearTerminal();
                             break;
                     }
                 } else {
@@ -245,6 +248,12 @@ public class AceXTerminalController : MonoBehaviour
 
     }
 
+    private void ClearTerminal() {
+        // TODO: Clear All the content in the terminal
+    }
+
+    // TODO: Store all the terminal data in a list
+
     private void ListHiddenApps() {
         string HiddenApps = "";
         foreach(var app in GameController.Instance.GetActiveContract().Terminal.HiddenApplications) {
@@ -258,11 +267,16 @@ public class AceXTerminalController : MonoBehaviour
     private IEnumerator DownloadApplication(ScriptableObject AppToDownload) {
         var app = AppToDownload as ApplicationScriptableObject;
         LogAction("Install " + app.AppData.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);                // Add to log file
+        gameObject.AddComponent<SoftwareApplicationInstaller>();
+        this.gameObject.GetComponent<SoftwareApplicationInstaller>().SetInstallerType("Install");
 
         DisplayInput("Downloading & Installing");               // Display Downloading message
         yield return new WaitForSeconds(3);                     // Wait Timer
+        
         SoftwareApplicationInstaller.Instance.InstallProgram(AppToDownload);            // Add Application to downloaded
+
         DisplayInput("Application Installed");                  // Display output message
+        Destroy(this.gameObject.GetComponent<SoftwareApplicationInstaller>());
     }
 
     private IEnumerator RemoveApp(ScriptableObject AppToRemove) {
@@ -280,8 +294,7 @@ public class AceXTerminalController : MonoBehaviour
         GameController.Instance.GetActiveContract().ActionLog.Add(action);
     }
 
-    private void RunApplication(string ApplicationData) {
-        var AppInfo = ApplicationData.Split(' ');
+    private void RunApplication(string[] ApplicationData) {
 
         if(OpenTerminalApp != null)
             Destroy(OpenTerminalApp);
@@ -289,10 +302,27 @@ public class AceXTerminalController : MonoBehaviour
         var go = new GameObject();
         go.transform.SetParent(this.gameObject.transform);
 
-        switch(AppInfo[0]) {
+        switch(ApplicationData[1]) {
             case "HITW":
                 go.AddComponent<HoleInTheWallApp>();
                 break;
+            case "ConnectTerminal":
+                ConnectTerminal(ApplicationData);
+                break;
+        }
+    }
+
+    private void ConnectTerminal(string[] TerminalData) {
+        if(TerminalData[2] == "conn") {
+            SceneController.Instance.OpenConnectToUser();
+
+            if(TerminalData.Length > 4) {
+                // TODO: Get the connection IP & start the connection process
+            }
+        }
+
+        if(TerminalData[2] == "disc") {
+            SceneController.Instance.CloseUserDesktop();
         }
     }
 }

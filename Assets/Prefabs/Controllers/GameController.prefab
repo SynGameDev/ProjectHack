@@ -68,7 +68,7 @@ MonoBehaviour:
     ActionLog: []
   _ActiveContractMessage: {fileID: 0}
   CompleteContractButton: {fileID: 0}
-  _ContractButtonPrefab: {fileID: 1990131545823150536, guid: a2187823445450a47a1fc2fdac711b73,
+  _ContractButtonPrefab: {fileID: 2680875453793547513, guid: a50c2ae8e5bd73a4c804b2b5da7b7a2f,
     type: 3}
   _ContractContainer: {fileID: 0}
   _ViewingContract:
@@ -94,7 +94,9 @@ MonoBehaviour:
     Objective: []
     MainObjectives: []
     ActionLog: []
-  _ObjectivePrefab: {fileID: 2111529716710450421, guid: 0d9a449502128f547ab38e376ba4455e,
+  _ObjectivePrefab: {fileID: 3867295997038902649, guid: c3501c4fb97c6594b9782048df17ea9b,
     type: 3}
   _ObjectiveContainer_1: {fileID: 0}
   _ObjectiveContainer_2: {fileID: 0}
+  _UserIP: {fileID: 0}
+  _ConnectedIP: {fileID: 0}

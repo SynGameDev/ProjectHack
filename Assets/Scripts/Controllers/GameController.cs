@@ -47,6 +47,10 @@ public class GameController : MonoBehaviour
     private int _RowTwoCount;
     private List<GameObject> ObjectiveObject = new List<GameObject>();
 
+    [Header("Header IP Display")]
+    [SerializeField] private TextMeshProUGUI _UserIP;
+    [SerializeField] private TextMeshProUGUI _ConnectedIP;
+
     
     
 
@@ -72,6 +76,7 @@ public class GameController : MonoBehaviour
 
     private void Update() {
         //ActiveContractDisplay();
+        IPData();
     }
 
     private void DisplayAvailableContracts() {
@@ -178,6 +183,20 @@ public class GameController : MonoBehaviour
 
         ActiveContract = null;
         ActiveContractDisplay();
+    }
+
+    private void IPData() {
+        var userip = Player.PlayerIP;
+        var connectedip = "";
+
+        if(_CurrentlyConnectedToTerminal != null) {
+            connectedip = _CurrentlyConnectedToTerminal.TerminalIP;
+        } else {
+            connectedip = Player.PlayerIP;
+        }
+
+        _UserIP.text = "IP: " + userip;
+        _ConnectedIP.text = "CONNECTED: " + connectedip;
     }
 
     // Getters 
