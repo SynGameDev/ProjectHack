@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerPrefs {
     public bool Fullscreen;
-    public int WindowSize;
+    public string WindowSize;
     public float MusicLevel;
     public float SFXLevel;
 }
