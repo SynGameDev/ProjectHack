@@ -8,11 +8,11 @@ using UnityEngine;
 public class PlayerPrefsController : MonoBehaviour
 {
     public static PlayerPrefsController Instance;
-    private PlayerPrefs Setting;
+    public PlayerPrefs Setting;
 
     private void Awake() {
-        if(Instance != null) {
-            Instance  = this;
+        if(Instance == null) {
+            Instance = this;
             DontDestroyOnLoad(this.gameObject);
         } else {
             Destroy(this.gameObject);
@@ -52,7 +52,9 @@ public class PlayerPrefsController : MonoBehaviour
         }
     }
 
-    public PlayerPrefs GetPrefs() => Setting;
+    public PlayerPrefs GetPrefs() {
+         return Setting;
+    }
 
     public void UnloadSettings() {
         PlayerPrefs settings = GetPrefs();

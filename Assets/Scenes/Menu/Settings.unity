@@ -251,7 +251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 320x240
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -320,13 +320,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 47096624}
-    characterCount: 7
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -3306,7 +3306,13 @@ MonoBehaviour:
   _MusicLevelSlider: {fileID: 301072042}
   _SFXLevelSlider: {fileID: 829147606}
   _Message: {fileID: 91624662}
-  DropdownItem: []
+  DropdownItem:
+  - 320x240
+  - 400x240
+  - 640x480
+  - 800x240
+  - 1280x1080
+  - 3840x2160
 --- !u!1 &1807724610
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,21 +3597,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: 320x240
-      m_Image: {fileID: 0}
-    - m_Text: 400x240
-      m_Image: {fileID: 0}
-    - m_Text: 800x240
-      m_Image: {fileID: 0}
-    - m_Text: 640x480
-      m_Image: {fileID: 0}
-    - m_Text: 1280x720
-      m_Image: {fileID: 0}
-    - m_Text: 1920x1080
-      m_Image: {fileID: 0}
-    - m_Text: 3840x2160
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

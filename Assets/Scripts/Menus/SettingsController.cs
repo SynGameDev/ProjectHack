@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SettingsController : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class SettingsController : MonoBehaviour
 
     private void Start() {
         UnloadSettingsPref();
+    }
+
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadSceneAsync(0);
+        }
     }
 
     public PlayerPrefs CreateNewPrefs() {
@@ -57,7 +64,7 @@ public class SettingsController : MonoBehaviour
     }
 
     private void UnloadSettingsPref() {
-        PlayerPrefs settings = PlayerPrefsController.Instance.GetPrefs();
+        PlayerPrefs settings = PlayerPrefsController.Instance.GetPrefs(); 
 
         _FullscreenToggle.isOn = settings.Fullscreen;
         _MusicLevelSlider.value = settings.MusicLevel;

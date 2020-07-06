@@ -12,6 +12,7 @@ public class NewGameController : MonoBehaviour
     [Header("New User Settings")]
     [SerializeField] private TMP_InputField _NewUsername;
 
+
     private bool _NewGamePanel = false;
 
     private void Awake() {
@@ -59,6 +60,8 @@ public class NewGameController : MonoBehaviour
 
     public void ShowNewGamePanel() {
         NewUserPanel.SetActive(true);
+        GameObject.FindGameObjectWithTag("ItemContainer").GetComponent<Animator>().SetBool("Hide", true);
+        this.gameObject.GetComponent<Animator>().SetBool("Show", true);
         _NewGamePanel = true;
     }
 }

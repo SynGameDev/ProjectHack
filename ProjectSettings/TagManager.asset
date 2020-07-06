@@ -16,6 +16,7 @@ TagManager:
   - Wall
   - Music
   - SFX
+  - ItemContainer
   layers:
   - Default
   - TransparentFX
