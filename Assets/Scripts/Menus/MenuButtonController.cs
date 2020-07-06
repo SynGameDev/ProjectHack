@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class MenuButtonController : MonoBehaviour
+public class MenuButtonController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private bool _Hovering = false;
+    private Animator _Anim;
+
+    private void Start() {
+        _Anim = this.gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+        _Anim.SetBool("Hovered", _Hovering);
+    }
+
+    public void OnPointerEnter(PointerEventData pointerEventData) {
+        _Hovering = true;
+    }
+
+    public void OnPointerExit(PointerEventData pointerEventData1) {
+        _Hovering = false;
     }
 }

@@ -169,6 +169,8 @@ GameObject:
   - component: {fileID: 4695858037607065058}
   - component: {fileID: 5291643181009306419}
   - component: {fileID: 3325769412317992253}
+  - component: {fileID: 8245100191245464373}
+  - component: {fileID: 8282245988287395541}
   m_Layer: 5
   m_Name: LoadGame
   m_TagString: Untagged
@@ -275,3 +277,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &8245100191245464373
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4695858037607065060}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 10202a9779c99cd4b8d93ce136586473, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8282245988287395541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4695858037607065060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f49a571a247b64d4895267b80b6d44b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
