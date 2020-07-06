@@ -17,6 +17,8 @@ public class PlayerPrefsController : MonoBehaviour
         } else {
             Destroy(this.gameObject);
         }
+
+        LoadSettings();
     }
 
     public void SetPrefs(PlayerPrefs settings) {
@@ -28,10 +30,11 @@ public class PlayerPrefsController : MonoBehaviour
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/PlayerPrefs.synprefs", FileMode.Open);
             PlayerPrefs settings = (PlayerPrefs)bf.Deserialize(file);
+            Setting = settings;
             file.Close();
 
-            PlayerPrefsController.Instance.SetPrefs(settings);
-            PlayerPrefsController.Instance.UnloadSettings();
+            
+            UnloadSettings();
         } else {
             PlayerPrefs settings = new PlayerPrefs();
 
@@ -44,19 +47,21 @@ public class PlayerPrefsController : MonoBehaviour
             FileStream file = File.Create(Application.persistentDataPath + "/PlayerPrefs.synprefs");
             bf.Serialize(file, settings);
 
+            Setting = settings;
+            UnloadSettings(); 
         }
     }
 
     public PlayerPrefs GetPrefs() => Setting;
 
     public void UnloadSettings() {
-        PlayerPrefs settings = PlayerPrefsController.Instance.GetPrefs();
+        PlayerPrefs settings = GetPrefs();
         
         GameObject.FindGameObjectWithTag("Music").GetComponent<AudioController>().SetAudioLevel(settings.MusicLevel);
         GameObject.FindGameObjectWithTag("SFX").GetComponent<AudioController>().SetAudioLevel(settings.SFXLevel);
 
         string[] resolution = settings.WindowSize.Split('x');
-        Screen.SetResolution(Convert.ToInt32(resolution[1]), Convert.ToInt32(resolution[2]), settings.Fullscreen);
+        Screen.SetResolution(Convert.ToInt32(resolution[0]), Convert.ToInt32(resolution[1]), settings.Fullscreen);
 
     }
 }
