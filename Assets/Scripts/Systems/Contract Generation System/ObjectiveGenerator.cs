@@ -48,7 +48,7 @@ public class ObjectiveGenerator
     private void SetupContractBasics()
     {
         diff = UnityEngine.Random.Range(1, 4);
-    }
+    } 
 
     private void CreateActions()
     {
