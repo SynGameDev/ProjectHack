@@ -23,12 +23,12 @@ public class HoleInTheWallApp : MonoBehaviour {
     }
 
     private IEnumerator StartApp() {
-        _Terminal.DisplayInput("Starting Hole In The Wall Setup...");
+        _Terminal.DisplayInput("Starting Hole In The Wall Setup...", false);
         yield return new WaitForSeconds(1f);
         if(GameController.Instance.GetActiveContract().Terminal.BackDoorInstalled) {
-            _Terminal.DisplayInput("Backdoor has already been installed on this terminal");
+            _Terminal.DisplayInput("Backdoor has already been installed on this terminal", false);
         } else {
-            _Terminal.DisplayInput("Installing Back Door...");
+            _Terminal.DisplayInput("Installing Back Door...", false);
 
             SceneController.Instance.OpenMaze();
         }
@@ -37,7 +37,7 @@ public class HoleInTheWallApp : MonoBehaviour {
     }
 
     public IEnumerator RemoveApp() {
-        _Terminal.DisplayInput("Removing Application");
+        _Terminal.DisplayInput("Removing Application", false);
         yield return new WaitForSeconds(1f);
         if(Installed) {
             GameController.Instance.GetActiveContract().Terminal.BackDoorInstalled = false;
@@ -47,11 +47,11 @@ public class HoleInTheWallApp : MonoBehaviour {
 
     public void InstalledApp() {
         GameController.Instance.GetActiveTerminal().BackDoorInstalled = true;
-        _Terminal.DisplayInput("Backdoor Install Completed");
+        _Terminal.DisplayInput("Backdoor Install Completed", false);
     }
 
     public IEnumerator ErrorInstalling() {
-        _Terminal.DisplayInput("Error Installing Backdoor....");
+        _Terminal.DisplayInput("Error Installing Backdoor....", false);
         yield return new WaitForSeconds(2);
         Debug.Log("Disconnect");
         GameController.Instance.GetActiveTerminal().BlockedIPs.Add(GameController.Instance.GetPlayerData().PlayerIP);

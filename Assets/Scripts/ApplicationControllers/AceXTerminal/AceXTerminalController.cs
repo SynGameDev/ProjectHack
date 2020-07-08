@@ -22,7 +22,8 @@ public class AceXTerminalController : MonoBehaviour
     private GameObject OpenTerminalApp;
 
     [Header("Terminal Loop Input")]
-    private List<string> TerminalInputList = new List<string>();
+    private List<GameObject> TerminalInputList = new List<GameObject>();
+    private List<GameObject> TerminalResponseList = new List<GameObject>();
     private int _CurrentIndex;
     private bool _FilterInputs;
 
@@ -35,46 +36,67 @@ public class AceXTerminalController : MonoBehaviour
         // Submit Input
         if(Input.GetKeyDown(KeyCode.Return)) {
             _CurrentIndex = -1;
-            DisplayInput(_CommandInput.text);               // Display the text entered
+            DisplayInput(_CommandInput.text, true);               // Display the text entered
             ValidateInput();                // Validate the einput
-            TerminalInputList.Add(_CommandInput.text);
+            
         }
 
-        
+        if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ChangeInput("Down");
+        }
+
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ChangeInput("Up");
+        }
         
     }
 
-    private void LoopInputs() {
-        if(Input.GetKeyDown(KeyCode.UpArrow)) {
-            _CurrentIndex += 1;
-            if(_CurrentIndex > TerminalInputList.Count) {
-                _CurrentIndex = 0;
-            }
-            _FilterInputs = true;
-        }
-
-        if(Input.GetKeyDown(KeyCode.DownArrow)) {
-            _CurrentIndex -= 1;
-            if(_CurrentIndex < -1) {
+    private void ChangeInput(string increament)
+    {
+        if(increament == "Down")
+        {
+            if(_CurrentIndex < -1)
+            {
                 _CurrentIndex = TerminalInputList.Count;
-                _FilterInputs = true;
+            } else
+            {
+                _CurrentIndex -= 1;
+            }
+
+        } else
+        {
+            if(_CurrentIndex >= TerminalInputList.Count)
+            {
+                _CurrentIndex = -1;
+            } else
+            {
+                _CurrentIndex += 1;
             }
         }
 
-        if(_CurrentIndex == -1) {
-            _FilterInputs = false;
-        }
+        
 
-        if(_FilterInputs) {
-            _CommandInput.text = TerminalInputList[_CurrentIndex];
+        if(_CurrentIndex == -1)
+        {
+            _CommandInput.text = "";
+        } else
+        {
+            _CommandInput.text = TerminalInputList[_CurrentIndex].GetComponent<TextMeshProUGUI>().text;
         }
     }
-
-    public void DisplayInput(string text) {
+    public void DisplayInput(string text, bool input) {
         var go = Instantiate(CommandPrefab);                    // Create the prefab
         go.GetComponent<TextMeshProUGUI>().text = text;         // Assign th message
         go.transform.SetParent(_CommandSpawnLocation);              // Set the location to display message
         go.transform.localScale = Vector3.one;                  // Scale the object to correct size
+
+        // Add the input to a list
+        if (input)
+            TerminalInputList.Add(go);
+        else
+            TerminalResponseList.Add(go);
 
     }
 
@@ -108,15 +130,19 @@ public class AceXTerminalController : MonoBehaviour
                         case "run":
                             RunApplication(InputSplit);
                             break;
-                        case "clear":
-                            ClearTerminal();
-                            break;
                     }
                 } else {
-                    DisplayInput("Invalid Command");
+                    DisplayInput("Invalid Command", false);
                 }
             } else {
-                DisplayInput("Invalid Command");
+                if(InputSplit[0] == "clear")
+                {
+                    ClearTerminal();
+                } else
+                {
+                    DisplayInput("Invalid Command", false);
+                }
+                
             }
         }
 
@@ -147,7 +173,7 @@ public class AceXTerminalController : MonoBehaviour
         }
 
         if(Found == false)              // If the app isn't found display error message
-            DisplayInput("Unable To Locate Download File");
+            DisplayInput("Unable To Locate Download File", false);
     } 
 
 
@@ -186,7 +212,7 @@ public class AceXTerminalController : MonoBehaviour
             GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Remove(app.AppData.ApplicationID);
             GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         } else {
-            DisplayInput("Application Not Found");
+            DisplayInput("Application Not Found", false);
         }
 
         LogAction("Hide " + ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);           // Add to the action log
@@ -210,7 +236,7 @@ public class AceXTerminalController : MonoBehaviour
             GameController.Instance.GetActiveContract().Terminal.HiddenApplications.Remove(app.AppData.ApplicationID);
             GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         } else {
-            DisplayInput("Application Not Found");
+            DisplayInput("Application Not Found", false);
         }
 
         LogAction("Unhide " + ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
@@ -243,13 +269,24 @@ public class AceXTerminalController : MonoBehaviour
         }
 
         if(!AppFound) {             // If app cannoot be found display an error messsage
-            DisplayInput("Unable To Locate Application");
+            DisplayInput("Unable To Locate Application", false);
         }
 
     }
 
     private void ClearTerminal() {
-        // TODO: Clear All the content in the terminal
+        foreach(var cmd in TerminalInputList)
+        {
+            Destroy(cmd);
+        }
+
+        foreach(var response in TerminalResponseList)
+        {
+            Destroy(response);
+        }
+
+        TerminalInputList.Clear();
+        TerminalResponseList.Clear();
     }
 
     // TODO: Store all the terminal data in a list
@@ -261,7 +298,7 @@ public class AceXTerminalController : MonoBehaviour
             HiddenApps += " | " + App.AppData.ApplicationName;
         }
 
-        DisplayInput(HiddenApps);
+        DisplayInput(HiddenApps, false);
     }
 
     private IEnumerator DownloadApplication(ScriptableObject AppToDownload) {
@@ -270,12 +307,12 @@ public class AceXTerminalController : MonoBehaviour
         gameObject.AddComponent<SoftwareApplicationInstaller>();
         this.gameObject.GetComponent<SoftwareApplicationInstaller>().SetInstallerType("Install");
 
-        DisplayInput("Downloading & Installing");               // Display Downloading message
+        DisplayInput("Downloading & Installing", false);               // Display Downloading message
         yield return new WaitForSeconds(3);                     // Wait Timer
         
         SoftwareApplicationInstaller.Instance.InstallProgram(AppToDownload);            // Add Application to downloaded
 
-        DisplayInput("Application Installed");                  // Display output message
+        DisplayInput("Application Installed", false);                  // Display output message
         Destroy(this.gameObject.GetComponent<SoftwareApplicationInstaller>());
     }
 
@@ -283,10 +320,10 @@ public class AceXTerminalController : MonoBehaviour
         var app = AppToRemove as ApplicationScriptableObject;
         LogAction("Uninstall " + app.AppData.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
 
-        DisplayInput("Uninstalling Application");
+        DisplayInput("Uninstalling Application", false);
         yield return new WaitForSeconds(3);
         SoftwareApplicationInstaller.Instance.UninstallProgram(AppToRemove);
-        DisplayInput("Application Uninstalled");
+        DisplayInput("Application Uninstalled", false);
     }
 
 

@@ -2931,6 +2931,7 @@ MonoBehaviour:
   - rma
   - run
   - con
+  - clear
 --- !u!1 &1264530072
 GameObject:
   m_ObjectHideFlags: 0
