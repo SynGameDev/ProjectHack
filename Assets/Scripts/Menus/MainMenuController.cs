@@ -29,7 +29,7 @@ public class MainMenuController : MonoBehaviour
     }
 
     private void GetLoadGames() {
-        var dirPaths = new DirectoryInfo(Application.persistentDataPath);
+        var dirPaths = new DirectoryInfo("C:/Dirty Rats/");
         FileInfo[] info = dirPaths.GetFiles("*.SynSave");
         foreach(var SaveFile in info) {
             var go = Instantiate(_LoadGameIcon);
