@@ -244,10 +244,8 @@ public class GameController : MonoBehaviour
         _TerminalList.Add(term);
         
 
-        info.Objective.Add("Install AceXTerminal IP: 192.111.111");
         info.Objective.Add("Install DirtyRat KeyLogger IP: 192.111.111");
         info.Objective.Add("Hide DirtyRat KeyLogger IP: 192.111.111");
-        info.Objective.Add("Uninstall AcexTerminal IP: 192.111.111");
         
 
         return info;
