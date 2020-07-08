@@ -275,6 +275,8 @@ public class AceXTerminalController : MonoBehaviour
     }
 
     private void ClearTerminal() {
+
+        // Destroy all the input Objects
         foreach(var cmd in TerminalInputList)
         {
             Destroy(cmd);
@@ -285,6 +287,8 @@ public class AceXTerminalController : MonoBehaviour
             Destroy(response);
         }
 
+
+        // Clear the list
         TerminalInputList.Clear();
         TerminalResponseList.Clear();
     }
