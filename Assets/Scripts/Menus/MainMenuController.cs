@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
+﻿using System.IO;
 using TMPro;
+using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -10,6 +8,7 @@ public class MainMenuController : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _NewGameIcon;
+
     [SerializeField] private GameObject _LoadGameIcon;
 
     [Header("Spawn Points & Containers")]
@@ -17,24 +16,27 @@ public class MainMenuController : MonoBehaviour
 
     [Header("Other Settings")]
     [SerializeField] private GameObject NewUserPanel;
+
     [SerializeField] private TMP_InputField _UsernameInput;
     private int CurrentObjects = 0;
-    
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
 
         GetLoadGames();
         SetupNewGames();
     }
 
-    private void GetLoadGames() {
+    private void GetLoadGames()
+    {
         var dirPaths = new DirectoryInfo("C:/Dirty Rats/");
         FileInfo[] info = dirPaths.GetFiles("*.SynSave");
-        foreach(var SaveFile in info) {
+        foreach (var SaveFile in info)
+        {
             var go = Instantiate(_LoadGameIcon);
             string[] name = SaveFile.Name.Split('.');
-            
+
             go.transform.SetParent(_ButtonTransform);
             go.transform.localScale = Vector3.one;
 
@@ -44,20 +46,22 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-    private void SetupNewGames() {
-        if(CurrentObjects <= 5) {
+    private void SetupNewGames()
+    {
+        if (CurrentObjects <= 5)
+        {
             var total = 5 - CurrentObjects;
-            for(int i = 0; i < total; i++) {
+            for (int i = 0; i < total; i++)
+            {
                 var go = Instantiate(_NewGameIcon);
                 go.transform.SetParent(_ButtonTransform);
                 go.transform.localScale = Vector3.one;
-
-                
             }
-        } 
+        }
     }
 
-    public GameObject GetNewGamePanel() {
+    public GameObject GetNewGamePanel()
+    {
         return NewUserPanel;
     }
 
@@ -65,5 +69,4 @@ public class MainMenuController : MonoBehaviour
 
     // TODO: Quit Game
     // TODO: Open Settings Menu
-
 }

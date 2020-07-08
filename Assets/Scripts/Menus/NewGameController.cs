@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using System.IO;
 
 public class NewGameController : MonoBehaviour
 {
@@ -12,53 +11,62 @@ public class NewGameController : MonoBehaviour
     [Header("New User Settings")]
     [SerializeField] private TMP_InputField _NewUsername;
 
-
     private bool _NewGamePanel = false;
 
-    private void Awake() {
+    private void Awake()
+    {
         NewUserPanel = MainMenuController.Instance.GetNewGamePanel();
     }
 
-    private void Update() {
-        if(_NewGamePanel) {
-            if(Input.GetKeyDown(KeyCode.Return)) {
+    private void Update()
+    {
+        if (_NewGamePanel)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
                 StartNewGame();
             }
         }
     }
 
-    public void StartNewGame() {
+    public void StartNewGame()
+    {
         var username = MainMenuController.Instance.NewUsername();
         var namevalid = false;
 
         var dirPaths = new DirectoryInfo(Application.persistentDataPath);
         FileInfo[] info = dirPaths.GetFiles("*.SynSave");
-        foreach(var SaveFile in info) {
+        foreach (var SaveFile in info)
+        {
             Debug.Log(SaveFile.Name);
-            if(SaveFile.Name == username + ".synsave") {
+            if (SaveFile.Name == username + ".synsave")
+            {
                 namevalid = true;
             }
         }
 
-        if(!namevalid) {
+        if (!namevalid)
+        {
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
             StartCoroutine(StartTheGame(username));
-            
-
-        } else {
+        }
+        else
+        {
             Debug.Log("Username has been taken");
             // TODO: Display error message in game
         }
     }
 
-    private IEnumerator StartTheGame(string username) {
+    private IEnumerator StartTheGame(string username)
+    {
         yield return new WaitForSeconds(0.5f);
         SaveGameSystem.Instance.SaveGame(username);
         SaveGameSystem.Instance.LoadGame(username + ".synsave");
         SceneController.Instance.CloseMainMenu();
     }
 
-    public void ShowNewGamePanel() {
+    public void ShowNewGamePanel()
+    {
         NewUserPanel.SetActive(true);
         GameObject.FindGameObjectWithTag("ItemContainer").GetComponent<Animator>().SetBool("Hide", true);
         this.gameObject.GetComponent<Animator>().SetBool("Show", true);

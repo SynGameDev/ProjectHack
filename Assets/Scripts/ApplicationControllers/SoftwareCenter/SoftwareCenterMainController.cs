@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 public class SoftwareCenterMainController : MonoBehaviour
 {
     [Header("Software List")]
     [SerializeField] private List<ScriptableObject> ApplicationObjects = new List<ScriptableObject>();
+
     [SerializeField] private List<ScriptableObject> InstalledApplications = new List<ScriptableObject>();
     [SerializeField] private GameObject _AppContainerPrefab;
 
     [Header("Row Counts")]
     [SerializeField] private int Row_1_Count;
+
     [SerializeField] private int Row_2_Count;
     [SerializeField] private int Row_3_Count;
     [SerializeField] private int Row_4_Count;
@@ -20,6 +21,7 @@ public class SoftwareCenterMainController : MonoBehaviour
 
     [Header("Item Containers")]
     [SerializeField] private Transform _Row_1;
+
     [SerializeField] private Transform _Row_2;
     [SerializeField] private Transform _Row_3;
     [SerializeField] private Transform _Row_4;
@@ -27,10 +29,12 @@ public class SoftwareCenterMainController : MonoBehaviour
 
     [Header("Application Status")]
     [SerializeField] private bool _ShowInstalledApps;
+
     private ScriptableObject _ViewingApplication;
 
     [Space(10)]
     [SerializeField] private TextMeshProUGUI _ShowText;
+
     private List<GameObject> _CurrentlyShowingApp = new List<GameObject>();
 
     [Header("Sub Applications")]
@@ -39,38 +43,43 @@ public class SoftwareCenterMainController : MonoBehaviour
     [Header("Action Controller")]
     private string _ApplicationAction;
 
-    private void Awake() {
+    private void Awake()
+    {
         //GameObject.FindGameObjectWithTag("SoftwareCenterViewingWindow").SetActive(false);
     }
 
-    private void Start() {
+    private void Start()
+    {
         FindInstalledApplications();
         GetAllApps();
         ShowAvailableApps();
     }
-    
 
-    private void Update() {
-
+    private void Update()
+    {
     }
 
     /// <summary>
     /// This method will change whether you're viewing a the installed applications or the applications that can be purchased
     /// </summary>
-    public void SwitchDisplay() {
+    public void SwitchDisplay()
+    {
         // Loop through each app that is currently being displayed and destroy
-        foreach(var app in _CurrentlyShowingApp)  {
+        foreach (var app in _CurrentlyShowingApp)
+        {
             Destroy(app);
         }
 
         _CurrentlyShowingApp.Clear();                   // Empty the list of displayed items
 
-        
-        if(_ShowInstalledApps) {                        // If the player is viewing installed applications
+        if (_ShowInstalledApps)
+        {                        // If the player is viewing installed applications
             _ShowInstalledApps = false;                 // ... Switch it to Not installed Applications
             _ShowText.text = "Show Installed Apps";             // ... Set the text of the toggle button
             ShowAvailableApps();                        // ... Show Apps that can be downloaded
-        } else {                    // Other wise
+        }
+        else
+        {                    // Other wise
             _ShowInstalledApps = true;                  // ... Show installed items
             _ShowText.text = "Show Available Apps";         // ... toggle the text
             ShowInstalledApps();                        // ... Display the installed items
@@ -80,25 +89,37 @@ public class SoftwareCenterMainController : MonoBehaviour
     /// <summary>
     /// This method will loop through each app the user doesn't have installed and display it on the desktop
     /// </summary>
-    private void ShowAvailableApps() {
-        foreach(var app in ApplicationObjects) {
-            if(!InstalledApplications.Contains(app)) {
-
+    private void ShowAvailableApps()
+    {
+        foreach (var app in ApplicationObjects)
+        {
+            if (!InstalledApplications.Contains(app))
+            {
                 var Application = app as ApplicationScriptableObject;
-                if(!Application.AppData.CrackedApplication) {
-                    if(Row_1_Count < MaxItemsInRow) {
+                if (!Application.AppData.CrackedApplication)
+                {
+                    if (Row_1_Count < MaxItemsInRow)
+                    {
                         CreateAppItem(Application, _Row_1);
                         Row_1_Count += 1;
-                    } else if(Row_2_Count < MaxItemsInRow) {
+                    }
+                    else if (Row_2_Count < MaxItemsInRow)
+                    {
                         CreateAppItem(Application, _Row_2);
                         Row_2_Count += 1;
-                    } else if(Row_3_Count < MaxItemsInRow) {
+                    }
+                    else if (Row_3_Count < MaxItemsInRow)
+                    {
                         CreateAppItem(Application, _Row_3);
                         Row_3_Count += 1;
-                    } else if(Row_4_Count < MaxItemsInRow) {
+                    }
+                    else if (Row_4_Count < MaxItemsInRow)
+                    {
                         CreateAppItem(Application, _Row_4);
                         Row_4_Count += 1;
-                    } else if(Row_5_Count < MaxItemsInRow) {
+                    }
+                    else if (Row_5_Count < MaxItemsInRow)
+                    {
                         CreateAppItem(Application, _Row_5);
                         Row_5_Count += 1;
                     }
@@ -110,28 +131,37 @@ public class SoftwareCenterMainController : MonoBehaviour
     /// <summary>
     /// This method will loop through each app the user has installed on the desktop
     /// </summary>
-    private void ShowInstalledApps() {
-        foreach(var app in InstalledApplications) {
+    private void ShowInstalledApps()
+    {
+        foreach (var app in InstalledApplications)
+        {
             var Application = app as ApplicationScriptableObject;
 
-
-                if(Row_1_Count < MaxItemsInRow) {
-                    CreateAppItem(Application, _Row_1);
-                    Row_1_Count += 1;
-                } else if(Row_2_Count < MaxItemsInRow) {
-                    CreateAppItem(Application, _Row_2);
-                    Row_2_Count += 1;
-                } else if(Row_3_Count < MaxItemsInRow) {
-                    CreateAppItem(Application, _Row_3);
-                    Row_3_Count += 1;
-                } else if(Row_4_Count < MaxItemsInRow) {
-                    CreateAppItem(Application, _Row_4);
-                    Row_4_Count += 1;
-                } else if(Row_5_Count < MaxItemsInRow) {
-                    CreateAppItem(Application, _Row_5);
-                    Row_5_Count += 1;
-                }
-            
+            if (Row_1_Count < MaxItemsInRow)
+            {
+                CreateAppItem(Application, _Row_1);
+                Row_1_Count += 1;
+            }
+            else if (Row_2_Count < MaxItemsInRow)
+            {
+                CreateAppItem(Application, _Row_2);
+                Row_2_Count += 1;
+            }
+            else if (Row_3_Count < MaxItemsInRow)
+            {
+                CreateAppItem(Application, _Row_3);
+                Row_3_Count += 1;
+            }
+            else if (Row_4_Count < MaxItemsInRow)
+            {
+                CreateAppItem(Application, _Row_4);
+                Row_4_Count += 1;
+            }
+            else if (Row_5_Count < MaxItemsInRow)
+            {
+                CreateAppItem(Application, _Row_5);
+                Row_5_Count += 1;
+            }
         }
     }
 
@@ -140,7 +170,8 @@ public class SoftwareCenterMainController : MonoBehaviour
     /// </summary>
     /// <param name="app">Application to show</param>
     /// <param name="row">Where to display the item</param>
-    private void CreateAppItem(ScriptableObject app, Transform row) {
+    private void CreateAppItem(ScriptableObject app, Transform row)
+    {
         var go = Instantiate(_AppContainerPrefab);              // Create the object
         var App = app as ApplicationScriptableObject;               // Set the application type
         go.name = App.AppData.ApplicationName;                  // Set the name of the object
@@ -157,24 +188,24 @@ public class SoftwareCenterMainController : MonoBehaviour
         go.GetComponent<AppCenterApp>().AppName.text = App.AppData.ApplicationName;
         go.GetComponent<AppCenterApp>().AppIcon.sprite = App.AppData.ApplicationIcon;
 
-
         _CurrentlyShowingApp.Add(go);                   // Add the application to the currently showing list
-
     }
 
-    private void FindInstalledApplications() {
+    private void FindInstalledApplications()
+    {
         var CurrentContract = GameController.Instance.GetActiveContract();              // Get the active contract
 
         // Loop through each Installed item to find if the application is installed.
-        foreach(var App in CurrentContract.Terminal.InstalledApplication) {
+        foreach (var App in CurrentContract.Terminal.InstalledApplication)
+        {
             InstalledApplications.Add(ApplicationDatabase.Instance.GetApplication(App));
         }
     }
 
-
-
-    private void GetAllApps() {
-        foreach(var app in ApplicationDatabase.Instance.GetSoftwareApps()    ) {
+    private void GetAllApps()
+    {
+        foreach (var app in ApplicationDatabase.Instance.GetSoftwareApps())
+        {
             ApplicationObjects.Add(app);
         }
     }
@@ -187,15 +218,19 @@ public class SoftwareCenterMainController : MonoBehaviour
         _ViewingApplicationObject.GetComponentInChildren<ViewingSoftwareApp>().SetViewingApp(_App);
         _ViewingApplicationObject.GetComponentInChildren<ViewingSoftwareApp>().SetupDisplay();
     }
+
     public void SetActionText(string action) => _ApplicationAction = action;
 
     // Getters
     public ScriptableObject GetViewingApp() => _ViewingApplication;
+
     public GameObject GetViewingAppWindow() => _ViewingApplicationObject;
+
     public string GetApplicationAction() => _ApplicationAction;
 
-    public bool CheckIfInstalled(ScriptableObject App) {
-        if(InstalledApplications.Contains(App)) 
+    public bool CheckIfInstalled(ScriptableObject App)
+    {
+        if (InstalledApplications.Contains(App))
             return true;
 
         return false;

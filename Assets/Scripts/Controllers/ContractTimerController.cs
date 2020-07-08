@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ContractTimerController : MonoBehaviour {
+public class ContractTimerController : MonoBehaviour
+{
     private ContractInfo _Contract;
+
     [Header("Time Settings")]
     [SerializeField] private float _HoursToExpire;
+
     [SerializeField] private float _HoursToComplete;
     private float CompleteTimeDetails;
     [SerializeField] private bool _ContractAccepted;
@@ -16,30 +17,32 @@ public class ContractTimerController : MonoBehaviour {
 
     [Header("Timer Colors")]
     [SerializeField] private Color _StartColor;
+
     [SerializeField] private Color _EndColor;
 
-
-    private void Awake() {
-                _TimerIcon = GameObject.FindGameObjectWithTag("TimerIcon").GetComponent<Image>();
-
-
+    private void Awake()
+    {
+        _TimerIcon = GameObject.FindGameObjectWithTag("TimerIcon").GetComponent<Image>();
     }
 
-    private void Start() {
-        
+    private void Start()
+    {
         CompleteTimeDetails = _HoursToComplete;
     }
 
-    private void SetTimers() {
+    private void SetTimers()
+    {
         _HoursToComplete = MinToExpire(_HoursToComplete);
         _HoursToExpire = MinToExpire(_HoursToExpire);
     }
 
-    private void Update() {
-        if(_ContractAccepted) {
+    private void Update()
+    {
+        if (_ContractAccepted)
+        {
             _HoursToComplete -= 1 * Time.deltaTime;
 
-            if(_HoursToComplete <= 0)
+            if (_HoursToComplete <= 0)
                 FailContract();
 
             // Lerp the color
@@ -50,17 +53,17 @@ public class ContractTimerController : MonoBehaviour {
             _Contract.ContractButton.GetComponentInChildren<Image>().color = lerpcolor;
             _Contract.ContractButton.GetComponentInChildren<Image>().fillAmount = timer_percetnage;
 
-            if(GameController.Instance.GetActiveContract() == _Contract) {
+            if (GameController.Instance.GetActiveContract() == _Contract)
+            {
                 _TimerIcon.fillAmount = timer_percetnage;
-               _TimerIcon.color = lerpcolor;
+                _TimerIcon.color = lerpcolor;
             }
-
-
-            
-        } else {
+        }
+        else
+        {
             _HoursToExpire -= 1 * Time.deltaTime;
 
-            if(_HoursToExpire <= 0) 
+            if (_HoursToExpire <= 0)
                 ExpireContract();
 
             var TimerPercentage = _HoursToExpire / CompleteTimeDetails;
@@ -74,28 +77,33 @@ public class ContractTimerController : MonoBehaviour {
         }
     }
 
-    private void ResetContractAccepted() {
+    private void ResetContractAccepted()
+    {
         _ContractAccepted = true;
     }
 
-    private void FailContract() {
+    private void FailContract()
+    {
         GameController.Instance.CompleteContract();
     }
 
-    private void ExpireContract() {
+    private void ExpireContract()
+    {
         GameController.Instance.DeclineContract();
     }
 
-    private float MinToExpire(float timer) {
+    private float MinToExpire(float timer)
+    {
         return timer = (timer * 60) / DateTimeController.Instance.GetTimeScale();
     }
 
-    public void SetContract(ContractInfo contract) {
-         _Contract = contract;
-         _HoursToComplete = _Contract.TimeToComplete;
-         _HoursToExpire = _Contract.TimeToExpire;
-         SetTimers(); 
+    public void SetContract(ContractInfo contract)
+    {
+        _Contract = contract;
+        _HoursToComplete = _Contract.TimeToComplete;
+        _HoursToExpire = _Contract.TimeToExpire;
+        SetTimers();
     }
+
     public void SetStatus(bool Status) => _ContractAccepted = Status;
-    
 }
