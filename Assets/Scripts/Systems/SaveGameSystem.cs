@@ -47,7 +47,7 @@ public class SaveGameSystem : MonoBehaviour
         // TODO: Display Saving Game Screen
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/" + name + ".synsave");
+        FileStream file = File.Create("C:/Dirty Rats/" + name + ".synsave");
         bf.Serialize(file, SaveGame);
 
 
@@ -56,8 +56,8 @@ public class SaveGameSystem : MonoBehaviour
     }
 
     public void LoadGame(string filename) {
-        var NameOfFile = "/" + filename + "synsave";
-        if(File.Exists(Application.persistentDataPath + NameOfFile)) {
+        var NameOfFile = filename + "synsave";
+        if(File.Exists("C:/Dirty Rats/" + NameOfFile)) {
             
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + NameOfFile, FileMode.Open);

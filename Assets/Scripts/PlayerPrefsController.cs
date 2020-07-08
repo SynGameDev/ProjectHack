@@ -4,13 +4,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
+
 
 public class PlayerPrefsController : MonoBehaviour
 {
     public static PlayerPrefsController Instance;
     public PlayerPrefs Setting;
+    [SerializeField] private string FilePath;
 
     private void Awake() {
+        // Singleton
         if(Instance == null) {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -18,7 +22,7 @@ public class PlayerPrefsController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        LoadSettings();
+        LoadSettings();             // Load the settings
     }
 
     public void SetPrefs(PlayerPrefs settings) {
@@ -26,44 +30,61 @@ public class PlayerPrefsController : MonoBehaviour
     }
 
     public void LoadSettings() {
-        if(File.Exists(Application.persistentDataPath + "/PlayerPrefs.synprefs")) {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/PlayerPrefs.synprefs", FileMode.Open);
-            PlayerPrefs settings = (PlayerPrefs)bf.Deserialize(file);
-            Setting = settings;
-            file.Close();
+        if(File.Exists("C:/Dirty Rats/PlayerPrefs.synprefs")) {         // If the file exist
+
+            PlayerPrefs prefs;
+            using(StreamReader file = File.OpenText(FilePath))
+            {
+                JsonSerializer json = new JsonSerializer();
+                prefs = (PlayerPrefs)json.Deserialize(file, typeof(PlayerPrefs));
+            }
 
             
-            UnloadSettings();
+
+            SetPrefs(prefs);
+            
+            UnloadSettings();               // Unload the data
         } else {
             PlayerPrefs settings = new PlayerPrefs();
 
             settings.Fullscreen = true;
-            settings.WindowSize = "1920x1080";
+            settings.Resolution = "1920x1080";
             settings.SFXLevel = 1;
             settings.MusicLevel = 1;
 
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/PlayerPrefs.synprefs");
-            bf.Serialize(file, settings);
+            JsonSerializer serializer = new JsonSerializer();                   // Create the serializer
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+            Directory.CreateDirectory("C:/Dirty Rats/");                        // Create the directory
+            using (StreamWriter sw = new StreamWriter(FilePath))                    // Using Stream writer to create the file
+                using (JsonWriter writer = new JsonTextWriter(sw))              // Json Writer to add data to the file
+            {
+                serializer.Serialize(writer, settings);         // Add the data to the file
+            }
 
             Setting = settings;
             UnloadSettings(); 
         }
     }
 
+
+
     public PlayerPrefs GetPrefs() {
          return Setting;
     }
 
     public void UnloadSettings() {
-        PlayerPrefs settings = GetPrefs();
+        PlayerPrefs settings = GetPrefs();              // Get the current prefs
         
+        // Assign the audio details
         GameObject.FindGameObjectWithTag("Music").GetComponent<AudioController>().SetAudioLevel(settings.MusicLevel);
         GameObject.FindGameObjectWithTag("SFX").GetComponent<AudioController>().SetAudioLevel(settings.SFXLevel);
 
-        string[] resolution = settings.WindowSize.Split('x');
+        // Setup the resolution & Fullscreen
+        string[] resolution = settings.Resolution.Split('x');
         Screen.SetResolution(Convert.ToInt32(resolution[0]), Convert.ToInt32(resolution[1]), settings.Fullscreen);
+        Debug.Log(resolution[0] + "x" + resolution[1]);
 
     }
+
+    public string GetFilePath() => FilePath;
 }

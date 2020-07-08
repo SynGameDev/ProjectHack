@@ -54,24 +54,32 @@ public class SoftwareCenterMainController : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// This method will change whether you're viewing a the installed applications or the applications that can be purchased
+    /// </summary>
     public void SwitchDisplay() {
+        // Loop through each app that is currently being displayed and destroy
         foreach(var app in _CurrentlyShowingApp)  {
             Destroy(app);
         }
 
-        _CurrentlyShowingApp.Clear();
-        if(_ShowInstalledApps) {
-            _ShowInstalledApps = false;
-            _ShowText.text = "Show Installed Apps";
-            ShowAvailableApps();
-        } else {
-            _ShowInstalledApps = true;
-            _ShowText.text = "Show Available Apps";
-            ShowInstalledApps();
+        _CurrentlyShowingApp.Clear();                   // Empty the list of displayed items
+
+        
+        if(_ShowInstalledApps) {                        // If the player is viewing installed applications
+            _ShowInstalledApps = false;                 // ... Switch it to Not installed Applications
+            _ShowText.text = "Show Installed Apps";             // ... Set the text of the toggle button
+            ShowAvailableApps();                        // ... Show Apps that can be downloaded
+        } else {                    // Other wise
+            _ShowInstalledApps = true;                  // ... Show installed items
+            _ShowText.text = "Show Available Apps";         // ... toggle the text
+            ShowInstalledApps();                        // ... Display the installed items
         }
     }
 
+    /// <summary>
+    /// This method will loop through each app the user doesn't have installed and display it on the desktop
+    /// </summary>
     private void ShowAvailableApps() {
         foreach(var app in ApplicationObjects) {
             if(!InstalledApplications.Contains(app)) {
@@ -99,6 +107,9 @@ public class SoftwareCenterMainController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method will loop through each app the user has installed on the desktop
+    /// </summary>
     private void ShowInstalledApps() {
         foreach(var app in InstalledApplications) {
             var Application = app as ApplicationScriptableObject;
@@ -124,31 +135,43 @@ public class SoftwareCenterMainController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method will create the application in software center
+    /// </summary>
+    /// <param name="app">Application to show</param>
+    /// <param name="row">Where to display the item</param>
     private void CreateAppItem(ScriptableObject app, Transform row) {
-        var go = Instantiate(_AppContainerPrefab);
-        var App = app as ApplicationScriptableObject;
-        go.name = App.AppData.ApplicationName;
+        var go = Instantiate(_AppContainerPrefab);              // Create the object
+        var App = app as ApplicationScriptableObject;               // Set the application type
+        go.name = App.AppData.ApplicationName;                  // Set the name of the object
 
-        go.transform.SetParent(row);
-        go.transform.localScale = new Vector3(2, 2, 2);
+        go.transform.SetParent(row);                            // Set the row to place the object
+        go.transform.localScale = new Vector3(2, 2, 2);         // Set the scale of the object
 
+        // Add & Get the component
         go.AddComponent<SoftwareCenterAppControl>();
         go.GetComponent<SoftwareCenterAppControl>()._App = app;
 
+        // Setup the app center script
         go.GetComponent<AppCenterApp>().AppData = App;
         go.GetComponent<AppCenterApp>().AppName.text = App.AppData.ApplicationName;
         go.GetComponent<AppCenterApp>().AppIcon.sprite = App.AppData.ApplicationIcon;
-        _CurrentlyShowingApp.Add(go);
+
+
+        _CurrentlyShowingApp.Add(go);                   // Add the application to the currently showing list
 
     }
 
     private void FindInstalledApplications() {
-        var CurrentContract = GameController.Instance.GetActiveContract();
+        var CurrentContract = GameController.Instance.GetActiveContract();              // Get the active contract
 
+        // Loop through each Installed item to find if the application is installed.
         foreach(var App in CurrentContract.Terminal.InstalledApplication) {
             InstalledApplications.Add(ApplicationDatabase.Instance.GetApplication(App));
         }
     }
+
+
 
     private void GetAllApps() {
         foreach(var app in ApplicationDatabase.Instance.GetSoftwareApps()    ) {
@@ -157,7 +180,13 @@ public class SoftwareCenterMainController : MonoBehaviour
     }
 
     // Setters
-    public void SetViewingApp(ScriptableObject _App) => _ViewingApplication = _App;
+    public void SetViewingApp(ScriptableObject _App)
+    {
+        _ViewingApplication = _App;
+        _ViewingApplicationObject.SetActive(true);              // MAKE SURE OBJECT IS BEING VIEWED
+        _ViewingApplicationObject.GetComponentInChildren<ViewingSoftwareApp>().SetViewingApp(_App);
+        _ViewingApplicationObject.GetComponentInChildren<ViewingSoftwareApp>().SetupDisplay();
+    }
     public void SetActionText(string action) => _ApplicationAction = action;
 
     // Getters

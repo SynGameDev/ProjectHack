@@ -1809,10 +1809,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Setting:
+    Resolution: 
     Fullscreen: 0
-    WindowSize: 
     MusicLevel: 0
     SFXLevel: 0
+  FilePath: C:/Dirty Rats/PlayerPrefs.synprefs
 --- !u!4 &2123715741
 Transform:
   m_ObjectHideFlags: 0

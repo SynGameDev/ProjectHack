@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Newtonsoft.Json;
 
 public class SettingsController : MonoBehaviour
 {
@@ -33,34 +34,43 @@ public class SettingsController : MonoBehaviour
     public PlayerPrefs CreateNewPrefs() {
         PlayerPrefs settings = new PlayerPrefs();
 
+        // Get the variables in scene & the class values
         settings.Fullscreen = _FullscreenToggle.isOn;
-        settings.WindowSize = _ScreenSizeDropdown.options[_ScreenSizeDropdown.value].text;
+        settings.Resolution = _ScreenSizeDropdown.options[_ScreenSizeDropdown.value].text;
         settings.MusicLevel = _MusicLevelSlider.value;
         settings.SFXLevel = _SFXLevelSlider.value;
 
-        return settings;
+        return settings;            // return the new Prefs
     }
 
 
     public void SaveSettings() {
-        PlayerPrefs settings = CreateNewPrefs();
+        PlayerPrefs settings = CreateNewPrefs();            // Create the prefs
 
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/PlayerPrefs.synprefs");
-        bf.Serialize(file, settings);
+        // Setup Serialization
+        JsonSerializer json = new JsonSerializer();         
+        json.NullValueHandling = NullValueHandling.Ignore;
 
-        StartCoroutine(DisplayUpdateMessage());
-        PlayerPrefsController.Instance.SetPrefs(settings);
-        UnloadSettingsPref();
-        PlayerPrefsController.Instance.UnloadSettings();
+        string FilePath = PlayerPrefsController.Instance.GetFilePath();             // Get the path of the file
+        
+        // Serialize the data
+        using(StreamWriter sw = new StreamWriter(FilePath))
+        using (JsonWriter writer = new JsonTextWriter(sw))
+        {
+            json.Serialize(writer, settings);
+        }
+
+        PlayerPrefsController.Instance.SetPrefs(settings);          // update the current settings
+            
+        StartCoroutine(DisplayUpdateMessage());             // Display the update message
     }
 
     
 
     private IEnumerator DisplayUpdateMessage() {
-        _Message.SetActive(true);
-        yield return new WaitForSeconds(2);
-        _Message.SetActive(false);
+        _Message.SetActive(true);                   //Show the message
+        yield return new WaitForSeconds(2);         // Wait for 2 seconds
+        _Message.SetActive(false);              // Hide the message
     }
 
     private void UnloadSettingsPref() {
@@ -69,12 +79,16 @@ public class SettingsController : MonoBehaviour
         _FullscreenToggle.isOn = settings.Fullscreen;
         _MusicLevelSlider.value = settings.MusicLevel;
         _SFXLevelSlider.value = settings.SFXLevel;
-        SetDropdownList(settings.WindowSize);
+        SetDropdownList(settings.Resolution);
     }
 
-
+    /// <summary>
+    /// This method will add items to the dropdown list
+    /// </summary>
+    /// <param name="ActiveRes"></param>
     private void SetDropdownList(string ActiveRes) {
-        List<string> options = new List<string>();
+
+        List<string> options = new List<string>();      
         options.Add(ActiveRes);
 
         foreach(var option in DropdownItem) {
@@ -84,7 +98,6 @@ public class SettingsController : MonoBehaviour
         }
 
         _ScreenSizeDropdown.AddOptions(options);
-
-
     }
 }
+

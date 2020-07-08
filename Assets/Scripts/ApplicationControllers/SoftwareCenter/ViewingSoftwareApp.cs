@@ -23,7 +23,9 @@ public class ViewingSoftwareApp : MonoBehaviour
         SetupDisplay();
     }
 
-    private void SetupDisplay() {
+
+
+    public void SetupDisplay() {
         var App = _App as ApplicationScriptableObject;
 
         _AppIcon.sprite = App.AppData.ApplicationIcon;
@@ -44,6 +46,11 @@ public class ViewingSoftwareApp : MonoBehaviour
             }
         }
 
+    }
+
+    public void SetViewingApp(ScriptableObject app)
+    {
+        _App = app;
     }
 
     public void CloseWindow() {
