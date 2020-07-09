@@ -7,8 +7,8 @@ public class ApplicationDatabase : MonoBehaviour
 {
     public static ApplicationDatabase Instance;
 
-    [SerializeField] private List<ScriptableObject> _SoftwareApplications = new List<ScriptableObject>();
-    [SerializeField] private List<ScriptableObject> _CrackedSoftwareApplication = new List<ScriptableObject>();
+    [SerializeField] private List<ApplicationClass> _SoftwareApplications = new List<ApplicationClass>();
+    [SerializeField] private List<ApplicationClass> _CrackedSoftwareApplication = new List<ApplicationClass>();
 
     [Header("Applications")]
     public ScriptableObject SoftwareCenter;
@@ -24,12 +24,12 @@ public class ApplicationDatabase : MonoBehaviour
         CreateAppDatabase();
     }
 
-    public ScriptableObject GetApplication(string id) {
-        foreach(var app in _SoftwareApplications) {
-            var App = app as ApplicationScriptableObject;
-            if(App.AppData.ApplicationID == id) {
-                return App;
-            }
+    public ApplicationClass GetApp(string id)
+    {
+        foreach(var app in _SoftwareApplications)
+        {
+            if (app.ApplicationID == id)
+                return app;
         }
 
         return null;
