@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class ApplicationDatabase : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class ApplicationDatabase : MonoBehaviour
         } else {
             Destroy(this.gameObject);
         }
+
+        CreateAppDatabase();
     }
 
     public ScriptableObject GetApplication(string id) {
@@ -35,3 +38,4 @@ public class ApplicationDatabase : MonoBehaviour
     public List<ScriptableObject> GetSoftwareApps() => _SoftwareApplications;
     public List<ScriptableObject> GetCrackedApps() => _CrackedSoftwareApplication;
 }
+
