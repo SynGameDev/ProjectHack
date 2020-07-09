@@ -33,16 +33,16 @@ public class DisplayUserDesktop : MonoBehaviour
         // Loop through each application and assign it to a row on the desktop
         foreach(var app in contract.Terminal.InstalledApplication) {
             if(_RowCount_1 < MaxItemsInRow) {
-                CreateApp(ApplicationDatabase.Instance.GetApplication(app), _Row_1);
+                CreateApp(ApplicationDatabase.Instance.GetApp(app), _Row_1);
                 _RowCount_1 += 1;
             } else if(_RowCount_2 < MaxItemsInRow) {
-                CreateApp(ApplicationDatabase.Instance.GetApplication(app), _Row_2);
+                CreateApp(ApplicationDatabase.Instance.GetApp(app), _Row_2);
                 _RowCount_2 += 1;
             } else if(_RowCount_3 < MaxItemsInRow) {
-                CreateApp(ApplicationDatabase.Instance.GetApplication(app), _Row_3);
+                CreateApp(ApplicationDatabase.Instance.GetApp(app), _Row_3);
                 _RowCount_3 += 1;
             } else {
-                CreateApp(ApplicationDatabase.Instance.GetApplication(app), _Row_4);
+                CreateApp(ApplicationDatabase.Instance.GetApp(app), _Row_4);
                 _RowCount_4 += 1;
             }
         }
@@ -60,12 +60,12 @@ public class DisplayUserDesktop : MonoBehaviour
         DisplayApps();              // Add the desktop items
     }
 
-    private void CreateApp(ScriptableObject app, Transform row) {
+    private void CreateApp(ApplicationClass app, Transform row) {
 
-        var App = app as ApplicationScriptableObject;               // Get the Object
+        var App = app;               // Get the Object
         var go = Instantiate(_DesktopAppPrefab);                // Create the item
 
-        go.name = App.AppData.ApplicationName;                  // Set the name of the object
+        go.name = App.ApplicationName;                  // Set the name of the object
         go.transform.SetParent(row);                    // Set the position of the object
         go.transform.localScale = new Vector3(2, 2, 2);         // Init the scale of the object
 
@@ -74,8 +74,8 @@ public class DisplayUserDesktop : MonoBehaviour
 
         var AppCenter = go.GetComponent<AppCenterApp>();                    // Get the App Cetner Item
         AppCenter.AppData = App;                            // Set the scriptable object
-        AppCenter.AppName.text = App.AppData.ApplicationName;           // Set the name
-        AppCenter.AppIcon.sprite = App.AppData.ApplicationIcon;         // Set the icon
+        AppCenter.AppName.text = App.ApplicationName;           // Set the name
+        AppCenter.AppIcon.sprite = App.ApplicationIcon;         // Set the icon
 
         _AppsOnDesktop.Add(go);                 // Add to desktop list
 

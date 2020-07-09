@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class AppCenterApp : MonoBehaviour
 {
-    public ScriptableObject AppData;
+    public ApplicationClass AppData;
     public TextMeshProUGUI AppName;
     public Image AppIcon;
 

@@ -32,16 +32,16 @@ public class TerminalInfo {
     
 
 
-    public ScriptableObject GetApplication(string AppID) {
+    public ApplicationClass GetApplication(string AppID) {
         foreach(var id in InstalledApplication) {
             if(id == AppID) {
-                return ApplicationDatabase.Instance.GetApplication(id);
+                return ApplicationDatabase.Instance.GetApp(id);
             }
         }
 
         foreach(var id in HiddenApplications) {
             if(id == AppID) 
-                return ApplicationDatabase.Instance.GetApplication(id);
+                return ApplicationDatabase.Instance.GetApp(id);
         }
 
         return null;

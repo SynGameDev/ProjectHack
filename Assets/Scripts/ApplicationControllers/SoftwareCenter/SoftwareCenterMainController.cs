@@ -5,9 +5,9 @@ using UnityEngine;
 public class SoftwareCenterMainController : MonoBehaviour
 {
     [Header("Software List")]
-    [SerializeField] private List<ScriptableObject> ApplicationObjects = new List<ScriptableObject>();
+    [SerializeField] private List<ApplicationClass> ApplicationObjects = new List<ApplicationClass>();
 
-    [SerializeField] private List<ScriptableObject> InstalledApplications = new List<ScriptableObject>();
+    [SerializeField] private List<ApplicationClass> InstalledApplications = new List<ApplicationClass>();
     [SerializeField] private GameObject _AppContainerPrefab;
 
     [Header("Row Counts")]
@@ -30,7 +30,7 @@ public class SoftwareCenterMainController : MonoBehaviour
     [Header("Application Status")]
     [SerializeField] private bool _ShowInstalledApps;
 
-    private ScriptableObject _ViewingApplication;
+    private ApplicationClass _ViewingApplication;
 
     [Space(10)]
     [SerializeField] private TextMeshProUGUI _ShowText;
@@ -95,8 +95,8 @@ public class SoftwareCenterMainController : MonoBehaviour
         {
             if (!InstalledApplications.Contains(app))
             {
-                var Application = app as ApplicationScriptableObject;
-                if (!Application.AppData.CrackedApplication)
+                var Application = app;
+                if (!Application.CrackedApplication)
                 {
                     if (Row_1_Count < MaxItemsInRow)
                     {
@@ -135,7 +135,7 @@ public class SoftwareCenterMainController : MonoBehaviour
     {
         foreach (var app in InstalledApplications)
         {
-            var Application = app as ApplicationScriptableObject;
+            var Application = app;
 
             if (Row_1_Count < MaxItemsInRow)
             {
@@ -170,11 +170,11 @@ public class SoftwareCenterMainController : MonoBehaviour
     /// </summary>
     /// <param name="app">Application to show</param>
     /// <param name="row">Where to display the item</param>
-    private void CreateAppItem(ScriptableObject app, Transform row)
+    private void CreateAppItem(ApplicationClass app, Transform row)
     {
         var go = Instantiate(_AppContainerPrefab);              // Create the object
-        var App = app as ApplicationScriptableObject;               // Set the application type
-        go.name = App.AppData.ApplicationName;                  // Set the name of the object
+        var App = app;
+        go.name = App.ApplicationName;                  // Set the name of the object
 
         go.transform.SetParent(row);                            // Set the row to place the object
         go.transform.localScale = new Vector3(2, 2, 2);         // Set the scale of the object
@@ -185,8 +185,8 @@ public class SoftwareCenterMainController : MonoBehaviour
 
         // Setup the app center script
         go.GetComponent<AppCenterApp>().AppData = App;
-        go.GetComponent<AppCenterApp>().AppName.text = App.AppData.ApplicationName;
-        go.GetComponent<AppCenterApp>().AppIcon.sprite = App.AppData.ApplicationIcon;
+        go.GetComponent<AppCenterApp>().AppName.text = App.ApplicationName;
+        go.GetComponent<AppCenterApp>().AppIcon.sprite = App.ApplicationIcon;
 
         _CurrentlyShowingApp.Add(go);                   // Add the application to the currently showing list
     }
@@ -198,7 +198,7 @@ public class SoftwareCenterMainController : MonoBehaviour
         // Loop through each Installed item to find if the application is installed.
         foreach (var App in CurrentContract.Terminal.InstalledApplication)
         {
-            InstalledApplications.Add(ApplicationDatabase.Instance.GetApplication(App));
+            InstalledApplications.Add(ApplicationDatabase.Instance.GetApp(App));
         }
     }
 
@@ -211,7 +211,7 @@ public class SoftwareCenterMainController : MonoBehaviour
     }
 
     // Setters
-    public void SetViewingApp(ScriptableObject _App)
+    public void SetViewingApp(ApplicationClass _App)
     {
         _ViewingApplication = _App;
         _ViewingApplicationObject.SetActive(true);              // MAKE SURE OBJECT IS BEING VIEWED
@@ -222,13 +222,13 @@ public class SoftwareCenterMainController : MonoBehaviour
     public void SetActionText(string action) => _ApplicationAction = action;
 
     // Getters
-    public ScriptableObject GetViewingApp() => _ViewingApplication;
+    public ApplicationClass GetViewingApp() => _ViewingApplication;
 
     public GameObject GetViewingAppWindow() => _ViewingApplicationObject;
 
     public string GetApplicationAction() => _ApplicationAction;
 
-    public bool CheckIfInstalled(ScriptableObject App)
+    public bool CheckIfInstalled(ApplicationClass App)
     {
         if (InstalledApplications.Contains(App))
             return true;

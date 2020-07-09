@@ -95,28 +95,28 @@ public class SoftwareApplicationInstaller : MonoBehaviour
         }
     }
 
-    public void InstallProgram(ScriptableObject AppToInstall) {
+    public void InstallProgram(ApplicationClass AppToInstall) {
         // TODO: Opt: #1uwmkr
-        var app = AppToInstall as ApplicationScriptableObject;
-        GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Add(app.AppData.ApplicationID);
+        var app = AppToInstall;
+        GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Add(app.ApplicationID);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
-        var i = AppToInstall as ApplicationScriptableObject;
-        LogAction("Install " + i.AppData.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
+        var i = AppToInstall;
+        LogAction("Install " + i.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
     }
 
-    public void UninstallProgram(ScriptableObject AppToRemove) {
-        var app = AppToRemove as ApplicationScriptableObject;
-        GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Remove(app.AppData.ApplicationID);
+    public void UninstallProgram(ApplicationClass AppToRemove) {
+        var app = AppToRemove;
+        GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Remove(app.ApplicationID);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
 
-        switch(app.AppData.ApplicationName) {
+        switch(app.ApplicationName) {
             case "Hole In The Wall":
                 StartCoroutine(HoleInTheWallApp.Instance.RemoveApp());
                 break;
         }
 
-        var i = AppToRemove as ApplicationScriptableObject;
-        LogAction("Uninstall " + i.AppData.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
+        var i = AppToRemove;
+        LogAction("Uninstall " + i.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
     }
 
     private void LogAction(string action) {

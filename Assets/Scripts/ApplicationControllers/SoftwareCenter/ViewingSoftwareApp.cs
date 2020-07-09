@@ -6,7 +6,7 @@ using TMPro;
 
 public class ViewingSoftwareApp : MonoBehaviour
 {
-    private ScriptableObject _App;
+    private ApplicationClass _App;
 
     [Header("Content Objects")]
     [SerializeField] private Image _AppIcon;
@@ -26,19 +26,19 @@ public class ViewingSoftwareApp : MonoBehaviour
 
 
     public void SetupDisplay() {
-        var App = _App as ApplicationScriptableObject;
+        var App = _App;
 
-        _AppIcon.sprite = App.AppData.ApplicationIcon;
-        _AppTitle.text = App.AppData.ApplicationName;
-        _AppDescription.text = App.AppData.ApplicationDescription;
+        _AppIcon.sprite = App.ApplicationIcon;
+        _AppTitle.text = App.ApplicationName;
+        _AppDescription.text = App.ApplicationDescription;
 
         if(_SoftwareCenter.CheckIfInstalled(_App)) {
             _Cost.gameObject.SetActive(false);
             _InstallButton.text = "Uninstall";
         } else {
             _Cost.gameObject.SetActive(true);
-            if(App.AppData.PurchaseAmount > 0) {
-                _Cost.text = App.AppData.PurchaseAmount.ToString();
+            if(App.PurchaseAmount > 0) {
+                _Cost.text = App.PurchaseAmount.ToString();
                 _InstallButton.text = "Buy";
             } else {
                 _Cost.text = "Free";
@@ -48,7 +48,7 @@ public class ViewingSoftwareApp : MonoBehaviour
 
     }
 
-    public void SetViewingApp(ScriptableObject app)
+    public void SetViewingApp(ApplicationClass app)
     {
         _App = app;
     }
