@@ -16,23 +16,27 @@ public class ViewingContract : MonoBehaviour
     }
 
     private void CheckIfViewing() {
-        if(GameController.Instance.GetViewingContract() != null) {
-            DisplayContractInfo();
-        } else {
+        // If the Viewing Contract is null that don't display anything otherwise so the contract info
+        if(GameController.Instance.GetViewingContract() == null)
+        {
             _ToHeader.text = "";
             _Subject.text = "";
             _MessageContent.text = "";
             _ContractActionPanel.SetActive(false);
+            
+        } else {
+            DisplayContractInfo();
         }
     }
 
     private void DisplayContractInfo() {
         var contract = GameController.Instance.GetViewingContract();
 
-        _ToHeader.text = contract.ContractOwner + " | " + "hacker@acexmail.com";
+        _ToHeader.text = contract.ContractOwner;
         _Subject.text = contract.ContractStatus;
         _MessageContent.text = contract.ContractMessage;
-        _ContractActionPanel.SetActive(true);
+
+        _ContractActionPanel.SetActive(contract.ContractStatus == "Pending");
     }
 
     public void AcceptContract() {
