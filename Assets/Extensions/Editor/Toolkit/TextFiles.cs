@@ -10,7 +10,7 @@ public class TextFiles : EditorWindow
     private string _TextFileName;                // Name of the text file
     private string _TextFileExt;                // Extension of the text file
     private int _SelectedTerminal;                // Index of the selected file
-    private string _TextFileData;
+    private string _TextFileData;                // Data inside the text file
     
     
     [MenuItem("Toolkit/Text Files")]
@@ -24,12 +24,14 @@ public class TextFiles : EditorWindow
 
     private void OnGUI()
     {
-        ToolkitStyles.SetupStyles();
+        ToolkitStyles.SetupStyles();                // Setup the stiles
 
+        // Create Headings
         GUILayout.Label("Text Files", ToolkitStyles.PageHeading);
         GUILayout.Label("New Text File", ToolkitStyles.SectionHeading);
 
-        GUILayout.Label("Text File Headers", ToolkitStyles.SubHeading);
+        GUILayout.Label("Text File Headers", ToolkitStyles.SubHeading);                // Set the section
+        // Create a layout group with the file information & where the file will be stored
         GUILayout.BeginHorizontal();
         _TextFileName = EditorGUILayout.TextField("File Name", _TextFileName);
         _TextFileExt = EditorGUILayout.TextField("File Extensions", _TextFileExt);
@@ -37,10 +39,11 @@ public class TextFiles : EditorWindow
             EditorGUILayout.Popup("Terminal", _SelectedTerminal, ToolkitGlobalMethods.GetTerminalNames());
         GUILayout.EndHorizontal();
         
-
+        // Create the textfield to add the data
         GUILayout.Label("Text File Content", ToolkitStyles.SubHeading);
         _TextFileData = EditorGUILayout.TextArea(_TextFileData);
 
+        // Button to create the text file
         if (GUILayout.Button("Create Text File"))
         {
             CreateTextFile();
@@ -58,13 +61,13 @@ public class TextFiles : EditorWindow
         TextFile.ext = _TextFileExt;
         TextFile.FileContent = _TextFileData;
 
+        // Get the terminal to install to
         var terminal =
             ToolkitGlobalMethods.DropdownValueToString(_SelectedTerminal, ToolkitGlobalMethods.GetTerminalNames());
         
+        // Add the file to the Text File Database
         db.Add(TextFile);
-        
         var new_db = new TextFileDatabase();
-
         new_db.TextFileData = db;
 
         // Setup the text file
@@ -73,16 +76,19 @@ public class TextFiles : EditorWindow
             w.WriteLine(JsonUtility.ToJson(new_db));            
         }
 
-        var term = ToolkitGlobalMethods.GetTerminalList();
-        TerminalDatabase data = new TerminalDatabase();
+            
+        var term = ToolkitGlobalMethods.GetTerminalList();            // get a list of terminals
+        TerminalDatabase data = new TerminalDatabase();                    // Create a new terminal db
         
+        // Loop through each terminal
         foreach (var item in term)
         {
+            // If the terminal names are a match
             if (item.TemrinalName == terminal)
             {
-                item.TextFileList.Add(TextFile);
-                data.Terminals = term;
-                break;
+                item.TextFileList.Add(TextFile);                // ... Add the file
+                data.Terminals = term;                            // ... Update the DB List
+                break;                // ... End the loop
             }
         }
 
