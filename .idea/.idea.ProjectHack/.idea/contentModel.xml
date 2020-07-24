@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\KAMil\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\KAMil\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_ProjectHack.-1122394802.00" t="ExcludeRecursive" />
+    <e p="C:\Users\KAMil\Documents\Syndicate Games\Unity Games\ProjectHack" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Animations" t="Include">
+          <e p="NewBehaviourScript.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="Editor" t="Include">
+            <e p="Toolkit" t="Include">
+              <e p="DatabasesValidation.cs" t="Include" />
+              <e p="Emails.cs" t="Include" />
+              <e p="MissionObjectives.cs" t="Include" />
+              <e p="Missions.cs" t="Include" />
+              <e p="Terminals.cs" t="Include" />
+              <e p="TextFiles.cs" t="Include" />
+              <e p="ToolkitApplications.cs" t="Include" />
+              <e p="ToolkitClasses.cs" t="Include" />
+              <e p="ToolkitGlobalMethods.cs" t="Include" />
+              <e p="ToolkitStyles.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Packages" t="Include">
+          <e p="Newtonsoft.Json.12.0.3" t="Include">
+            <e p="lib" t="Include">
+              <e p="netstandard2.0" t="Include">
+                <e p="Newtonsoft.Json.xml" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="ResourceData.cs" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="ApplicationControllers" t="Include">
+            <e p="AceEdit" t="Include">
+              <e p="AceEditController.cs" t="Include" />
+              <e p="FileButtonData.cs" t="Include" />
+              <e p="FileListController.cs" t="Include" />
+              <e p="NewTextFile.cs" t="Include" />
+            </e>
+            <e p="AceMailController.cs" t="Include" />
+            <e p="AceXTerminal" t="Include">
+              <e p="AceXTerminalController.cs" t="Include" />
+            </e>
+            <e p="CloseApplications.cs" t="Include" />
+            <e p="EmailButton.cs" t="Include" />
+            <e p="HoleInTheWallApp.cs" t="Include" />
+            <e p="OpenAccountant.cs" t="Include" />
+            <e p="OpenApplications.cs" t="Include" />
+            <e p="SoftwareCenter" t="Include">
+              <e p="AppCenterApp.cs" t="Include" />
+              <e p="DisplayUserDesktop.cs" t="Include" />
+              <e p="SoftwareApplicationInstaller.cs" t="Include" />
+              <e p="SoftwareCenterActionController.cs" t="Include" />
+              <e p="SoftwareCenterAppControl.cs" t="Include" />
+              <e p="SoftwareCenterMainController.cs" t="Include" />
+              <e p="ViewingSoftwareApp.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Classes" t="Include">
+            <e p="AceTechAccounts.cs" t="Include" />
+            <e p="ApplicationClasses.cs" t="Include" />
+            <e p="ContractInfo.cs" t="Include" />
+            <e p="EmailAccount.cs" t="Include" />
+            <e p="Emails.cs" t="Include" />
+            <e p="EndDayClass.cs" t="Include" />
+            <e p="Mission.cs" t="Include" />
+            <e p="MissionInfo.cs" t="Include" />
+            <e p="PlayerPrefs.cs" t="Include" />
+            <e p="PlayerStatus.cs" t="Include" />
+            <e p="TerminalInfo.cs" t="Include" />
+            <e p="TextFile.cs" t="Include" />
+            <e p="ToolkitClasses.cs" t="Include" />
+            <e p="UserClass.cs" t="Include" />
+          </e>
+          <e p="CloseApplication.cs" t="Include" />
+          <e p="ConnectToTerminal.cs" t="Include" />
+          <e p="ContractButton.cs" t="Include" />
+          <e p="Controllers" t="Include">
+            <e p="AceTechAccountController.cs" t="Include" />
+            <e p="ApplicationDatabase.cs" t="Include" />
+            <e p="AudioController.cs" t="Include" />
+            <e p="ContractTimerController.cs" t="Include" />
+            <e p="DateTimeController.cs" t="Include" />
+            <e p="EmailController.cs" t="Include" />
+            <e p="EndDayController.cs" t="Include" />
+            <e p="GameController.cs" t="Include" />
+            <e p="MissionDatabase.cs" t="Include" />
+            <e p="SceneController.cs" t="Include" />
+            <e p="ToolbarController.cs" t="Include" />
+          </e>
+          <e p="DragableApplication.cs" t="Include" />
+          <e p="DropdownItems" t="Include">
+            <e p="DeleteTextFile.cs" t="Include" />
+          </e>
+          <e p="Menus" t="Include">
+            <e p="LoadGameData.cs" t="Include" />
+            <e p="LogoutButton.cs" t="Include" />
+            <e p="MainMenuController.cs" t="Include" />
+            <e p="MenuButtonController.cs" t="Include" />
+            <e p="NewGameController.cs" t="Include" />
+            <e p="OpenSettings.cs" t="Include" />
+            <e p="QuitGame.cs" t="Include" />
+            <e p="SaveGameButton.cs" t="Include" />
+            <e p="SettingsController.cs" t="Include" />
+          </e>
+          <e p="Open Applications" t="Include">
+            <e p="OpenCloseSoftwareCenter.cs" t="Include" />
+            <e p="OpenConnectToTerminal.cs" t="Include" />
+            <e p="TerminalDisconnect.cs" t="Include" />
+          </e>
+          <e p="OpenPlayerShop.cs" t="Include" />
+          <e p="PC_Upgrade.cs" t="Include" />
+          <e p="PlayerPrefsController.cs" t="Include" />
+          <e p="PlayerShop.cs" t="Include" />
+          <e p="PlayerStatInfo.cs" t="Include" />
+          <e p="Pop Windows" t="Include">
+            <e p="AccountantDetails.cs" t="Include" />
+            <e p="ContractCompletedPopup.cs" t="Include" />
+          </e>
+          <e p="Puzzles" t="Include">
+            <e p="Maze" t="Include">
+              <e p="CubeCollision.cs" t="Include" />
+              <e p="MazeController.cs" t="Include" />
+            </e>
+            <e p="NodePuzzleController.cs" t="Include" />
+            <e p="NodeSteamController.cs" t="Include" />
+            <e p="PuzzlePieceController.cs" t="Include" />
+          </e>
+          <e p="RightClickObject.cs" t="Include" />
+          <e p="Systems" t="Include">
+            <e p="LoadDataSystem" t="Include">
+              <e p="LoadDatabaseInfo.cs" t="Include" />
+            </e>
+            <e p="RewardSystem.cs" t="Include" />
+            <e p="SaveGameSystem.cs" t="Include" />
+          </e>
+          <e p="TextFileDatabase.cs" t="Include" />
+          <e p="UpgradeItemButton.cs" t="Include" />
+          <e p="ViewingContract.cs" t="Include" />
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Examples &amp; Extras" t="Include">
+            <e p="Fonts" t="Include">
+              <e p="Anton OFL.txt" t="Include" />
+              <e p="Bangers - OFL.txt" t="Include" />
+              <e p="Oswald-Bold - OFL.txt" t="Include" />
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="Benchmark01.cs" t="Include" />
+              <e p="Benchmark01_UGUI.cs" t="Include" />
+              <e p="Benchmark02.cs" t="Include" />
+              <e p="Benchmark03.cs" t="Include" />
+              <e p="Benchmark04.cs" t="Include" />
+              <e p="CameraController.cs" t="Include" />
+              <e p="ChatController.cs" t="Include" />
+              <e p="EnvMapAnimator.cs" t="Include" />
+              <e p="ObjectSpin.cs" t="Include" />
+              <e p="ShaderPropAnimator.cs" t="Include" />
+              <e p="SimpleScript.cs" t="Include" />
+              <e p="SkewTextExample.cs" t="Include" />
+              <e p="TeleType.cs" t="Include" />
+              <e p="TextConsoleSimulator.cs" t="Include" />
+              <e p="TextMeshProFloatingText.cs" t="Include" />
+              <e p="TextMeshSpawner.cs" t="Include" />
+              <e p="TMP_DigitValidator.cs" t="Include" />
+              <e p="TMP_ExampleScript_01.cs" t="Include" />
+              <e p="TMP_FrameRateCounter.cs" t="Include" />
+              <e p="TMP_PhoneNumberValidator.cs" t="Include" />
+              <e p="TMP_TextEventCheck.cs" t="Include" />
+              <e p="TMP_TextEventHandler.cs" t="Include" />
+              <e p="TMP_TextInfoDebugTool.cs" t="Include" />
+              <e p="TMP_TextSelector_A.cs" t="Include" />
+              <e p="TMP_TextSelector_B.cs" t="Include" />
+              <e p="TMP_UiFrameRateCounter.cs" t="Include" />
+              <e p="TMPro_InstructionOverlay.cs" t="Include" />
+              <e p="VertexColorCycler.cs" t="Include" />
+              <e p="VertexJitter.cs" t="Include" />
+              <e p="VertexShakeA.cs" t="Include" />
+              <e p="VertexShakeB.cs" t="Include" />
+              <e p="VertexZoom.cs" t="Include" />
+              <e p="WarpTextExample.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
+          </e>
+        </e>
+        <e p="TotalJSON" t="Include">
+          <e p="Examples" t="Include">
+            <e p="CreateAndModifyJSON.cs" t="Include" />
+            <e p="ExampleSerializeObjects" t="Include">
+              <e p="ExamplePlayerItemObject.cs" t="Include" />
+              <e p="ExamplePlayerObject.cs" t="Include" />
+            </e>
+            <e p="ParseAndHandleJSON.cs" t="Include" />
+            <e p="SaveAndLoadFile.cs" t="Include" />
+            <e p="SerializeAndDeserialize.cs" t="Include" />
+          </e>
+          <e p="Internal" t="Include">
+            <e p="CreateStringRunner.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="JSONRuntimeDebug.cs" t="Include" />
+              <e p="JSONValidator.cs" t="Include" />
+            </e>
+            <e p="InternalTools.cs" t="Include" />
+            <e p="JSONRuntimeDebugContainer.cs" t="Include" />
+            <e p="ParseStringRunner.cs" t="Include" />
+            <e p="StringPointer.cs" t="Include" />
+          </e>
+          <e p="ReadMe.txt" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="Attributes" t="Include">
+              <e p="ExcludeFromJSONSerializeAttribute.cs" t="Include" />
+              <e p="IncludeToJSONSerializeAttribute.cs" t="Include" />
+            </e>
+            <e p="Exceptions" t="Include">
+              <e p="DeserializeException.cs" t="Include" />
+              <e p="JArgumentException.cs" t="Include" />
+              <e p="JArgumentNullException.cs" t="Include" />
+              <e p="JArrayIndexOutOfRangeException.cs" t="Include" />
+              <e p="JNumberFormatException.cs" t="Include" />
+              <e p="JNumberOverflowException.cs" t="Include" />
+              <e p="JSONKeyAlreadyExistsException.cs" t="Include" />
+              <e p="JSONKeyNotFoundException.cs" t="Include" />
+              <e p="JValueNullException.cs" t="Include" />
+              <e p="JValueTypeException.cs" t="Include" />
+              <e p="ParseException.cs" t="Include" />
+              <e p="ProtectedException.cs" t="Include" />
+              <e p="SerializeException.cs" t="Include" />
+              <e p="UnknownObjectTypeException.cs" t="Include" />
+            </e>
+            <e p="JArray.cs" t="Include" />
+            <e p="JBoolean.cs" t="Include" />
+            <e p="JNull.cs" t="Include" />
+            <e p="JNumber.cs" t="Include" />
+            <e p="JSON.cs" t="Include" />
+            <e p="JString.cs" t="Include" />
+            <e p="JValue.cs" t="Include" />
+            <e p="Settings" t="Include">
+              <e p="CreateStringSettings.cs" t="Include" />
+              <e p="DeserializeSettings.cs" t="Include" />
+              <e p="ParseStringSettings.cs" t="Include" />
+              <e p="SerializeSettings.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="ProjectHack.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
