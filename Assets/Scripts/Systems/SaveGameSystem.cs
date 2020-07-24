@@ -61,7 +61,7 @@ public class SaveGameSystem : MonoBehaviour
 
         BinaryFormatter bf = new BinaryFormatter();            // New Formatter
         FileStream file = File.Create("C:/Dirty Rats/" + name + ".synsave");        // Create the save file
-        bf.Serialize(file, SaveGame);                // Serailze the object
+        bf.Serialize(file, SaveGame);                // Serialize the object
 
         Debug.Log("Game Saved | " + Application.persistentDataPath); 
     }
