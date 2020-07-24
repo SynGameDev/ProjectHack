@@ -9,6 +9,7 @@ public class SaveGameSystem : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton instance
         if (Instance == null)
         {
             Instance = this;
@@ -22,16 +23,17 @@ public class SaveGameSystem : MonoBehaviour
 
     public SaveData CreateSaveObject()
     {
+        // Create the save object
         SaveData save = new SaveData();
         save.SaveName = GameController.Instance.GetPlayerData().PlayerName + ".synsave";
         save.PlayerInfo = GameController.Instance.GetPlayerData();
 
-        foreach (var Contract in GameController.Instance.GetAvailableContracts())
-        {
-            save.AvailableContracts.Add(Contract);
-        }
-
+        // Foreach available contract add it to the 
+        save.AvailableContracts = GameController.Instance.GetAvailableContracts();
+        // Get the active contract
         save.ActiveContract = GameController.Instance.GetActiveContract();
+        
+        // Current Time
         save.Hour = DateTimeController.Instance.GetHour();
         save.Minute = DateTimeController.Instance.GetMin();
         // Date
@@ -39,25 +41,34 @@ public class SaveGameSystem : MonoBehaviour
         save.Month = DateTimeController.Instance.GetMonth();
         save.Year = DateTimeController.Instance.GetYear();
 
+        // Mission Details
+        save.Sequences = MissionDatabase.Instance.GetSequences();
+        save.Missions = MissionDatabase.Instance.GetMissions();
+        save.CurrentMission = MissionDatabase.Instance.GetCurrentMission();
+        save.CurrentSequence = MissionDatabase.Instance.GetCurrentSequence();
+        
+        // Return the curernt data
         return save;
     }
 
     public void SaveGame(string name)
     {
-        SaveData SaveGame = CreateSaveObject();
+        SaveData SaveGame = CreateSaveObject();                // Generate a new save object
 
         // TODO: Display Saving Game Screen
 
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create("C:/Dirty Rats/" + name + ".synsave");
-        bf.Serialize(file, SaveGame);
+        BinaryFormatter bf = new BinaryFormatter();            // New Formatter
+        FileStream file = File.Create("C:/Dirty Rats/" + name + ".synsave");        // Create the save file
+        bf.Serialize(file, SaveGame);                // Serailze the object
 
-        Debug.Log("Game Saved | " + Application.persistentDataPath);
+        Debug.Log("Game Saved | " + Application.persistentDataPath); 
     }
 
     public void LoadGame(string filename)
     {
-        var NameOfFile = filename + "synsave";
+        var NameOfFile = filename + "synsave";            // Get the name of the load game
+        
+        // Make sure that the file is there & load that file
         if (File.Exists("C:/Dirty Rats/" + NameOfFile))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -65,24 +76,35 @@ public class SaveGameSystem : MonoBehaviour
             SaveData save = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            UnloadData(save);
+            UnloadData(save);            // unload the data
         }
     }
 
     private void UnloadData(SaveData save)
     {
-        GameController.Instance.LoadPlayer(save.PlayerInfo);
+        GameController.Instance.LoadPlayer(save.PlayerInfo);            // Setup the player class
 
+        // TODO: Add Setter in Game Controller to replace for loop
         foreach (var contract in save.AvailableContracts)
         {
             GameController.Instance.AddContract(contract);
         }
+        
 
-        GameController.Instance.SetActiveContract(save.ActiveContract);
+        GameController.Instance.SetActiveContract(save.ActiveContract);        // Set the available contract
 
+        // Set the data & time
         DateTimeController.Instance.SetTime(save.Hour, save.Minute, save.Day, save.Month, save.Year);
 
+       
+        // Load Sequences & Missions
+        MissionDatabase.Instance.LoadSequence(save.Sequences, save.CurrentSequence);
+        MissionDatabase.Instance.LoadMissions(save.Missions, save.CurrentMission);
+        
+        
         Debug.Log("Game loaded");
+        
+        
     }
 }
 
@@ -110,5 +132,9 @@ public class SaveData
     public int Month;
     public int Year;
 
-    // Player PC Data
+    // Database Data
+    public List<string> Sequences = new List<string>();
+    public List<Mission> Missions = new List<Mission>();
+    public string CurrentSequence;
+    public string CurrentMission;
 }

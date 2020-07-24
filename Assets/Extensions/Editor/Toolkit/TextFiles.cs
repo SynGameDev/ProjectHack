@@ -93,7 +93,7 @@ public class TextFiles : EditorWindow
         }
 
         // Update the terminal databases
-        using (StreamWriter w = new StreamWriter(Application.streamingAssetsPath + "/Databases/TerminalDatabases.json"))
+        using (StreamWriter w = new StreamWriter(Application.streamingAssetsPath + "/Databases/TerminalDatabase.json"))
         {
             w.WriteLine(JsonUtility.ToJson(data));
         }

@@ -9,6 +9,9 @@ public class MissionDatabase : MonoBehaviour
     private List<string> _SequenceNames = new List<string>();
     private List<Mission> _Missions = new List<Mission>();
 
+    private string _CurrentSequence;
+    private string _CurrentMission;
+
     private void Awake()
     {
         if (Instance == null)
@@ -48,6 +51,24 @@ public class MissionDatabase : MonoBehaviour
             return true;
 
         return false;
+    }
+
+    // Getters
+    public List<Mission> GetMissions() => _Missions;
+    public string GetCurrentMission() => _CurrentMission;
+    public string GetCurrentSequence() => _CurrentSequence;
+    
+    // Setters
+    public void LoadSequence(List<string> seq, string CurSeq)
+    {
+        _SequenceNames = seq;
+        _CurrentSequence = CurSeq;
+    }
+
+    public void LoadMissions(List<Mission> mis, string CurMis)
+    {
+        _Missions = mis;
+        _CurrentMission = CurMis;
     }
 
 }

@@ -1,1 +1,1 @@
-{"TextFileData":[{"FileName":"TestFile","FileContent":"Hello World","ext":"json"}]}
+{"TextFileData":[{"FileName":"TestFile","FileContent":"Hello World","ext":"json"},{"FileName":"Test","FileContent":"Hello World\n\nThis is new content","ext":"json"},{"FileName":"Test","FileContent":"Hello World\n\nThis is new content","ext":"json"}]}
