@@ -112,6 +112,7 @@
             <e p="SaveGameButton.cs" t="Include" />
             <e p="SettingsController.cs" t="Include" />
           </e>
+          <e p="MusicInstance.cs" t="Include" />
           <e p="Open Applications" t="Include">
             <e p="OpenCloseSoftwareCenter.cs" t="Include" />
             <e p="OpenConnectToTerminal.cs" t="Include" />
@@ -136,7 +137,13 @@
             <e p="PuzzlePieceController.cs" t="Include" />
           </e>
           <e p="RightClickObject.cs" t="Include" />
+          <e p="SFXInstance.cs" t="Include" />
+          <e p="Singleton.cs" t="Include" />
           <e p="Systems" t="Include">
+            <e p="Generation" t="Include">
+              <e p="ContractGenerator.cs" t="Include" />
+              <e p="GenerateTerminal.cs" t="Include" />
+            </e>
             <e p="LoadDataSystem" t="Include">
               <e p="LoadDatabaseInfo.cs" t="Include" />
             </e>

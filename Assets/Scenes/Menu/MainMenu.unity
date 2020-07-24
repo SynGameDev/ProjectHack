@@ -599,6 +599,7 @@ GameObject:
   - component: {fileID: 1157640371}
   - component: {fileID: 1157640370}
   - component: {fileID: 1157640372}
+  - component: {fileID: 1157640373}
   m_Layer: 0
   m_Name: MusicSource
   m_TagString: Music
@@ -726,6 +727,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d95f64e14987bb94fb215cef046659c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1157640373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157640369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063e234bd74f08f48b1321d6a74fd896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1178335424
@@ -1214,6 +1227,7 @@ GameObject:
   - component: {fileID: 1520603701}
   - component: {fileID: 1520603700}
   - component: {fileID: 1520603702}
+  - component: {fileID: 1520603703}
   m_Layer: 0
   m_Name: SFXSource
   m_TagString: SFX
@@ -1341,6 +1355,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d95f64e14987bb94fb215cef046659c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1520603703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520603699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e09defef6f89b43abbe98a80890074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1537132202
