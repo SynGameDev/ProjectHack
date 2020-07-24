@@ -10,6 +10,7 @@ public class ApplicationClass
     public string ApplicationName;
     [TextArea]
     public string ApplicationDescription;
+    [System.NonSerialized]
     public Sprite ApplicationIcon;
 
     [Header("Server Information")]
