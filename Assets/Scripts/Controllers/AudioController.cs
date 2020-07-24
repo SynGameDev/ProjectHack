@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
+    
     public static AudioController Instance;
     private AudioSource _Audio;
     private float _Level;
@@ -12,6 +13,8 @@ public class AudioController : MonoBehaviour
     private void Awake() {
         _Audio = this.gameObject.GetComponent<AudioSource>();
         DontDestroyOnLoad(this.gameObject);
+        
+        
     }
 
     public void SetAudioLevel(float level) {
