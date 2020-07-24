@@ -32,6 +32,8 @@ public class SaveGameSystem : MonoBehaviour
         save.AvailableContracts = GameController.Instance.GetAvailableContracts();
         // Get the active contract
         save.ActiveContract = GameController.Instance.GetActiveContract();
+
+        save.Terminals = GameController.Instance.GetAllTerminals();
         
         // Current Time
         save.Hour = DateTimeController.Instance.GetHour();
@@ -90,6 +92,8 @@ public class SaveGameSystem : MonoBehaviour
             GameController.Instance.AddContract(contract);
         }
         
+        GameController.Instance.SetAllTerminal(save.Terminals);                // Set the terminals
+        
 
         GameController.Instance.SetActiveContract(save.ActiveContract);        // Set the available contract
 
@@ -120,6 +124,8 @@ public class SaveData
     public List<ContractInfo> AvailableContracts = new List<ContractInfo>();
 
     public ContractInfo ActiveContract;
+
+    public List<TerminalInfo> Terminals = new List<TerminalInfo>();
 
     // Time
     public int Hour;

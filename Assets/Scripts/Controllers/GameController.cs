@@ -244,6 +244,8 @@ public class GameController : MonoBehaviour
         _ViewingContractButton = contract;
     }
 
+    public void SetAllTerminal(List<TerminalInfo> Terminals) => _TerminalList = Terminals;
+
     public void AddContract(ContractInfo contract) => _AvailableContracts.Add(contract);
 
     public void SetActiveContract(ContractInfo contract) => ActiveContract = contract;
