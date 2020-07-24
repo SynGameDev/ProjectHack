@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
     private List<ContractInfo> _AvailableContracts = new List<ContractInfo>();
 
     [Header("Viewing Contract")]
-    [SerializeField] private ContractInfo _ViewingContract;
+    [SerializeField] private ContractInfo _ViewingContract = null;
 
     private GameObject _ViewingContractButton;
     private TextFile _OpenFile;
@@ -64,6 +64,8 @@ public class GameController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        
     }
 
     private void Start()
@@ -72,6 +74,8 @@ public class GameController : MonoBehaviour
         _AvailableContracts.Add(SetupTestContract());             // TEST METHOD
         Player = CreatePlayer();                                // TEST METHOD
         DisplayAvailableContracts();
+        
+        _ViewingContract = null;
     }
 
     private void Update()
