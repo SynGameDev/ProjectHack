@@ -193,12 +193,13 @@ public class SoftwareCenterMainController : MonoBehaviour
 
     private void FindInstalledApplications()
     {
-        var CurrentContract = GameController.Instance.GetActiveContract();              // Get the active contract
+        var CurrentTerminal = GameController.Instance.GetActiveTerminal();
+
 
         // Loop through each Installed item to find if the application is installed.
-        foreach (var App in CurrentContract.Terminal.InstalledApplication)
+        foreach (var App in CurrentTerminal.InstalledApplication)
         {
-            InstalledApplications.Add(ApplicationDatabase.Instance.GetApp(App));
+            InstalledApplications.Add(App);
         }
     }
 

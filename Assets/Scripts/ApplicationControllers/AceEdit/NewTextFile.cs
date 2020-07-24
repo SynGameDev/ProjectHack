@@ -9,7 +9,7 @@ public class NewTextFile : MonoBehaviour
         NewFile.FileName = "New File Name";
         NewFile.FileContent = "";
 
-        GameController.Instance.GetActiveContract().Terminal.TextFileList.Add(NewFile);
+        GameController.Instance.GetActiveTerminal().TextFileList.Add(NewFile);
         GameController.Instance.SetOpenTextFile(NewFile);
 
         AceEditController.Instance.OpenTextFile();

@@ -14,39 +14,34 @@ public class ConnectToTerminal : MonoBehaviour
     [SerializeField] private GameObject _SuccessText;
     [SerializeField] private GameObject _ConnectButton;
     [SerializeField] private float _WaitTime;
+
+    private void Awake()
+    {
+
+    }
     
-    public void ValidateTerminalConnecting() {
+    public string ValidateTerminalConnecting(string ip) {
 
-        var found = false;
+
         foreach(var terminal in GameController.Instance.GetAllTerminals()) {
-            if(terminal.TerminalIP == _EnteredAddress.text) {
+            if(terminal.TerminalIP == ip) {
 
-                found = true;
 
                 if(terminal.BlockedIPs.Contains(GameController.Instance.GetPlayerData().PlayerIP)) {
-                    _ErrorText.GetComponent<TextMeshProUGUI>().text = "Error IP Has been blocked by the terminal";
-                    _ErrorText.GetComponent<TextMeshProUGUI>().color = Color.red;
+                    return "IP Blocked";
                 } else {
                     if(terminal.BackDoorInstalled) {
-                        SceneController.Instance.OpenUserDesktop();
-                    } else {
-                        SceneController.Instance.OpenTerminalConnector();
                         GameController.Instance.SetActiveTerminal(terminal);
+                        return "Backdoor";
+                    } else {
+                        GameController.Instance.SetActiveTerminal(terminal);
+                        return "Found";
                     }
-
-                    GameController.Instance.SetActiveTerminal(terminal);
-                    
-                    CloseApp();
-                    break;
                 }
             }
         }
 
-        if(!found) {
-            _ErrorText.SetActive(true);
-            _ErrorText.GetComponent<TextMeshProUGUI>().text = "Unable to find specified terminal";
-            _ErrorText.GetComponent<TextMeshProUGUI>().color = Color.red;
-        }
+        return "Not Found";
     }
 
 /*

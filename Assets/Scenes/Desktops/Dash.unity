@@ -3520,6 +3520,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1487724154}
   - component: {fileID: 1487724153}
+  - component: {fileID: 1487724156}
+  - component: {fileID: 1487724155}
   m_Layer: 0
   m_Name: --- DATABASES ---
   m_TagString: Untagged
@@ -3539,15 +3541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1623a937a9bf9c34ba72cc04ca0549c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SoftwareApplications:
-  - {fileID: 11400000, guid: 2ef22d511c556254086e8df8da351ac2, type: 2}
-  - {fileID: 11400000, guid: ad5c2da12912f2744b59f10d1efab344, type: 2}
-  - {fileID: 11400000, guid: eec411a091a49f844bf8221ea5fa0059, type: 2}
-  - {fileID: 11400000, guid: 7c9745571bff4554bbd22db6e8b51615, type: 2}
-  - {fileID: 11400000, guid: 78515b567f33f2f4e9f993ec38a6c1b7, type: 2}
-  - {fileID: 11400000, guid: 38177ccf72e038e4cbe621f504e640e5, type: 2}
+  _SoftwareApplications: []
   _CrackedSoftwareApplication: []
-  SoftwareCenter: {fileID: 11400000, guid: 38177ccf72e038e4cbe621f504e640e5, type: 2}
 --- !u!4 &1487724154
 Transform:
   m_ObjectHideFlags: 0
@@ -3562,6 +3557,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1487724155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487724152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb058490fd19465db9cc1d136d1acf5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1487724156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487724152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3579d62342b04e9fab2e9691168e4700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1566939007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4764,7 +4783,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _ContractButtonPrefab
       value: 
-      objectReference: {fileID: 1990131545823150536, guid: a2187823445450a47a1fc2fdac711b73,
+      objectReference: {fileID: 9210826985412651120, guid: 7fbc518c05c0dbc4e94e114356457cb2,
         type: 3}
     - target: {fileID: 8869150001346557884, guid: 8bc1003f522eb3d4f89d16fb308dcaaa,
         type: 3}
@@ -4862,6 +4881,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084549570675286730, guid: 603a2a2bfdbfeea449b9358c9e1bdcd7,
+        type: 3}
+      propertyPath: MainMenu
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084549570675286730, guid: 603a2a2bfdbfeea449b9358c9e1bdcd7,
+        type: 3}
+      propertyPath: AceMail
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 603a2a2bfdbfeea449b9358c9e1bdcd7, type: 3}

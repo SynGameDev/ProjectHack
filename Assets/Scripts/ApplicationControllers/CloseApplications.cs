@@ -20,6 +20,9 @@ public class CloseApplications : MonoBehaviour
             case "System Directory":
                 SceneController.Instance.CloseFolderSystem();
                 break;
+            case "AceMail":
+                SceneController.Instance.CloseAceMail();
+                break;
         }
     }
 }

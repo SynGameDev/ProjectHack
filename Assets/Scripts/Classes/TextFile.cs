@@ -6,5 +6,5 @@ using UnityEngine;
 public class TextFile {
     public string FileName;
     public string FileContent;
-    public string LastUpdateInfo;
+    public string ext;
 }

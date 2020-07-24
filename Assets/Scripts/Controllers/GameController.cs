@@ -254,6 +254,8 @@ public class GameController : MonoBehaviour
 
     public void SetDropdownItem(GameObject DropdownItem) => _DropdownMenuItem = DropdownItem;
 
+    public void AddNewTerminal(TerminalInfo terminal) => _TerminalList.Add(terminal);
+
     // Save System
     public void LoadPlayer(PlayerStatus NewPlayer)
     {
@@ -266,14 +268,14 @@ public class GameController : MonoBehaviour
         var term = CreateTerminal();
 
         var info = new ContractInfo();
-        info.ContractID = 1;
+        info.ContractID = "1";
         info.ContractName = "Test Contract";
         info.ContractOwner = "Alex A";
         info.ContractStatus = "Pending";
         info.ContractMessage = "Hey Man,\n\nI Heard you're the man I need to speak to.\n\nMy business partner is trying to screw me out of the business and I need to access his PC, can you install a key logger!\n\nCheers David";
         info.ContractSubject = "Install Software";
 
-        info.Terminal = term;
+        info.Terminal.Add(term);
         _TerminalList.Add(term);
 
         info.Objective.Add("Install DirtyRat KeyLogger IP: 192.111.111");
@@ -288,7 +290,7 @@ public class GameController : MonoBehaviour
 
         terminal.TerminalType = "Desktop";
         terminal.TerminalIP = "192.111.111";
-        terminal.InstalledApplication.Add("App_1");
+        //terminal.InstalledApplication.Add("Software Centre");
         terminal.TextFileList.Add(TestTextFile());
 
         terminal.BackDoorInstalled = false;

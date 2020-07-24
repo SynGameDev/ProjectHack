@@ -53,8 +53,6 @@ public class AceEditController : MonoBehaviour {
     public void UpdateTextFile() {
         GameController.Instance.GetOpenTextFile().FileContent = _Content.text;
 
-        GameController.Instance.GetOpenTextFile().LastUpdateInfo = DateTimeController.Instance.GetDateTime();
-
         // TODO: Change Save Icon For a time
     }
 

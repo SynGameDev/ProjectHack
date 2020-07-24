@@ -20,6 +20,7 @@ public class SceneController : MonoBehaviour
     public int AceXTerminal;
     public int AceEdit;
     public int SystemDirectory;
+    public int AceMail;
 
 
     [Header("Puzzles")]
@@ -240,11 +241,23 @@ public class SceneController : MonoBehaviour
         return false;
     }
 
+    public void OpenAceMail()
+    {
+        SceneManager.LoadSceneAsync(AceMail, LoadSceneMode.Additive);
+        _CurrentlyLoadedScenes.Add(AceMail);
+    }
+
+    public void CloseAceMail()
+    {
+        SceneManager.UnloadSceneAsync(AceMail);
+        _CurrentlyLoadedScenes.Remove(AceMail);
+    }
+
     // Methods
     public void OpenApplication(string app) {
 
         switch(app) {
-            case "Software Center":
+            case "Software Centre":
                 OpenSoftwareCenter();
                 break;
             case "AceXTerminal":
@@ -261,6 +274,9 @@ public class SceneController : MonoBehaviour
                 break;
             case "Shop":
                 OpenPlayerShop();
+                break;
+            case "AceMail":
+                OpenAceMail();
                 break;
 
         }

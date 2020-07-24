@@ -98,7 +98,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
     public void InstallProgram(ApplicationClass AppToInstall) {
         // TODO: Opt: #1uwmkr
         var app = AppToInstall;
-        GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Add(app.ApplicationID);
+        GameController.Instance.GetActiveTerminal().InstalledApplication.Add(app);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
         var i = AppToInstall;
         LogAction("Install " + i.ApplicationName + " IP: " + GameController.Instance.GetActiveTerminal().TerminalIP);
@@ -106,7 +106,7 @@ public class SoftwareApplicationInstaller : MonoBehaviour
 
     public void UninstallProgram(ApplicationClass AppToRemove) {
         var app = AppToRemove;
-        GameController.Instance.GetActiveContract().Terminal.InstalledApplication.Remove(app.ApplicationID);
+        GameController.Instance.GetActiveTerminal().InstalledApplication.Remove(app);
         GameObject.FindGameObjectWithTag("UserDesktop").GetComponent<DisplayUserDesktop>().UpdateDesktop();
 
         switch(app.ApplicationName) {

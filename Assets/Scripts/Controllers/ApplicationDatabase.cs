@@ -10,7 +10,7 @@ public class ApplicationDatabase : MonoBehaviour
 
     [SerializeField] private List<ApplicationClass> _SoftwareApplications = new List<ApplicationClass>();
     [SerializeField] private List<ApplicationClass> _CrackedSoftwareApplication = new List<ApplicationClass>();
-    [SerializeField] private string ApplicationDataPath;
+    private Dictionary<string, Sprite> AppIcons = new Dictionary<string, Sprite>();
     
 
     private void Awake() {
@@ -21,57 +21,43 @@ public class ApplicationDatabase : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        CreateAppDatabase();
+        
     }
 
-    private void CreateAppDatabase()
+    private void Start()
     {
-        var DirectoryInfo = new DirectoryInfo(ApplicationDataPath);
-        FileInfo[] AppFiles = DirectoryInfo.GetFiles("*.app");
-
-        foreach(var file in AppFiles)
-        {
-            ApplicationClass App = new ApplicationClass();
-            JsonSerializer json = new JsonSerializer();
-            using(StreamReader AppFile = File.OpenText(ApplicationDataPath + file.Name + ".app"))
-            {
-                ToolKitAppClass TempApp = (ToolKitAppClass)json.Deserialize(AppFile, typeof(ToolKitAppClass));
-                
-                App.ApplicationName = TempApp.ApplicatioName;
-                App.ApplicationID = TempApp.ApplicationID;
-                App.ApplicationDescription = TempApp.ApplicationDescription;
-                App.ApplicationDownloadURL = TempApp.ApplicationURL;
-                App.CrackedApplication = TempApp.CrackedApp;
-                App.ApplicationIcon = GetAppIcon(App.ApplicationName);
-            }
-
-            _SoftwareApplications.Add(App);
-
-            if (App.CrackedApplication)
-                _CrackedSoftwareApplication.Add(App);
-        }
-
+        AppIcons.Add("Software Centre", Resources.Load<Sprite>("AppIcons/Software Centre"));
+        AppIcons.Add("AceTerminal", Resources.Load<Sprite>("AppIcons/AceTerminal"));
+        AppIcons.Add("AceMail", Resources.Load<Sprite>("AppIcons/AceMail"));
+        AppIcons.Add("AceEdit", Resources.Load<Sprite>("AppIcons/AceEdit"));
         
     }
 
     private Sprite GetAppIcon(string name)
     {
-        return Resources.Load<Sprite>("Sprites/ApplicationIcons/" + name);
+        return null;
     }
 
     public ApplicationClass GetApp(string id)
     {
         foreach(var app in _SoftwareApplications)
         {
-            if (app.ApplicationID == id)
+            if (app.ApplicationName == id)
                 return app;
         }
 
         return null;
     }
 
+    private void GetAppIcons()
+    {
+        
+    }
+
     public List<ApplicationClass> GetSoftwareApps() => _SoftwareApplications;
     public List<ApplicationClass> GetCrackedApps() => _CrackedSoftwareApplication;
+    public void AddAllApps(List<ApplicationClass> App) => _SoftwareApplications = App;
+    public void AddCrackedApps(ApplicationClass App) => _CrackedSoftwareApplication.Add(App);
 }
 
 public class AppList

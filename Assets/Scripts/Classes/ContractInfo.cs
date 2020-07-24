@@ -10,7 +10,7 @@ public class ContractInfo
      public GameObject ContractButton;
 
     // Contract Details
-    public int ContractID;
+    public string ContractID;
     public string ContractName;                     // Name of contract
     public string ContractOwner;                    // Person / company offering the contract
     public string ContractMessage;                  // What needs to be completed in the contract
@@ -18,7 +18,7 @@ public class ContractInfo
 
     public int ContractDifficulty;
 
-    public TerminalInfo Terminal;
+    public List<TerminalInfo> Terminal = new List<TerminalInfo>();
 
     // Contract Status
     public string ContractStatus;                   // Offered, Accepted, Declined, Completed

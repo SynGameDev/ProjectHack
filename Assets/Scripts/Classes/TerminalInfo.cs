@@ -7,14 +7,16 @@ public class TerminalInfo {
     
     
     // Terminal Details
+    public string TemrinalName;
     public string TerminalType;                     // Type of the terminal
     public string TerminalIP;                       // IP of the terminal
     
-    public List<string> InstalledApplication = new List<string>();
-    public List<string> HiddenApplications = new List<string>();
+    public List<ApplicationClass> InstalledApplication = new List<ApplicationClass>();
+    public List<ApplicationClass> HiddenApplications = new List<ApplicationClass>();
 
     // File System
     public List<TextFile> TextFileList = new List<TextFile>();
+    public EmailAccount EmailAccount;
 
     // Anti Virus
     public int AntiVirusLevel;
@@ -34,14 +36,14 @@ public class TerminalInfo {
 
     public ApplicationClass GetApplication(string AppID) {
         foreach(var id in InstalledApplication) {
-            if(id == AppID) {
-                return ApplicationDatabase.Instance.GetApp(id);
+            if(id.ApplicationID == AppID) {
+                return id;
             }
         }
 
         foreach(var id in HiddenApplications) {
-            if(id == AppID) 
-                return ApplicationDatabase.Instance.GetApp(id);
+            if(id.ApplicationID == AppID) 
+                return id;
         }
 
         return null;

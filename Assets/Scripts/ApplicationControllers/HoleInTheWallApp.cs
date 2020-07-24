@@ -29,7 +29,7 @@ public class HoleInTheWallApp : MonoBehaviour
     {
         _Terminal.DisplayInput("Starting Hole In The Wall Setup...", false);
         yield return new WaitForSeconds(1f);
-        if (GameController.Instance.GetActiveContract().Terminal.BackDoorInstalled)
+        if (GameController.Instance.GetActiveTerminal().BackDoorInstalled)
         {
             _Terminal.DisplayInput("Backdoor has already been installed on this terminal", false);
         }
@@ -49,7 +49,7 @@ public class HoleInTheWallApp : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (Installed)
         {
-            GameController.Instance.GetActiveContract().Terminal.BackDoorInstalled = false;
+            GameController.Instance.GetActiveTerminal().BackDoorInstalled = false;
             Installed = false;
         }
     }

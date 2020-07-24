@@ -28,21 +28,21 @@ public class DisplayUserDesktop : MonoBehaviour
     }   
 
     private void DisplayApps() {
-        ContractInfo contract = GameController.Instance.GetActiveContract();            // Get the current contract
+        TerminalInfo terminal = GameController.Instance.GetActiveTerminal();
 
         // Loop through each application and assign it to a row on the desktop
-        foreach(var app in contract.Terminal.InstalledApplication) {
+        foreach(var app in terminal.InstalledApplication) {
             if(_RowCount_1 < MaxItemsInRow) {
-                CreateApp(ApplicationDatabase.Instance.GetApp(app), _Row_1);
+                CreateApp(app, _Row_1);
                 _RowCount_1 += 1;
             } else if(_RowCount_2 < MaxItemsInRow) {
-                CreateApp(ApplicationDatabase.Instance.GetApp(app), _Row_2);
+                CreateApp(app, _Row_2);
                 _RowCount_2 += 1;
             } else if(_RowCount_3 < MaxItemsInRow) {
-                CreateApp(ApplicationDatabase.Instance.GetApp(app), _Row_3);
+                CreateApp(app, _Row_3);
                 _RowCount_3 += 1;
             } else {
-                CreateApp(ApplicationDatabase.Instance.GetApp(app), _Row_4);
+                CreateApp(app, _Row_4);
                 _RowCount_4 += 1;
             }
         }
@@ -62,10 +62,12 @@ public class DisplayUserDesktop : MonoBehaviour
 
     private void CreateApp(ApplicationClass app, Transform row) {
 
-        var App = app;               // Get the Object
+        ApplicationClass App = app;               // Get the Object
         var go = Instantiate(_DesktopAppPrefab);                // Create the item
 
-        go.name = App.ApplicationName;                  // Set the name of the object
+        Debug.Log(App);
+
+        //go.name = App.ApplicationName;                  // Set the name of the object
         go.transform.SetParent(row);                    // Set the position of the object
         go.transform.localScale = new Vector3(2, 2, 2);         // Init the scale of the object
 
