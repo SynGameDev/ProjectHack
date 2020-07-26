@@ -18,6 +18,8 @@ public class GenerateTerminal
         NewTerminal.TerminalType = type;
         NewTerminal.TemrinalName = GenerateTerminalName(type);
         NewTerminal.HHD = UnityEngine.Random.Range(2, 230);
+
+        return NewTerminal;
     }
 
     private static string GenerateIP()

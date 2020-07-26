@@ -35,7 +35,7 @@ public class EmailButton : MonoBehaviour, IPointerClickHandler
     public void SetEmailData(Email eml)
     {
         EmailData = eml;
-        EmailAccount Email = GameController.Instance.GetActiveTerminal().EmailAccount;
+        AceTechAccount Email = GameController.Instance.GetActiveTerminal().EmailAccount;
 
         if(EmailData.ToUser == "" || EmailData.ToUser == null)
         {

@@ -32,7 +32,7 @@ public class PlayerStatus
 
     // Player Application Level
     public int DownloadLevel = 0;
-    public int ContractSpaces = 0;
+    public int ContractSpaces = 5;
     public int ExpireTimerLevel = 0;
     public int CompleteTimerLevel = 0;
     public int BruteForceLevel = 0;

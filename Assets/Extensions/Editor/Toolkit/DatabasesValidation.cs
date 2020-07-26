@@ -16,6 +16,8 @@ public static class DatabaseValidation
         ValidateTextFileDatabase();
         ValidateSequenceDatabase();
         ValidateAceTechDatabase();
+        ValidateNamesDatabase();
+        ValidateTemplateDatabase();
     }
 
     public static void ValidateEmailDatabase()
@@ -94,6 +96,30 @@ public static class DatabaseValidation
                 w.WriteLine(d);
             }
 
+        }
+    }
+
+    public static void ValidateNamesDatabase()
+    {
+        if (!File.Exists(DataPath + "NamesDatabase.json"))
+        {
+            using (StreamWriter w = new StreamWriter(DataPath + "NamesDatabase.json"))
+            {
+                NameDatabase Nm = new NameDatabase();
+                w.WriteLine(JsonUtility.ToJson(Nm));
+            }
+        }
+    }
+
+    public static void ValidateTemplateDatabase()
+    {
+        if (!File.Exists(DataPath + "TemplateDatabase.json"))
+        {
+            using (StreamWriter w = new StreamWriter(DataPath + "TemplateDatabase.json"))
+            {
+                TemplateDatabases Temp = new TemplateDatabases();
+                w.WriteLine(JsonUtility.ToJson(Temp));
+            }
         }
     }
 }

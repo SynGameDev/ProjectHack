@@ -80,12 +80,13 @@ public class Emails : EditorWindow
 
     private void CreateAccount()
     {
-        EmailAccount Acc = new EmailAccount();
+        AceTechAccount Acc = new AceTechAccount();
         Acc.FirstName = _NewFirstName;
         Acc.LastName = _NewFirstName;
         Acc.Username = _NewUsername;
         Acc.Server = ToolkitGlobalMethods.DropdownValueToString(_NewSelectServer, _ServerTypes);
         Acc.Password = _NewPassword;
+        Acc.Email = Acc.Username + Acc.Server;
 
 
         var db = ToolkitGlobalMethods.GetAceTechAccounts();

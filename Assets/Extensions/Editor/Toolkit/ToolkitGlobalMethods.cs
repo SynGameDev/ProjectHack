@@ -133,7 +133,7 @@ public static class ToolkitGlobalMethods
         
     }
 
-    public static List<EmailAccount> GetAceTechAccounts()
+    public static List<AceTechAccount> GetAceTechAccounts()
     {
         AceTechAccounts db = new AceTechAccounts();
         using (StreamReader r = new StreamReader(DataPath + "/Databases/AceTechAccounts.json"))
@@ -168,7 +168,7 @@ public static class ToolkitGlobalMethods
         return eml.Emails;
     }
 
-    public static EmailAccount FindEmailAccount(string eml)
+    public static AceTechAccount FindEmailAccount(string eml)
     {
         foreach (var item in GetAceTechAccounts())
         {

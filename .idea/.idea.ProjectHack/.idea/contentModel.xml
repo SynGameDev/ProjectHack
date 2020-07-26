@@ -17,6 +17,8 @@
               <e p="Emails.cs" t="Include" />
               <e p="MissionObjectives.cs" t="Include" />
               <e p="Missions.cs" t="Include" />
+              <e p="NameDatabase.cs" t="Include" />
+              <e p="Templates.cs" t="Include" />
               <e p="Terminals.cs" t="Include" />
               <e p="TextFiles.cs" t="Include" />
               <e p="ToolkitApplications.cs" t="Include" />
@@ -88,6 +90,7 @@
             <e p="AceTechAccountController.cs" t="Include" />
             <e p="ApplicationDatabase.cs" t="Include" />
             <e p="AudioController.cs" t="Include" />
+            <e p="ContractGenerationController.cs" t="Include" />
             <e p="ContractTimerController.cs" t="Include" />
             <e p="DateTimeController.cs" t="Include" />
             <e p="EmailController.cs" t="Include" />

@@ -42,18 +42,21 @@ public class LoadDatabaseInfo : MonoBehaviour
 
     private void GetEmailDatabases()
     {
+        // Create the account & DB Class to deserialize the data
         AceTechAccount NewAccount = new AceTechAccount();
         AceTechAccountsDB DB = new AceTechAccountsDB();
 
+        // Open up the database
         using (StreamReader r = new StreamReader(DataPath + "AceTechAccounts.json"))
         {
             DB = JsonUtility.FromJson<AceTechAccountsDB>(r.ReadToEnd());
         }
 
+        // Loop through each account 
         foreach (var item in DB.Accounts)
         {
             
-
+            // Check that the account information isn't already in the databases and add the email account to the database
             if (AceTechAccountController.Instance.FindAccByEmail(item.Username + item.Server) == null)
             {
                 AceTechAccountController.Instance.AddAccount(NewAccount);
@@ -195,7 +198,7 @@ public class TerminalDatabase
 
 public class AceTechAccountsDB
 {
-    public List<EmailAccount> Accounts = new List<EmailAccount>();
+    public List<AceTechAccount> Accounts = new List<AceTechAccount>();
 }
 
 public class EmailList
@@ -216,4 +219,11 @@ public class SequenceDatabase
 public class MissionDatabases
 {
     public List<string> Missions = new List<string>();
+}
+
+public class NamesDatabase
+{
+    public List<string> FirstName = new List<string>();
+    public List<string> LastName = new List<string>();
+    public List<string> Username = new List<string>();
 }

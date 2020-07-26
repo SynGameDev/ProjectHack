@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private Transform _ContractContainer;
     private List<ContractInfo> _AvailableContracts = new List<ContractInfo>();
+    private int _NextContractID;
 
     [Header("Viewing Contract")]
     [SerializeField] private ContractInfo _ViewingContract = null;
@@ -52,6 +53,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _UserIP;
 
     [SerializeField] private TextMeshProUGUI _ConnectedIP;
+    
 
     private void Awake()
     {
@@ -86,6 +88,11 @@ public class GameController : MonoBehaviour
 
     private void DisplayAvailableContracts()
     {
+        foreach (var item in _AvailableContracts)
+        {
+            Destroy(item.ContractButton);
+        }
+        
         foreach (var contract in _AvailableContracts)
         {
             var go = Instantiate(_ContractButtonPrefab);                        // Create the button
@@ -242,6 +249,8 @@ public class GameController : MonoBehaviour
 
     public GameObject GetActiveDropdownItem() => _DropdownMenuItem;
 
+    public int GetNextContractID() => _NextContractID;
+
     // Setters
     public void SetViewingButton(GameObject contract)
     {
@@ -250,7 +259,12 @@ public class GameController : MonoBehaviour
 
     public void SetAllTerminal(List<TerminalInfo> Terminals) => _TerminalList = Terminals;
 
-    public void AddContract(ContractInfo contract) => _AvailableContracts.Add(contract);
+    public void AddContract(ContractInfo contract)
+    {
+        _AvailableContracts.Add(contract);
+        _NextContractID++;
+        DisplayAvailableContracts();
+    }
 
     public void SetActiveContract(ContractInfo contract) => ActiveContract = contract;
 

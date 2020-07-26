@@ -16,7 +16,7 @@ public class TerminalInfo {
 
     // File System
     public List<TextFile> TextFileList = new List<TextFile>();
-    public EmailAccount EmailAccount;
+    public AceTechAccount EmailAccount;
 
     // Anti Virus
     public int AntiVirusLevel;

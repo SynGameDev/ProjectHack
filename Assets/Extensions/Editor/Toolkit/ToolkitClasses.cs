@@ -35,10 +35,25 @@ public class MissionDatabases
 
 public class AceTechAccounts
 {
-    public List<EmailAccount> Accounts = new List<EmailAccount>();
+    public List<AceTechAccount> Accounts = new List<AceTechAccount>();
 }
 
 public class EmailList
 {
     public List<Email> Emails = new List<Email>();
+}
+
+public class NamesData
+{
+    public List<string> FirstNames = new List<string>();
+    public List<string> LastNames = new List<string>();
+    public List<string> Usernames = new List<string>();
+}
+
+public class TemplateDatabases
+{
+    public List<Email> EmailTemp = new List<Email>();
+    public List<TextFile> TextFileContent = new List<TextFile>();
+    public List<string> MissionMessage = new List<string>();
+    public List<string> FoodTemp = new List<string>();
 }
