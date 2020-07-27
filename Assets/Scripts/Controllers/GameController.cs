@@ -72,8 +72,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        DisplayAvailableContracts();
-        _AvailableContracts.Add(SetupTestContract());             // TEST METHOD
+       // _AvailableContracts.Add(SetupTestContract());             // TEST METHOD
         Player = CreatePlayer();                                // TEST METHOD
         DisplayAvailableContracts();
         
@@ -88,25 +87,26 @@ public class GameController : MonoBehaviour
 
     private void DisplayAvailableContracts()
     {
-        foreach (var item in _AvailableContracts)
-        {
-            Destroy(item.ContractButton);
-        }
-        
+
         foreach (var contract in _AvailableContracts)
         {
-            var go = Instantiate(_ContractButtonPrefab);                        // Create the button
-            go.name = "Contract: " + contract.ContractID.ToString();            // Name the button
-
-            go.GetComponentInChildren<TextMeshProUGUI>().text = "Contract: " + contract.ContractID.ToString();
-            go.GetComponent<ContractButton>().SetContract(contract);
-            go.GetComponent<ContractTimerController>().SetContract(contract);
-
-            go.transform.SetParent(_ContractContainer);
-            go.transform.localScale = Vector3.one;
-
-            contract.ContractButton = go;
+            AddContractButton(contract);
         }
+    }
+
+    public void AddContractButton(ContractInfo contract)
+    {
+        var go = Instantiate(_ContractButtonPrefab);                        // Create the button
+        go.name = "Contract: " + contract.ContractID.ToString();            // Name the button
+
+        go.GetComponentInChildren<TextMeshProUGUI>().text = "Contract: " + contract.ContractID.ToString();
+        go.GetComponent<ContractButton>().SetContract(contract);
+        go.GetComponent<ContractTimerController>().SetContract(contract);
+
+        go.transform.SetParent(_ContractContainer);
+        go.transform.localScale = Vector3.one;
+
+        contract.ContractButton = go;
     }
 
     private void ActiveContractDisplay()
@@ -250,6 +250,7 @@ public class GameController : MonoBehaviour
     public GameObject GetActiveDropdownItem() => _DropdownMenuItem;
 
     public int GetNextContractID() => _NextContractID;
+    public Transform GetContractContainerLocation() => _ContractContainer;
 
     // Setters
     public void SetViewingButton(GameObject contract)
@@ -262,8 +263,8 @@ public class GameController : MonoBehaviour
     public void AddContract(ContractInfo contract)
     {
         _AvailableContracts.Add(contract);
+        //DisplayAvailableContracts();
         _NextContractID++;
-        DisplayAvailableContracts();
     }
 
     public void SetActiveContract(ContractInfo contract) => ActiveContract = contract;

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GenerateTerminal 
 {
-    public static TerminalInfo GenerateContract()
+    public TerminalInfo GenerateContract()
     {
         return CreateTerminal("Desktop");
     }
 
-    private static TerminalInfo CreateTerminal(string type)
+    private TerminalInfo CreateTerminal(string type)
     {
         TerminalInfo NewTerminal = new TerminalInfo();                // Create the new terminal
         
@@ -22,7 +22,7 @@ public class GenerateTerminal
         return NewTerminal;
     }
 
-    private static string GenerateIP()
+    private string GenerateIP()
     {
         string num_1 = UnityEngine.Random.Range(10, 1000).ToString();
         string num_2 = UnityEngine.Random.Range(100, 1000).ToString();
@@ -31,7 +31,7 @@ public class GenerateTerminal
         return num_1 + "." + num_2 + "." + num_3;
     }
 
-    private static string GenerateTerminalName(string type)
+    private string GenerateTerminalName(string type)
     {
         return "";
     }

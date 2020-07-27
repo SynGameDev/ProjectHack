@@ -147,6 +147,10 @@
               <e p="ContractGenerator.cs" t="Include" />
               <e p="GenerateTerminal.cs" t="Include" />
             </e>
+            <e p="GenerationSystem2.0" t="Include">
+              <e p="AceTechAccountGenerator.cs" t="Include" />
+              <e p="NewContractSystem.cs" t="Include" />
+            </e>
             <e p="LoadDataSystem" t="Include">
               <e p="LoadDatabaseInfo.cs" t="Include" />
             </e>

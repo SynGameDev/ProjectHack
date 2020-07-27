@@ -56,7 +56,7 @@ public class ContractGenerator
 
     }
 
-    private static TerminalInfo GenerateTerminal()
+    private TerminalInfo GenerateTerminal()
     {
         Terminal = new TerminalInfo(); // New Terminal class
 
@@ -74,7 +74,7 @@ public class ContractGenerator
 
     }
 
-    private static List<string> CreateObjective()
+    private List<string> CreateObjective()
     {
         List<string> NewObjectiveList = new List<string>();
         var Object = _Actions[Random.Range(0, _Actions.Count - 1)]; // Get a action
@@ -104,7 +104,7 @@ public class ContractGenerator
         return NewObjectiveList;
     }
     
-    private static string CreateInstallObj()
+    private string CreateInstallObj()
     {
         ApplicationClass App = SelectApp();                
         string Term = Contract.Terminal[0].TerminalIP;
@@ -112,7 +112,7 @@ public class ContractGenerator
         return "Install " + App.ApplicationName + " IP: " + Term;
     }
 
-    private static string CreateUninstallObj()
+    private string CreateUninstallObj()
     {
         ApplicationClass App = SelectApp();
         string Term = Contract.Terminal[0].TerminalIP;
@@ -125,7 +125,7 @@ public class ContractGenerator
         return "Uninstall " + App.ApplicationName + " IP: " + Term;
     }
 
-    private static string CreateHideObj()
+    private string CreateHideObj()
     {
         ApplicationClass App = SelectApp();
         string Term = Contract.Terminal[0].TerminalIP;
@@ -138,7 +138,7 @@ public class ContractGenerator
         return "Hide " + App.ApplicationName + " IP: " + Term;
     }
 
-    private static string CreateShowObj()
+    private string CreateShowObj()
     {
         ApplicationClass App = SelectApp();
         string Term = Contract.Terminal[0].TerminalIP;
@@ -147,7 +147,7 @@ public class ContractGenerator
         return "Show " + App.ApplicationName + " IP: " + Term;
     }
 
-    private static string CreateDeleteObj()
+    private string CreateDeleteObj()
     {
         ApplicationClass App = SelectApp();
         string Term = Contract.Terminal[0].TerminalIP;
@@ -158,14 +158,14 @@ public class ContractGenerator
 
     }
 
-    private static ApplicationClass SelectApp()
+    private ApplicationClass SelectApp()
     {
         var AppDB = ApplicationDatabase.Instance.GetSoftwareApps();
         return AppDB[Random.Range(0, AppDB.Count)];
     }
 
     
-    private static AceTechAccount CreateAceTechAccount()
+    private AceTechAccount CreateAceTechAccount()
     {
         AceTechAccount AceTech = new AceTechAccount();            // New Account Class
         string[] Names = Name();                    // Get random names
@@ -187,7 +187,7 @@ public class ContractGenerator
 
     }
 
-    private static string[] Name()
+    private string[] Name()
     {
         var Names = new NamesData();                // New names database
         
@@ -207,7 +207,7 @@ public class ContractGenerator
         return data;                // Return the array
     }
 
-    private static string GetMissionMessage()
+    private string GetMissionMessage()
     {
         List<string> Messages = new List<string>();                // Create a new list to store template messages
 
@@ -221,7 +221,7 @@ public class ContractGenerator
 
     }
 
-    private static string CreateMessage(string template)
+    private string CreateMessage(string template)
     {
         template = template.Replace("[user]",
             GameController.Instance.GetPlayerData().PlayerName); // Set the player name
@@ -229,7 +229,7 @@ public class ContractGenerator
         return template;
     }
 
-    private static string CreateTerminalName()
+    private string CreateTerminalName()
     {
         var Account = Terminal.EmailAccount;
         // string[] CharArray = {"", "_", "-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
@@ -250,7 +250,7 @@ public class ContractGenerator
     }
 
 
-    private static List<TextFile> GenerateRandomTextFiles()
+    private List<TextFile> GenerateRandomTextFiles()
     {
         List<TextFile> Files = new List<TextFile>(); // List of files to add
         List<TextFile> Temp = new List<TextFile>(); // All the template files
@@ -281,14 +281,14 @@ public class ContractGenerator
         return Files;
     }
 
-    private static string TextFileListGeneration(string Content)
+    private string TextFileListGeneration(string Content)
     {
         Content = Content.Replace("(FOOD)", GetFoodList());
         
         return Content;
     }
 
-    private static string GetFoodList()
+    private string GetFoodList()
     {
         string data = "";                // Blank script
         List<string> Foods = new List<string>();            // New List of foods
@@ -321,7 +321,7 @@ public class ContractGenerator
         return data;
     }
 
-    private static List<string> CountItemRepeat(string item, List<string> data)
+    private List<string> CountItemRepeat(string item, List<string> data)
     {
         var count = 0;
         foreach (var c in data)
@@ -349,7 +349,7 @@ public class ContractGenerator
         return data;
     }
 
-    private static string CountFileDuplicates(TextFile file, List<TextFile> list)
+    private string CountFileDuplicates(TextFile file, List<TextFile> list)
     {
         var count = 0;            // Init the count
         // Foreach item in the list
@@ -368,7 +368,7 @@ public class ContractGenerator
     /// <summary>
     /// This Method will init the list of actions that can be used for the contract
     /// </summary>
-    private static void GenerateActions()
+    private void GenerateActions()
     {
         _Actions.Add("Install");
         _Actions.Add("Uninstall");
@@ -377,7 +377,7 @@ public class ContractGenerator
         _Actions.Add("Delete");;
     }
 
-    private static TemplateDatabases GetTemplateList()
+    private TemplateDatabases GetTemplateList()
     {
         TemplateDatabases Temp = new TemplateDatabases();
         using (StreamReader r = new StreamReader(Application.streamingAssetsPath + "/Databases/TemplateDatabase.json"))

@@ -45,10 +45,14 @@ public class ContractGenerationController : MonoBehaviour
 
     private void CreateContract()
     {
-        ContractGenerator NewContract = new ContractGenerator();
-        ContractInfo Contract = NewContract.NewContract();
-        Contract.ContractID = GameController.Instance.GetNextContractID().ToString();
-        
+        NewContractSystem NewContract = new NewContractSystem();
+        ContractInfo Contract = new ContractInfo();
+        Contract = NewContract.CreateNewContract();
+
         GameController.Instance.AddContract(Contract);            // Create the contract
+        GameController.Instance.AddContractButton(Contract);
+        
     }
+    
+    
 }
