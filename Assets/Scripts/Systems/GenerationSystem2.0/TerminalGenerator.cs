@@ -25,9 +25,8 @@ public class TerminalGenerator
 
     private string GenerateTerminalName(AceTechAccount Account)
     {
-
         var value = Random.Range(0, 2);                // Value
-        // Determine the Temrinal Name base on a random value
+        // Determine the Terminal Name base on a random value
         switch (value)
         {
             case 0:

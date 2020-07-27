@@ -11,6 +11,7 @@ public class NewContractSystem
         // Generators
         AceTechGenerator AceTech = new AceTechGenerator();
         TerminalGenerator TerminalGen = new TerminalGenerator();
+        ObjectiveGenerator ObjectiveGen = new ObjectiveGenerator();
         
         // Classes
         ContractInfo Contract = new ContractInfo();            // Setup the new contract
@@ -23,7 +24,7 @@ public class NewContractSystem
         Contract.ContractMessage = "Hey,\n Please complete the below missions \n thanks";
         Contract.ContractSubject = MissionType();
         Contract.Terminal.Add(TerminalGen.GenerateTerminal());
-
+        Contract.MainObjectives = ObjectiveGen.GenerateObjective(Contract.ContractSubject, Contract);
         // Set the difficulty
         Contract.ContractDifficulty = 1;
         // Setup the status
@@ -36,7 +37,6 @@ public class NewContractSystem
     {
         string type = "";
         string[] MissionTypes = {"Spy", "Data Retrieval", "Brute Force", "Phishing", "DOS"};            // Type of missions
-        
         return MissionTypes[Random.Range(0, MissionTypes.Length)];
     }
 }

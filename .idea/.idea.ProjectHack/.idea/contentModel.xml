@@ -150,6 +150,7 @@
             <e p="GenerationSystem2.0" t="Include">
               <e p="AceTechAccountGenerator.cs" t="Include" />
               <e p="NewContractSystem.cs" t="Include" />
+              <e p="ObjectiveGenerator.cs" t="Include" />
               <e p="TerminalGenerator.cs" t="Include" />
             </e>
             <e p="LoadDataSystem" t="Include">
