@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class NewContractSystem 
 {
+
     public ContractInfo CreateNewContract()
     {
+        AceTechGenerator AceTech = new AceTechGenerator();
+        
+        
         ContractInfo Contract = new ContractInfo();            // Setup the new contract
+        AceTechAccount Account = new AceTechAccount();
 
         // Set the basic details
         Contract.ContractID = GameController.Instance.GetNextContractID().ToString();
         Contract.ContractName = "temp" + Contract.ContractID;
-        Contract.ContractOwner = "Owner " + Contract.ContractID;
+        Contract.ContractOwner = AceTech.GenerateAccount();
         Contract.ContractMessage = "Hey,\n Please complete the below missions \n thanks";
         Contract.ContractSubject = MissionType();
 

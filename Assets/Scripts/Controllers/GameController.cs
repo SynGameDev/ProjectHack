@@ -291,7 +291,7 @@ public class GameController : MonoBehaviour
         var info = new ContractInfo();
         info.ContractID = "1";
         info.ContractName = "Test Contract";
-        info.ContractOwner = "Alex A";
+        info.ContractOwner = new AceTechAccount();
         info.ContractStatus = "Pending";
         info.ContractMessage = "Hey Man,\n\nI Heard you're the man I need to speak to.\n\nMy business partner is trying to screw me out of the business and I need to access his PC, can you install a key logger!\n\nCheers David";
         info.ContractSubject = "Install Software";

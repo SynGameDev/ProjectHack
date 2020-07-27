@@ -12,7 +12,7 @@ public class ContractInfo
     // Contract Details
     public string ContractID;
     public string ContractName;                     // Name of contract
-    public string ContractOwner;                    // Person / company offering the contract
+    public AceTechAccount ContractOwner;                    // Person / company offering the contract
     public string ContractMessage;                  // What needs to be completed in the contract
     public string ContractSubject;
 
