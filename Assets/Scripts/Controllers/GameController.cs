@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private Transform _ContractContainer;
     private List<ContractInfo> _AvailableContracts = new List<ContractInfo>();
-    private int _NextContractID;
+    private int _NextContractID = 1;
 
     [Header("Viewing Contract")]
     [SerializeField] private ContractInfo _ViewingContract = null;
@@ -75,14 +76,15 @@ public class GameController : MonoBehaviour
        // _AvailableContracts.Add(SetupTestContract());             // TEST METHOD
         Player = CreatePlayer();                                // TEST METHOD
         DisplayAvailableContracts();
-        
-        _ViewingContract = null;
+
+        _ViewingContract = TempNullViewingClass();
     }
 
     private void Update()
     {
         //ActiveContractDisplay();
         IPData();
+
     }
 
     private void DisplayAvailableContracts()
@@ -154,7 +156,7 @@ public class GameController : MonoBehaviour
     {
         _AvailableContracts.Remove(_ViewingContract);
         Destroy(_ViewingContractButton);
-        _ViewingContract = null;
+        _ViewingContract = TempNullViewingClass();
 
         // TODO:Update Stats
     }
@@ -178,7 +180,7 @@ public class GameController : MonoBehaviour
         ActiveContract.ContractButton.GetComponentInChildren<TextMeshProUGUI>().text = ActiveContract.ContractButton.name;
         ActiveContract.ContractButton.GetComponentInChildren<Image>().fillAmount = 1;
         _ViewingContractButton = null;
-        _ViewingContract = null;
+        _ViewingContract = TempNullViewingClass();
         ActiveContract.ContractStatus = "Accepted";
 
         ActiveContractDisplay();
@@ -289,7 +291,7 @@ public class GameController : MonoBehaviour
         var term = CreateTerminal();
 
         var info = new ContractInfo();
-        info.ContractID = "1";
+        info.ContractID = 1;
         info.ContractName = "Test Contract";
         info.ContractOwner = new AceTechAccount();
         info.ContractStatus = "Pending";
@@ -336,5 +338,13 @@ public class GameController : MonoBehaviour
         text.FileContent = "This is a test of the content";
 
         return text;
+    }
+
+    private ContractInfo TempNullViewingClass()
+    {
+        ContractInfo Contract = new ContractInfo();
+        Contract.ContractName = "Null";
+
+        return Contract;
     }
 }

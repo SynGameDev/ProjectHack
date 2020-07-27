@@ -10,9 +10,23 @@ public class ViewingContract : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _Subject;
     [SerializeField] private TextMeshProUGUI _MessageContent;
     [SerializeField] private GameObject _ContractActionPanel;
+    [SerializeField] private bool _ViewingContract;
+    
 
     private void Update() {
         CheckIfViewing();
+
+        if (GameController.Instance.GetViewingContract().ContractName == "Null")
+        {
+            _ToHeader.text = "";
+            _Subject.text = "";
+            _MessageContent.text = "";
+            _ContractActionPanel.SetActive(false);
+        }
+        else
+        {
+            DisplayContractInfo();
+        }
     }
 
     private void CheckIfViewing() {
@@ -23,17 +37,18 @@ public class ViewingContract : MonoBehaviour
             _Subject.text = "";
             _MessageContent.text = "";
             _ContractActionPanel.SetActive(false);
-            
         } else {
-            DisplayContractInfo();
+           // DisplayContractInfo();
+           
+           
         }
     }
 
     private void DisplayContractInfo() {
         var contract = GameController.Instance.GetViewingContract();
 
-        _ToHeader.text = contract.ContractOwner;
-        _Subject.text = contract.ContractStatus;
+        _ToHeader.text = contract.ContractOwner.Username;
+        _Subject.text = contract.ContractSubject;
         _MessageContent.text = contract.ContractMessage;
 
         _ContractActionPanel.SetActive(contract.ContractStatus == "Pending");
@@ -44,4 +59,6 @@ public class ViewingContract : MonoBehaviour
     }
 
     public void DeclineContract() => GameController.Instance.DeclineContract();
+
+    public void SetViewingContract(bool viewing) => _ViewingContract = viewing;
 }

@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxTime: 10
-  _MinTime: 20
+  _MinTime: 10
 --- !u!114 &289918320
 MonoBehaviour:
   m_ObjectHideFlags: 0

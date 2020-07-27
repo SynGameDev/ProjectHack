@@ -17,6 +17,7 @@ TagManager:
   - Music
   - SFX
   - ItemContainer
+  - ContractViewer
   layers:
   - Default
   - TransparentFX

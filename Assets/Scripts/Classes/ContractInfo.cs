@@ -10,7 +10,7 @@ public class ContractInfo
      public GameObject ContractButton;
 
     // Contract Details
-    public string ContractID;
+    public int ContractID;
     public string ContractName;                     // Name of contract
     public AceTechAccount ContractOwner;                    // Person / company offering the contract
     public string ContractMessage;                  // What needs to be completed in the contract

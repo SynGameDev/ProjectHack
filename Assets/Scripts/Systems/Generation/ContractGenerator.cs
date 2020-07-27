@@ -36,7 +36,7 @@ public class ContractGenerator
         Terminal.InstalledApplication = AppsToInstall; // Setup the installed applications on the system
         string[] data = Name(); // Get the names
 
-        Contract.ContractOwner = data[2]; // Set the username
+        Contract.ContractOwner = new AceTechAccount();
 
         Contract.ContractDifficulty = 1; // Set the difficulty
         Contract.ContractStatus = "Pending"; // Status of the contract
@@ -225,7 +225,7 @@ public class ContractGenerator
     {
         template = template.Replace("[user]",
             GameController.Instance.GetPlayerData().PlayerName); // Set the player name
-        template = template.Replace("[owner]", Contract.ContractOwner); // Set the from message
+        template = template.Replace("[owner]", Contract.ContractOwner.Username); // Set the from message
         return template;
     }
 

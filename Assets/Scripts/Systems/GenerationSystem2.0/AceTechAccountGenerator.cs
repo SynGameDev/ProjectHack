@@ -15,6 +15,7 @@ public class AceTechGenerator
         Account.Username = GeneratedNames[2];
         
         // TODO: Decide whether to use a current account or make a new one.
+        // TODO: Decide whether to use an already added terminal
         
         // TODO: Generate Sent Emails
         // TODO: Generate Received Emails
@@ -28,7 +29,7 @@ public class AceTechGenerator
         List<string> Names = new List<string>();
         NamesData Data = new NamesData();
 
-        using (StreamReader r = new StreamReader(Application.streamingAssetsPath + "Databases/NamesDatabase.json"))
+        using (StreamReader r = new StreamReader(Application.streamingAssetsPath + "/Databases/NamesDatabase.json"))
         {
             Data = JsonUtility.FromJson<NamesData>(r.ReadToEnd());
         }
